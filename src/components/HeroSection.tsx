@@ -63,10 +63,17 @@ export const HeroSection = () => {
             <span className="text-foreground">TECH</span>
           </h1>
 
+          {/* Business Tagline */}
+          <div className="text-2xl md:text-3xl font-bold text-foreground mb-4 tracking-wider">
+            DIGITAL WEB PRODUCTS
+          </div>
+          <div className="text-xl md:text-2xl text-accent mb-6 font-medium">
+            FOR AMAZING CLIENTS
+          </div>
+
           {/* Subtitle */}
-          <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed">
-            Revolutionizing the digital landscape with cutting-edge AI solutions, 
-            futuristic web technologies, and innovative software development.
+          <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-4xl mx-auto leading-relaxed">
+            We work closely with our development team, marketing professionals and stakeholders to design and develop UX and UI that make your website, application or software a joy to use.
           </p>
 
           {/* CTA Buttons */}

@@ -3,23 +3,23 @@ import { Brain, Rocket, Zap, Users } from 'lucide-react';
 const features = [
   {
     icon: Brain,
-    title: 'AI Innovation',
-    description: 'Cutting-edge artificial intelligence solutions that transform businesses and accelerate growth.'
+    title: 'Quality Assurance',
+    description: 'We take pride in delivering high-quality work that exceeds your expectations.'
   },
   {
     icon: Rocket,
-    title: 'Future Tech',
-    description: 'Leading-edge technologies including blockchain, IoT, and quantum computing applications.'
+    title: 'Affordability',
+    description: 'Our competitive prices are designed to fit your budget without compromising quality.'
   },
   {
     icon: Zap,
-    title: 'Lightning Fast',
-    description: 'Optimized performance and scalable architectures that deliver exceptional user experiences.'
+    title: 'Timely Delivery',
+    description: 'We understand the importance of deadlines, and we promise to deliver on time.'
   },
   {
     icon: Users,
-    title: 'Expert Team',
-    description: 'World-class developers, designers, and engineers dedicated to your success.'
+    title: 'Dedicated Support',
+    description: 'Our team is always here to assist you every step of the way.'
   }
 ];
 
@@ -37,10 +37,10 @@ export const AboutSection = () => {
           <h2 className="text-4xl md:text-6xl font-bold mb-6">
             About <span className="gradient-text">NVHO TECH</span>
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            We are pioneers in the digital frontier, crafting tomorrow's technology today. 
-            Our mission is to push the boundaries of what's possible through innovation, 
-            creativity, and cutting-edge engineering.
+          <p className="text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
+            Our client-centric approach and proven expertise across platforms guarantee tailored solutions that elevate your business. 
+            With a track record of success, transparent communication, and a commitment to user-centric design, we ensure a collaborative 
+            partnership that builds scalable and efficient digital solutions.
           </p>
         </div>
 
@@ -62,6 +62,36 @@ export const AboutSection = () => {
                 {feature.title}
               </h3>
               
+              <p className="text-muted-foreground leading-relaxed">
+                {feature.description}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        {/* Additional Features */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-16">
+          {[
+            { 
+              title: 'Custom Solutions', 
+              description: 'Every project is unique, and we tailor our services to your specific needs.',
+              icon: '🎯'
+            },
+            { 
+              title: 'Client Satisfaction', 
+              description: 'Your satisfaction is our top priority, and we strive to build long-lasting relationships.',
+              icon: '⭐'
+            }
+          ].map((feature, index) => (
+            <div 
+              key={feature.title}
+              className="group glass rounded-3xl p-8 hover-lift hover:neon-glow transition-all duration-500 text-center"
+              style={{ animationDelay: `${index * 0.1}s` }}
+            >
+              <div className="text-4xl mb-4">{feature.icon}</div>
+              <h3 className="text-xl font-semibold mb-4 group-hover:gradient-text transition-all duration-300">
+                {feature.title}
+              </h3>
               <p className="text-muted-foreground leading-relaxed">
                 {feature.description}
               </p>

@@ -4,39 +4,45 @@ import { Button } from '@/components/ui/button';
 const services = [
   {
     icon: Code,
-    title: 'Web Development',
-    description: 'Custom web applications built with modern frameworks and cutting-edge technologies.',
-    features: ['React & Next.js', 'Full-Stack Solutions', 'Progressive Web Apps', 'E-commerce Platforms']
+    title: 'Website Development',
+    description: 'Your online presence is crucial. Our team of experts will create a stunning and user-friendly website that perfectly represents your brand, engages your audience, and drives results.',
+    price: '₹7,499',
+    features: ['Custom Design', 'Responsive Layout', 'SEO Optimized', 'Fast Loading']
   },
   {
     icon: Smartphone,
-    title: 'Mobile Development',
-    description: 'Native and cross-platform mobile applications that deliver exceptional user experiences.',
-    features: ['iOS & Android', 'React Native', 'Flutter', 'Mobile UI/UX']
-  },
-  {
-    icon: Cloud,
-    title: 'Cloud Solutions',
-    description: 'Scalable cloud infrastructure and migration services for modern businesses.',
-    features: ['AWS & Azure', 'DevOps & CI/CD', 'Microservices', 'Container Orchestration']
-  },
-  {
-    icon: Shield,
-    title: 'Cybersecurity',
-    description: 'Comprehensive security solutions to protect your digital assets and data.',
-    features: ['Security Audits', 'Penetration Testing', 'Compliance', 'Risk Assessment']
-  },
-  {
-    icon: Database,
-    title: 'Data Analytics',
-    description: 'Transform your data into actionable insights with advanced analytics and AI.',
-    features: ['Machine Learning', 'Big Data Processing', 'Predictive Analytics', 'Data Visualization']
+    title: 'App Development',
+    description: 'Elevate your business with our app development expertise. Our packages ensure you have a custom app that\'s user-friendly, efficient, and helps your startup thrive in the digital age.',
+    price: '₹71,000',
+    features: ['iOS & Android', 'Custom Features', 'App Store Publishing', 'Maintenance Support']
   },
   {
     icon: Palette,
-    title: 'UI/UX Design',
-    description: 'Beautiful, intuitive designs that engage users and drive conversions.',
-    features: ['User Research', 'Prototyping', 'Design Systems', 'Brand Identity']
+    title: 'Marketing',
+    description: 'We\'re here to supercharge your startup! Our packages provide expert marketing to make your business stand out, attract more customers, and boost your success.',
+    price: '₹1,999',
+    features: ['Digital Marketing', 'Social Media', 'Content Strategy', 'Analytics']
+  },
+  {
+    icon: Database,
+    title: 'Logo Design',
+    description: 'A memorable logo is the cornerstone of your brand identity. Let our talented designers craft a unique logo that reflects your company\'s values and vision.',
+    price: '₹2,999',
+    features: ['Custom Design', 'Multiple Concepts', 'Vector Files', 'Brand Guidelines']
+  },
+  {
+    icon: Shield,
+    title: 'Company Registration',
+    description: 'We simplify the process of getting your business officially registered, ensuring compliance with all legal requirements. Our experienced team will guide you through the paperwork hassle-free.',
+    price: '₹9,999',
+    features: ['Legal Compliance', 'Documentation', 'Expert Guidance', 'Fast Processing']
+  },
+  {
+    icon: Cloud,
+    title: 'Funding & Visa',
+    description: 'Unlock your entrepreneurial dreams with us. Our packages provide essential funding and visa support to help you launch and grow your business, ensuring a smoother path to success.',
+    price: 'Contact Us',
+    features: ['Funding Support', 'Visa Assistance', 'Business Planning', 'Legal Support']
   }
 ];
 
@@ -52,11 +58,11 @@ export const ServicesSection = () => {
       <div className="container mx-auto px-6 relative z-10">
         <div className="text-center mb-20">
           <h2 className="text-4xl md:text-6xl font-bold mb-6">
-            Our <span className="gradient-text">Services</span>
+            YOUR BUSINESS <span className="gradient-text">NEEDS THIS!!</span>
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            From concept to deployment, we provide end-to-end technology solutions 
-            that drive innovation and accelerate your digital transformation journey.
+          <p className="text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
+            Comprehensive digital solutions designed to elevate your business and drive success 
+            in the modern marketplace. From stunning websites to powerful mobile apps.
           </p>
         </div>
 
@@ -82,6 +88,10 @@ export const ServicesSection = () => {
                   {service.title}
                 </h3>
                 
+                <div className="text-3xl font-bold text-accent mb-4">
+                  Prices start from {service.price}
+                </div>
+                
                 <p className="text-muted-foreground mb-6 leading-relaxed">
                   {service.description}
                 </p>
@@ -103,7 +113,7 @@ export const ServicesSection = () => {
                   variant="outline" 
                   className="w-full glass border-primary/30 hover:bg-primary/10 hover:border-primary transition-all duration-300 group-hover:neon-glow"
                 >
-                  Learn More
+                  GET QUOTE
                 </Button>
               </div>
             </div>
