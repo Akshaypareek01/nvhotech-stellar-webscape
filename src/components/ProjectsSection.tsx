@@ -1,0 +1,205 @@
+import { ExternalLink, Globe, Smartphone, Settings } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+
+const projects = {
+  websites: [
+    {
+      title: 'Fun Formulae',
+      image: 'https://nvhotech.in/images/fun.jpeg',
+      url: 'https://funformulae.com/',
+      description: 'Educational platform for mathematical formulas and learning'
+    },
+    {
+      title: 'Samsara Innovations',
+      image: 'https://nvhotech.in/images/samsara.jpg',
+      url: 'https://samsarainnovations.com/',
+      description: 'Innovation and technology solutions company website'
+    },
+    {
+      title: 'Local Adventures',
+      image: 'https://nvhotech.in/images/localad.png',
+      url: 'https://localadventures.in/',
+      description: 'Local tourism and adventure experiences platform'
+    },
+    {
+      title: 'Daevish',
+      image: 'https://nvhotech.in/images/web-garphic.jpeg',
+      url: 'https://daevish.com/',
+      description: 'Creative design and branding solutions'
+    },
+    {
+      title: 'Solitaire Jewel',
+      image: 'https://nvhotech.in/images/soliter.jpeg',
+      url: 'https://solitairejewel.com/',
+      description: 'Premium jewelry and diamond collection'
+    }
+  ],
+  applications: [
+    {
+      title: 'Scrap on Wheels',
+      image: 'https://nvhotech.in/images/sow.webp',
+      url: 'https://play.google.com/store/apps/details?id=com.scraponwheelscollectorsv1.app&hl=en-US',
+      description: 'Mobile app for scrap collection and recycling services'
+    },
+    {
+      title: 'NDFC',
+      image: 'https://nvhotech.in/images/ndfc.webp',
+      url: 'https://play.google.com/store/apps/details?id=com.ndcp.app&hl=en-US',
+      description: 'Financial services and digital banking solution'
+    },
+    {
+      title: 'Master of Jobs',
+      image: 'https://nvhotech.in/images/moj.webp',
+      url: 'https://play.google.com/store/apps/details?id=com.masterofjobs_moj&hl=en-US',
+      description: 'Job search and career development platform'
+    }
+  ],
+  cms: [
+    {
+      title: 'Minimals Dashboard',
+      image: 'https://nvhotech.in/images/minimals.webp',
+      url: 'https://minimals.cc/auth/amplify/sign-in?returnTo=%2Fdashboard',
+      description: 'Modern admin dashboard with clean design'
+    },
+    {
+      title: 'Uko React',
+      image: 'https://nvhotech.in/images/uko.webp',
+      url: 'https://uko-react.vercel.app/login',
+      description: 'React-based dashboard with advanced features'
+    },
+    {
+      title: 'Modernize Next.js',
+      image: 'https://nvhotech.in/images/modernize.jpg',
+      url: 'https://modernize-nextjs-dark.vercel.app/dashboards/ecommerce',
+      description: 'Next.js ecommerce dashboard solution'
+    },
+    {
+      title: 'Mantis Dashboard',
+      image: 'https://nvhotech.in/images/mantis.webp',
+      url: 'https://mantisdashboard.io/login',
+      description: 'Professional admin panel with modern UI'
+    },
+    {
+      title: 'Berry Dashboard',
+      image: 'https://nvhotech.in/images/berry.webp',
+      url: 'https://berrydashboard.io/login',
+      description: 'Elegant dashboard with comprehensive features'
+    }
+  ]
+};
+
+const ProjectCard = ({ project, index }: { project: any; index: number }) => (
+  <div 
+    className="group glass rounded-3xl overflow-hidden hover-lift hover:neon-glow transition-all duration-500"
+    style={{ animationDelay: `${index * 0.1}s` }}
+  >
+    <div className="relative overflow-hidden">
+      <img 
+        src={project.image} 
+        alt={project.title}
+        className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
+      />
+      <div className="absolute inset-0 bg-gradient-primary opacity-0 group-hover:opacity-20 transition-opacity duration-500"></div>
+      <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+        <ExternalLink className="w-6 h-6 text-white" />
+      </div>
+    </div>
+    
+    <div className="p-6">
+      <h3 className="text-xl font-bold mb-3 group-hover:gradient-text transition-all duration-300">
+        {project.title}
+      </h3>
+      <p className="text-muted-foreground mb-4 leading-relaxed">
+        {project.description}
+      </p>
+      <Button 
+        variant="outline" 
+        className="w-full glass border-primary/30 hover:bg-primary/10 hover:border-primary transition-all duration-300 group-hover:neon-glow"
+        onClick={() => window.open(project.url, '_blank')}
+      >
+        View Project
+        <ExternalLink className="ml-2 w-4 h-4" />
+      </Button>
+    </div>
+  </div>
+);
+
+export const ProjectsSection = () => {
+  return (
+    <section id="projects" className="py-32 relative overflow-hidden">
+      {/* Background Elements */}
+      <div className="absolute inset-0">
+        <div className="absolute top-20 right-10 w-80 h-80 bg-gradient-primary rounded-full opacity-5 blur-3xl animate-float"></div>
+        <div className="absolute bottom-20 left-10 w-64 h-64 bg-neon-purple rounded-full opacity-10 blur-2xl animate-float-delayed"></div>
+      </div>
+
+      <div className="container mx-auto px-6 relative z-10">
+        <div className="text-center mb-20">
+          <h2 className="text-4xl md:text-6xl font-bold mb-6">
+            Our <span className="gradient-text">Portfolio</span>
+          </h2>
+          <p className="text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
+            Discover our latest projects and see how we've helped businesses transform their digital presence 
+            with cutting-edge technology solutions and innovative designs.
+          </p>
+        </div>
+
+        {/* Websites Section */}
+        <div className="mb-20">
+          <div className="flex items-center justify-center mb-12">
+            <Globe className="w-8 h-8 text-primary mr-3" />
+            <h3 className="text-3xl font-bold">Websites</h3>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {projects.websites.map((project, index) => (
+              <ProjectCard key={project.title} project={project} index={index} />
+            ))}
+          </div>
+        </div>
+
+        {/* Applications Section */}
+        <div className="mb-20">
+          <div className="flex items-center justify-center mb-12">
+            <Smartphone className="w-8 h-8 text-accent mr-3" />
+            <h3 className="text-3xl font-bold">Mobile Applications</h3>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {projects.applications.map((project, index) => (
+              <ProjectCard key={project.title} project={project} index={index} />
+            ))}
+          </div>
+        </div>
+
+        {/* CMS Section */}
+        <div className="mb-20">
+          <div className="flex items-center justify-center mb-12">
+            <Settings className="w-8 h-8 text-neon-purple mr-3" />
+            <h3 className="text-3xl font-bold">CMS & Dashboards</h3>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {projects.cms.map((project, index) => (
+              <ProjectCard key={project.title} project={project} index={index} />
+            ))}
+          </div>
+        </div>
+
+        {/* Call to Action */}
+        <div className="text-center glass rounded-3xl p-12 neon-glow">
+          <h3 className="text-3xl font-bold mb-4">
+            Ready to Start Your <span className="gradient-text">Next Project</span>?
+          </h3>
+          <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
+            Let's collaborate and bring your vision to life with our proven expertise and innovative solutions.
+          </p>
+          <Button 
+            size="lg" 
+            className="bg-gradient-primary hover:shadow-neon transition-all duration-300 hover:scale-105 text-lg px-10 py-4"
+          >
+            Start Your Project
+            <ExternalLink className="ml-2 w-5 h-5" />
+          </Button>
+        </div>
+      </div>
+    </section>
+  );
+};
