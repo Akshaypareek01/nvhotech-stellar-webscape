@@ -1,3 +1,5 @@
+import { useRef } from 'react';
+import { useSmoothScroll } from '@/hooks/useSmoothScroll';
 import { ParticleBackground } from '@/components/ParticleBackground';
 import { Navigation } from '@/components/Navigation';
 import { HeroSection } from '@/components/HeroSection';
@@ -8,8 +10,14 @@ import { ContactSection } from '@/components/ContactSection';
 import { Footer } from '@/components/Footer';
 
 const Index = () => {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  useSmoothScroll(scrollRef);
   return (
-    <div className="min-h-screen bg-gradient-hero text-foreground font-tech">
+    <div
+      ref={scrollRef}
+      data-scroll-container
+      className="min-h-screen bg-gradient-hero text-foreground font-tech"
+    >
       {/* Particle Background */}
       <ParticleBackground />
       
