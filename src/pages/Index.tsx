@@ -11,7 +11,8 @@ import { Footer } from '@/components/Footer';
 
 const Index = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
-  useSmoothScroll(scrollRef);
+  const locoRef = useRef<any>(null); // LocomotiveScroll instance
+  useSmoothScroll(scrollRef, locoRef);
   return (
     <div
       ref={scrollRef}
@@ -22,7 +23,7 @@ const Index = () => {
       <ParticleBackground />
       
       {/* Navigation */}
-      <Navigation />
+      <Navigation locoRef={locoRef} />
       
       {/* Main Content */}
       <main className="relative z-10">

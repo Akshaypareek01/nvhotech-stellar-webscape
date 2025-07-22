@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Menu, X, Zap } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { MutableRefObject } from 'react';
 
 const navItems = [
   { label: 'Home', href: '#home' },
@@ -10,7 +11,8 @@ const navItems = [
   { label: 'Contact', href: '#contact' },
 ];
 
-export const Navigation = () => {
+// Accept locoRef as prop
+export const Navigation = ({ locoRef }: { locoRef?: MutableRefObject<any> }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -26,16 +28,11 @@ export const Navigation = () => {
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href) as HTMLElement;
     if (element) {
-      // Get the header height dynamically
-      const header = document.querySelector('nav') as HTMLElement;
-      const headerHeight = header ? header.offsetHeight : 80;
-      
-      const offsetTop = element.offsetTop - headerHeight;
-      
-      window.scrollTo({
-        top: Math.max(0, offsetTop), // Ensure we don't scroll to negative position
-        behavior: 'smooth'
-      });
+      if (locoRef && locoRef.current) {
+        locoRef.current.scrollTo(element, { offset: 0, duration: 800 });
+      } else {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
     }
     setIsOpen(false);
   };

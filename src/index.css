@@ -264,3 +264,7 @@ All colors MUST be HSL for perfect theming
     animation-delay: 2s;
   }
 }
+
+section[id] {
+  scroll-margin-top: 80px;
+}
