@@ -1,5 +1,8 @@
-import { ExternalLink, Globe, Smartphone, Settings } from 'lucide-react';
+import { ExternalLink, Globe, Smartphone, Settings, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
+import { useEffect } from 'react';
+import Autoplay from 'embla-carousel-autoplay';
 
 const projects = {
   websites: [
@@ -90,7 +93,7 @@ const projects = {
 
 const ProjectCard = ({ project, index }: { project: any; index: number }) => (
   <div 
-    className="group glass rounded-3xl overflow-hidden hover-lift hover:neon-glow transition-all duration-500"
+    className="group glass rounded-3xl overflow-hidden hover-lift hover:neon-glow transition-all duration-500 min-w-[350px] mx-2"
     style={{ animationDelay: `${index * 0.1}s` }}
   >
     <div className="relative overflow-hidden">
@@ -124,6 +127,41 @@ const ProjectCard = ({ project, index }: { project: any; index: number }) => (
   </div>
 );
 
+const ProjectCarousel = ({ projects: projectList, title, icon }: { projects: any[], title: string, icon: any }) => {
+  const autoplayPlugin = Autoplay({ delay: 3000, stopOnInteraction: true });
+  
+  return (
+    <div className="mb-20">
+      <div className="flex items-center justify-center mb-12">
+        {icon}
+        <h3 className="text-3xl font-bold">{title}</h3>
+      </div>
+      
+      <div className="relative">
+        <Carousel 
+          className="w-full"
+          plugins={[autoplayPlugin]}
+          opts={{
+            align: "start",
+            loop: true,
+          }}
+        >
+          <CarouselContent className="-ml-2 md:-ml-4">
+            {projectList.map((project, index) => (
+              <CarouselItem key={project.title} className="pl-2 md:pl-4 basis-full md:basis-1/2 lg:basis-1/3">
+                <ProjectCard project={project} index={index} />
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          
+          <CarouselPrevious className="glass border-primary/30 hover:bg-primary/10 hover:border-primary transition-all duration-300 hover:neon-glow -left-12 hidden md:flex" />
+          <CarouselNext className="glass border-primary/30 hover:bg-primary/10 hover:border-primary transition-all duration-300 hover:neon-glow -right-12 hidden md:flex" />
+        </Carousel>
+      </div>
+    </div>
+  );
+};
+
 export const ProjectsSection = () => {
   return (
     <section id="projects" className="py-32 relative overflow-hidden">
@@ -144,44 +182,24 @@ export const ProjectsSection = () => {
           </p>
         </div>
 
-        {/* Websites Section */}
-        <div className="mb-20">
-          <div className="flex items-center justify-center mb-12">
-            <Globe className="w-8 h-8 text-primary mr-3" />
-            <h3 className="text-3xl font-bold">Websites</h3>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projects.websites.map((project, index) => (
-              <ProjectCard key={project.title} project={project} index={index} />
-            ))}
-          </div>
-        </div>
-
-        {/* Applications Section */}
-        <div className="mb-20">
-          <div className="flex items-center justify-center mb-12">
-            <Smartphone className="w-8 h-8 text-accent mr-3" />
-            <h3 className="text-3xl font-bold">Mobile Applications</h3>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projects.applications.map((project, index) => (
-              <ProjectCard key={project.title} project={project} index={index} />
-            ))}
-          </div>
-        </div>
-
-        {/* CMS Section */}
-        <div className="mb-20">
-          <div className="flex items-center justify-center mb-12">
-            <Settings className="w-8 h-8 text-neon-purple mr-3" />
-            <h3 className="text-3xl font-bold">CMS & Dashboards</h3>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projects.cms.map((project, index) => (
-              <ProjectCard key={project.title} project={project} index={index} />
-            ))}
-          </div>
-        </div>
+        {/* Project Carousels with Auto-scroll */}
+        <ProjectCarousel 
+          projects={projects.websites} 
+          title="Websites" 
+          icon={<Globe className="w-8 h-8 text-primary mr-3" />}
+        />
+        
+        <ProjectCarousel 
+          projects={projects.applications} 
+          title="Mobile Applications" 
+          icon={<Smartphone className="w-8 h-8 text-accent mr-3" />}
+        />
+        
+        <ProjectCarousel 
+          projects={projects.cms} 
+          title="CMS & Dashboards" 
+          icon={<Settings className="w-8 h-8 text-neon-purple mr-3" />}
+        />
 
         {/* Call to Action */}
         <div className="text-center glass rounded-3xl p-12 neon-glow">
