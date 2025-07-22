@@ -26,11 +26,21 @@ const Index = () => {
       
       {/* Main Content */}
       <main className="relative z-10">
-        <HeroSection />
-        <AboutSection />
-        <ServicesSection />
-        <ProjectsSection />
-        <ContactSection />
+        <section id="home">
+          <HeroSection />
+        </section>
+        <section id="about">
+          <AboutSection />
+        </section>
+        <section id="services">
+          <ServicesSection />
+        </section>
+        <section id="projects">
+          <ProjectsSection />
+        </section>
+        <section id="contact">
+          <ContactSection />
+        </section>
       </main>
       
       {/* Footer */}

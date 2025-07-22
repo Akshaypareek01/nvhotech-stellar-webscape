@@ -166,7 +166,7 @@ const ProjectCarousel = ({ projects: projectList, title, icon }: { projects: any
 
 export const ProjectsSection = () => {
   return (
-    <section id="projects" className="py-32 relative overflow-hidden">
+    <section className="py-32 relative overflow-hidden scroll-mt-20">
       {/* Background Elements */}
       <div className="absolute inset-0">
         <div className="absolute top-20 right-10 w-80 h-80 bg-gradient-primary rounded-full opacity-5 blur-3xl animate-float"></div>

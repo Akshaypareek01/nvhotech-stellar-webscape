@@ -66,7 +66,7 @@ export const ContactSection = () => {
   };
 
   return (
-    <section id="contact" className="py-32 relative overflow-hidden">
+    <section className="py-32 relative overflow-hidden scroll-mt-20">
       {/* Background Elements */}
       <div className="absolute inset-0">
         <div className="absolute top-20 left-10 w-80 h-80 bg-gradient-primary rounded-full opacity-5 blur-3xl animate-float"></div>

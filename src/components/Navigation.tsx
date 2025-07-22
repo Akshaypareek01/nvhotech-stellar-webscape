@@ -26,9 +26,14 @@ export const Navigation = () => {
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href) as HTMLElement;
     if (element) {
-      const offsetTop = element.offsetTop - 80; // Account for fixed header
+      // Get the header height dynamically
+      const header = document.querySelector('nav') as HTMLElement;
+      const headerHeight = header ? header.offsetHeight : 80;
+      
+      const offsetTop = element.offsetTop - headerHeight;
+      
       window.scrollTo({
-        top: offsetTop,
+        top: Math.max(0, offsetTop), // Ensure we don't scroll to negative position
         behavior: 'smooth'
       });
     }
