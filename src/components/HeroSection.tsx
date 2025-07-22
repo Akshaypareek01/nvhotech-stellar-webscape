@@ -64,22 +64,30 @@ export const HeroSection = () => {
           </div>
 
           {/* Main Title */}
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight">
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight flex items-center justify-center gap-4">
+            
+            
             <span className="gradient-text">NVHO</span>
             <span className="text-foreground"> TECH</span>
+            {/* Tea cup image with animation */}
+            <img
+              src="/images/banner-image/tea-cup.png"
+              alt="Tea Cup"
+              className="w-10 h-10 md:w-15 md:h-16 animate-bounce-slow"
+            />
           </h1>
 
           {/* Business Tagline */}
           <div className="text-2xl md:text-3xl font-bold text-foreground mb-4 tracking-wider">
-            DIGITAL WEB PRODUCTS
+            AI POWERED SOLUTIONS
           </div>
-          <div className="text-xl md:text-2xl text-accent mb-6 font-medium">
+          <div className="hidden md:block text-xl md:text-2xl text-accent mb-6 font-medium">
             FOR AMAZING CLIENTS
           </div>
 
           {/* Subtitle */}
-          <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-4xl mx-auto leading-relaxed">
-            We work closely with our development team, marketing professionals and stakeholders to design and develop UX and UI that make your website, application or software a joy to use.
+          <p className="hidden md:block text-lg md:text-xl text-muted-foreground mb-8 max-w-4xl mx-auto leading-relaxed">
+            We collaborate with AI experts, developers, and stakeholders to deliver modern web development, app solutions, CRM systems, and custom applications tailored for your business success.
           </p>
 
           {/* CTA Buttons */}
@@ -87,6 +95,12 @@ export const HeroSection = () => {
             <Button 
               size="lg" 
               className="bg-gradient-primary hover:shadow-neon transition-all duration-300 hover:scale-105 group neon-glow text-lg px-8 py-4"
+              onClick={() => {
+                const el = document.getElementById('projects');
+                if (el) {
+                  el.scrollIntoView({ behavior: 'smooth' });
+                }
+              }}
             >
               Explore Our Solutions
               <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
