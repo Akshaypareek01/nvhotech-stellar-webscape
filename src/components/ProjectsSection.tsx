@@ -93,10 +93,10 @@ const projects = {
 
 const ProjectCard = ({ project, index }: { project: any; index: number }) => (
   <div 
-    className="group glass rounded-3xl overflow-hidden hover-lift hover:neon-glow transition-all duration-500 min-w-[350px] mx-2"
+    className="group glass rounded-3xl overflow-hidden hover-lift hover:neon-glow transition-all duration-500 min-w-[350px] h-[400px] mx-2 flex flex-col"
     style={{ animationDelay: `${index * 0.1}s` }}
   >
-    <div className="relative overflow-hidden">
+    <div className="relative overflow-hidden h-48 flex-shrink-0">
       <img 
         src={project.image} 
         alt={project.title}
@@ -108,13 +108,15 @@ const ProjectCard = ({ project, index }: { project: any; index: number }) => (
       </div>
     </div>
     
-    <div className="p-6">
-      <h3 className="text-xl font-bold mb-3 group-hover:gradient-text transition-all duration-300">
-        {project.title}
-      </h3>
-      <p className="text-muted-foreground mb-4 leading-relaxed">
-        {project.description}
-      </p>
+    <div className="p-6 flex-1 flex flex-col justify-between">
+      <div>
+        <h3 className="text-xl font-bold mb-3 group-hover:gradient-text transition-all duration-300">
+          {project.title}
+        </h3>
+        <p className="text-muted-foreground mb-4 leading-relaxed">
+          {project.description}
+        </p>
+      </div>
       <Button 
         variant="outline" 
         className="w-full glass border-primary/30 hover:bg-primary/10 hover:border-primary transition-all duration-300 group-hover:neon-glow"
