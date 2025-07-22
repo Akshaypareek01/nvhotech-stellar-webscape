@@ -38,8 +38,8 @@ export const Navigation = ({ locoRef }: { locoRef?: MutableRefObject<any> }) => 
   };
 
   return (
-    <nav className={`fixed top-0 w-full z-50 transition-all duration-500 ${
-      scrolled ? 'glass backdrop-blur-xl py-4' : 'py-6'
+    <nav className={`fixed top-0 w-full z-50 transition-all duration-500 glass shadow-lg border-b border-white/10 ${
+      scrolled ? 'backdrop-blur-xl py-4' : 'backdrop-blur-xl py-6'
     }`}>
       <div className="container mx-auto px-6">
         <div className="flex items-center justify-between">

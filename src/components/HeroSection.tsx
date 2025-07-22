@@ -35,10 +35,18 @@ export const HeroSection = () => {
   }, []);
 
   return (
-    <section 
+    <section
       ref={heroRef}
-      className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-hero pt-20"
+      style={{
+        backgroundImage: 'url(/images/fintech/banner-bg.jpg)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+      }}
+      className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20"
     >
+      {/* Blue overlay for theme alignment */}
+      <div className="absolute inset-0 z-0 bg-blue-900/40 mix-blend-multiply pointer-events-none" />
       {/* Animated Background Elements */}
       <div className="absolute inset-0">
         <div className="float-3d absolute top-20 left-20 w-32 h-32 bg-gradient-primary rounded-full opacity-10 blur-xl animate-float"></div>
@@ -58,8 +66,7 @@ export const HeroSection = () => {
           {/* Main Title */}
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight">
             <span className="gradient-text">NVHO</span>
-            <br />
-            <span className="text-foreground">TECH</span>
+            <span className="text-foreground"> TECH</span>
           </h1>
 
           {/* Business Tagline */}
@@ -84,34 +91,11 @@ export const HeroSection = () => {
               Explore Our Solutions
               <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Button>
-            <Button 
-              size="lg" 
-              variant="outline" 
-              className="glass border-primary/50 hover:bg-primary/10 hover:shadow-glass transition-all duration-300 hover:scale-105 text-lg px-8 py-4"
-            >
-              Watch Demo
-            </Button>
           </div>
 
-          {/* 3D Tech Icons */}
-          <div className="flex items-center justify-center space-x-12 opacity-60">
-            <div className="float-3d group">
-              <Cpu className="w-12 h-12 text-primary group-hover:text-accent transition-colors duration-300 animate-rotate-3d" />
-            </div>
-            <div className="float-3d group">
-              <Globe className="w-12 h-12 text-accent group-hover:text-primary transition-colors duration-300 animate-rotate-3d" style={{ animationDelay: '5s' }} />
-            </div>
-            <div className="float-3d group">
-              <Sparkles className="w-12 h-12 text-neon-purple group-hover:text-neon-cyan transition-colors duration-300 animate-rotate-3d" style={{ animationDelay: '10s' }} />
-            </div>
-          </div>
         </div>
       </div>
 
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <div className="w-1 h-16 bg-gradient-primary rounded-full opacity-60"></div>
-      </div>
     </section>
   );
 };
