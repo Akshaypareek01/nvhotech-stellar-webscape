@@ -352,56 +352,7 @@ export const ContactSection = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-          {/* Contact Information */}
-          <div className="space-y-8">
-            <div className="glass rounded-3xl p-8">
-              <h3 className="text-2xl font-bold mb-6 gradient-text">
-                Contact Information
-              </h3>
-              
-              <div className="space-y-6">
-                {contactInfo.map((info, index) => (
-                  <div 
-                    key={info.title}
-                    className="flex items-start space-x-4 group hover-lift transition-all duration-300"
-                    style={{ animationDelay: `${index * 0.1}s` }}
-                  >
-                    <div className="flex-shrink-0">
-                      <div className="w-12 h-12 glass rounded-xl flex items-center justify-center group-hover:neon-glow transition-all duration-300">
-                        <info.icon className="w-6 h-6 text-primary group-hover:text-accent transition-colors duration-300" />
-                      </div>
-                    </div>
-                    
-                    <div>
-                      <h4 className="font-semibold text-foreground mb-1">
-                        {info.title}
-                      </h4>
-                      <p className="text-primary font-medium mb-1">
-                        {info.detail}
-                      </p>
-                      <p className="text-muted-foreground text-sm">
-                        {info.description}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Quick Message */}
-            <div className="glass rounded-3xl p-8 hover-lift transition-all duration-300">
-              <MessageSquare className="w-12 h-12 text-primary mb-4" />
-              <h3 className="text-xl font-bold mb-3">
-                Quick Response Guarantee
-              </h3>
-              <p className="text-muted-foreground">
-                We typically respond to all inquiries within 2 hours during business hours. 
-                For urgent matters, don't hesitate to call us directly.
-              </p>
-            </div>
-          </div>
-
+        <div className="max-w-4xl mx-auto">
           {/* Contact Form */}
           <div className="glass rounded-3xl p-8 hover-lift transition-all duration-300">
             {isSuccess ? (
@@ -418,14 +369,14 @@ export const ContactSection = () => {
               </div>
             ) : (
               <>
-                <h3 className="text-2xl font-bold mb-6 gradient-text">
+                <h3 className="text-3xl font-bold mb-8 gradient-text text-center">
                   Book an Appointment
                 </h3>
                 
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <form onSubmit={handleSubmit} className="space-y-8">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                      <label htmlFor="name" className="block text-sm font-medium mb-2">
+                      <label htmlFor="name" className="block text-sm font-medium mb-3">
                         Your Name
                       </label>
                       <Input
@@ -434,13 +385,13 @@ export const ContactSection = () => {
                         value={formData.name}
                         onChange={handleInputChange}
                         required
-                        className="glass border-primary/30 focus:border-primary focus:ring-primary/20"
+                        className="glass border-primary/30 focus:border-primary focus:ring-primary/20 h-12"
                         placeholder="John Doe"
                       />
                     </div>
                     
                     <div>
-                      <label htmlFor="email" className="block text-sm font-medium mb-2">
+                      <label htmlFor="email" className="block text-sm font-medium mb-3">
                         Email Address
                       </label>
                       <Input
@@ -450,27 +401,28 @@ export const ContactSection = () => {
                         value={formData.email}
                         onChange={handleInputChange}
                         required
-                        className="glass border-primary/30 focus:border-primary focus:ring-primary/20"
+                        className="glass border-primary/30 focus:border-primary focus:ring-primary/20 h-12"
                         placeholder="john@example.com"
                       />
                     </div>
                   </div>
                   
                   <div>
-                    <label className="block text-sm font-medium mb-2">
+                    <label className="block text-sm font-medium mb-3">
                       Phone Number
                     </label>
-                    <div className="flex gap-2">
+                    <div className="flex gap-3">
                       <Select value={formData.countryCode} onValueChange={(value) => handleSelectChange('countryCode', value)}>
-                        <SelectTrigger className="w-32 glass border-primary/30 focus:border-primary">
+                        <SelectTrigger className="w-40 glass border-primary/30 focus:border-primary h-12">
                           <SelectValue />
                         </SelectTrigger>
-                        <SelectContent className="glass backdrop-blur-xl border-primary/30">
+                        <SelectContent className="glass backdrop-blur-xl border-primary/30 max-h-60">
                           {countryCodes.map((country) => (
                             <SelectItem key={country.code} value={country.code}>
                               <span className="flex items-center gap-2">
                                 <span>{country.flag}</span>
                                 <span>{country.code}</span>
+                                <span className="text-xs text-muted-foreground">{country.country}</span>
                               </span>
                             </SelectItem>
                           ))}
@@ -481,49 +433,84 @@ export const ContactSection = () => {
                         value={formData.phone}
                         onChange={handleInputChange}
                         required
-                        className="flex-1 glass border-primary/30 focus:border-primary focus:ring-primary/20"
+                        className="flex-1 glass border-primary/30 focus:border-primary focus:ring-primary/20 h-12"
                         placeholder="1234567890"
                       />
                     </div>
                   </div>
                   
-                  <div>
-                    <label className="block text-sm font-medium mb-2">
-                      Select Date
-                    </label>
-                    <div className="glass rounded-xl border border-primary/30 p-4">
-                      <CalendarComponent
-                        mode="single"
-                        selected={formData.date}
-                        onSelect={handleDateChange}
-                        disabled={(date) => date < new Date()}
-                        className={cn("pointer-events-auto w-full")}
-                      />
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div>
+                      <label className="block text-sm font-medium mb-3">
+                        Select Date
+                      </label>
+                      <div className="glass rounded-xl border border-primary/30 p-4">
+                        <CalendarComponent
+                          mode="single"
+                          selected={formData.date}
+                          onSelect={handleDateChange}
+                          disabled={(date) => date < new Date()}
+                          className={cn("pointer-events-auto w-full mx-auto")}
+                          classNames={{
+                            months: "flex w-full flex-col sm:flex-row space-y-4 sm:space-x-4 sm:space-y-0 justify-center",
+                            month: "space-y-4 w-full flex flex-col",
+                            caption: "flex justify-center pt-1 relative items-center",
+                            caption_label: "text-sm font-medium",
+                            nav: "space-x-1 flex items-center",
+                            nav_button: cn(
+                              "h-7 w-7 bg-transparent p-0 opacity-50 hover:opacity-100"
+                            ),
+                            nav_button_previous: "absolute left-1",
+                            nav_button_next: "absolute right-1",
+                            table: "w-full border-collapse space-y-1",
+                            head_row: "flex w-full",
+                            head_cell: "text-muted-foreground rounded-md w-8 font-normal text-[0.8rem] flex-1 text-center",
+                            row: "flex w-full mt-2",
+                            cell: "relative p-0 text-center text-sm focus-within:relative focus-within:z-20 flex-1",
+                            day: cn(
+                              "h-8 w-full p-0 font-normal aria-selected:opacity-100 hover:bg-primary/20 rounded-md transition-colors"
+                            ),
+                            day_selected: "bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground focus:bg-primary focus:text-primary-foreground",
+                            day_today: "bg-accent text-accent-foreground",
+                            day_outside: "text-muted-foreground opacity-50",
+                            day_disabled: "text-muted-foreground opacity-50",
+                            day_range_middle: "aria-selected:bg-accent aria-selected:text-accent-foreground",
+                            day_hidden: "invisible",
+                          }}
+                        />
+                      </div>
                     </div>
-                  </div>
-                  
-                  <div>
-                    <label className="block text-sm font-medium mb-2">
-                      Select Time Slot
-                    </label>
-                    <Select value={formData.timeSlot} onValueChange={(value) => handleSelectChange('timeSlot', value)}>
-                      <SelectTrigger className="glass border-primary/30 focus:border-primary">
-                        <SelectValue placeholder="Choose a time slot" />
-                      </SelectTrigger>
-                      <SelectContent className="glass backdrop-blur-xl border-primary/30">
-                        {timeSlots.map((slot) => (
-                          <SelectItem key={slot} value={slot}>
-                            {slot}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
+                    
+                    <div>
+                      <label className="block text-sm font-medium mb-3">
+                        Select Time Slot
+                      </label>
+                      <div className="glass rounded-xl border border-primary/30 p-4">
+                        <div className="grid grid-cols-2 gap-3">
+                          {timeSlots.map((slot) => (
+                            <button
+                              key={slot}
+                              type="button"
+                              onClick={() => handleSelectChange('timeSlot', slot)}
+                              className={cn(
+                                "p-3 rounded-lg border transition-all duration-300 text-sm font-medium",
+                                formData.timeSlot === slot
+                                  ? "bg-primary text-primary-foreground border-primary shadow-neon"
+                                  : "glass border-primary/30 hover:border-primary hover:bg-primary/10"
+                              )}
+                            >
+                              {slot}
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
                   </div>
                   
                   <Button 
                     type="submit"
                     disabled={isSubmitting || !formData.name || !formData.email || !formData.phone || !formData.date || !formData.timeSlot}
-                    className="w-full bg-gradient-primary hover:shadow-neon transition-all duration-300 hover:scale-105 text-lg py-3"
+                    className="w-full bg-gradient-primary hover:shadow-neon transition-all duration-300 hover:scale-105 text-lg py-4 h-14"
                   >
                     {isSubmitting ? (
                       <>
