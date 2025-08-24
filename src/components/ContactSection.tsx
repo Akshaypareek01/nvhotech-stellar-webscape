@@ -1,9 +1,13 @@
 import { useState } from 'react';
-import { Mail, Phone, MapPin, Send, MessageSquare, Clock } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, MessageSquare, Clock, Calendar, CalendarIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Calendar as CalendarComponent } from '@/components/ui/calendar';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { useToast } from '@/hooks/use-toast';
+import { format } from 'date-fns';
+import { cn } from '@/lib/utils';
 
 const contactInfo = [
   {
@@ -32,20 +36,53 @@ const contactInfo = [
   }
 ];
 
+const countryCodes = [
+  { code: '+1', country: 'US', flag: '🇺🇸' },
+  { code: '+91', country: 'IN', flag: '🇮🇳' },
+  { code: '+44', country: 'UK', flag: '🇬🇧' },
+  { code: '+49', country: 'DE', flag: '🇩🇪' },
+  { code: '+33', country: 'FR', flag: '🇫🇷' },
+  { code: '+86', country: 'CN', flag: '🇨🇳' },
+  { code: '+81', country: 'JP', flag: '🇯🇵' },
+  { code: '+61', country: 'AU', flag: '🇦🇺' }
+];
+
+const timeSlots = [
+  '9:00 AM', '10:00 AM', '11:00 AM', '12:00 PM',
+  '1:00 PM', '2:00 PM', '3:00 PM', '4:00 PM', '5:00 PM', '6:00 PM'
+];
+
 export const ContactSection = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    subject: '',
-    message: ''
+    countryCode: '+91',
+    phone: '',
+    date: undefined as Date | undefined,
+    timeSlot: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
   const { toast } = useToast();
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData(prev => ({
       ...prev,
       [e.target.name]: e.target.value
+    }));
+  };
+
+  const handleSelectChange = (name: string, value: string) => {
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleDateChange = (date: Date | undefined) => {
+    setFormData(prev => ({
+      ...prev,
+      date
     }));
   };
 
@@ -56,13 +93,24 @@ export const ContactSection = () => {
     // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 2000));
 
+    setIsSuccess(true);
     toast({
-      title: "Message Sent Successfully!",
-      description: "We'll get back to you within 24 hours.",
+      title: "Appointment Booked Successfully!",
+      description: "See you at the meeting. We'll send you a confirmation email shortly.",
     });
 
-    setFormData({ name: '', email: '', subject: '', message: '' });
+    setFormData({ 
+      name: '', 
+      email: '', 
+      countryCode: '+91',
+      phone: '',
+      date: undefined,
+      timeSlot: ''
+    });
     setIsSubmitting(false);
+    
+    // Reset success state after 3 seconds
+    setTimeout(() => setIsSuccess(false), 3000);
   };
 
   return (
@@ -136,93 +184,157 @@ export const ContactSection = () => {
 
           {/* Contact Form */}
           <div className="glass rounded-3xl p-8 hover-lift transition-all duration-300">
-            <h3 className="text-2xl font-bold mb-6 gradient-text">
-              Send us a Message
-            </h3>
-            
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <label htmlFor="name" className="block text-sm font-medium mb-2">
-                    Your Name
-                  </label>
-                  <Input
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleInputChange}
-                    required
-                    className="glass border-primary/30 focus:border-primary focus:ring-primary/20"
-                    placeholder="John Doe"
-                  />
+            {isSuccess ? (
+              <div className="text-center py-12">
+                <div className="w-20 h-20 bg-gradient-primary rounded-full flex items-center justify-center mx-auto mb-6 neon-glow">
+                  <Calendar className="w-10 h-10 text-white" />
                 </div>
+                <h3 className="text-2xl font-bold mb-4 gradient-text">
+                  Appointment Booked Successfully!
+                </h3>
+                <p className="text-muted-foreground text-lg">
+                  See you at the meeting. We'll send you a confirmation email shortly.
+                </p>
+              </div>
+            ) : (
+              <>
+                <h3 className="text-2xl font-bold mb-6 gradient-text">
+                  Book an Appointment
+                </h3>
                 
-                <div>
-                  <label htmlFor="email" className="block text-sm font-medium mb-2">
-                    Email Address
-                  </label>
-                  <Input
-                    id="email"
-                    name="email"
-                    type="email"
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    required
-                    className="glass border-primary/30 focus:border-primary focus:ring-primary/20"
-                    placeholder="john@example.com"
-                  />
-                </div>
-              </div>
-              
-              <div>
-                <label htmlFor="subject" className="block text-sm font-medium mb-2">
-                  Subject
-                </label>
-                <Input
-                  id="subject"
-                  name="subject"
-                  value={formData.subject}
-                  onChange={handleInputChange}
-                  required
-                  className="glass border-primary/30 focus:border-primary focus:ring-primary/20"
-                  placeholder="Project Discussion"
-                />
-              </div>
-              
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium mb-2">
-                  Message
-                </label>
-                <Textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleInputChange}
-                  required
-                  rows={6}
-                  className="glass border-primary/30 focus:border-primary focus:ring-primary/20"
-                  placeholder="Tell us about your project..."
-                />
-              </div>
-              
-              <Button 
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full bg-gradient-primary hover:shadow-neon transition-all duration-300 hover:scale-105 text-lg py-3"
-              >
-                {isSubmitting ? (
-                  <>
-                    <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
-                    Sending...
-                  </>
-                ) : (
-                  <>
-                    Send Message
-                    <Send className="ml-2 w-5 h-5" />
-                  </>
-                )}
-              </Button>
-            </form>
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <label htmlFor="name" className="block text-sm font-medium mb-2">
+                        Your Name
+                      </label>
+                      <Input
+                        id="name"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleInputChange}
+                        required
+                        className="glass border-primary/30 focus:border-primary focus:ring-primary/20"
+                        placeholder="John Doe"
+                      />
+                    </div>
+                    
+                    <div>
+                      <label htmlFor="email" className="block text-sm font-medium mb-2">
+                        Email Address
+                      </label>
+                      <Input
+                        id="email"
+                        name="email"
+                        type="email"
+                        value={formData.email}
+                        onChange={handleInputChange}
+                        required
+                        className="glass border-primary/30 focus:border-primary focus:ring-primary/20"
+                        placeholder="john@example.com"
+                      />
+                    </div>
+                  </div>
+                  
+                  <div>
+                    <label className="block text-sm font-medium mb-2">
+                      Phone Number
+                    </label>
+                    <div className="flex gap-2">
+                      <Select value={formData.countryCode} onValueChange={(value) => handleSelectChange('countryCode', value)}>
+                        <SelectTrigger className="w-32 glass border-primary/30 focus:border-primary">
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent className="glass backdrop-blur-xl border-primary/30">
+                          {countryCodes.map((country) => (
+                            <SelectItem key={country.code} value={country.code}>
+                              <span className="flex items-center gap-2">
+                                <span>{country.flag}</span>
+                                <span>{country.code}</span>
+                              </span>
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                      <Input
+                        name="phone"
+                        value={formData.phone}
+                        onChange={handleInputChange}
+                        required
+                        className="flex-1 glass border-primary/30 focus:border-primary focus:ring-primary/20"
+                        placeholder="1234567890"
+                      />
+                    </div>
+                  </div>
+                  
+                  <div>
+                    <label className="block text-sm font-medium mb-2">
+                      Select Date
+                    </label>
+                    <Popover>
+                      <PopoverTrigger asChild>
+                        <Button
+                          variant="outline"
+                          className={cn(
+                            "w-full glass border-primary/30 focus:border-primary justify-start text-left font-normal",
+                            !formData.date && "text-muted-foreground"
+                          )}
+                        >
+                          <CalendarIcon className="mr-2 h-4 w-4" />
+                          {formData.date ? format(formData.date, "PPP") : <span>Pick a date</span>}
+                        </Button>
+                      </PopoverTrigger>
+                      <PopoverContent className="w-auto p-0 glass backdrop-blur-xl border-primary/30" align="start">
+                        <CalendarComponent
+                          mode="single"
+                          selected={formData.date}
+                          onSelect={handleDateChange}
+                          disabled={(date) => date < new Date()}
+                          initialFocus
+                          className={cn("p-3 pointer-events-auto")}
+                        />
+                      </PopoverContent>
+                    </Popover>
+                  </div>
+                  
+                  <div>
+                    <label className="block text-sm font-medium mb-2">
+                      Select Time Slot
+                    </label>
+                    <Select value={formData.timeSlot} onValueChange={(value) => handleSelectChange('timeSlot', value)}>
+                      <SelectTrigger className="glass border-primary/30 focus:border-primary">
+                        <SelectValue placeholder="Choose a time slot" />
+                      </SelectTrigger>
+                      <SelectContent className="glass backdrop-blur-xl border-primary/30">
+                        {timeSlots.map((slot) => (
+                          <SelectItem key={slot} value={slot}>
+                            {slot}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  
+                  <Button 
+                    type="submit"
+                    disabled={isSubmitting || !formData.name || !formData.email || !formData.phone || !formData.date || !formData.timeSlot}
+                    className="w-full bg-gradient-primary hover:shadow-neon transition-all duration-300 hover:scale-105 text-lg py-3"
+                  >
+                    {isSubmitting ? (
+                      <>
+                        <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
+                        Booking...
+                      </>
+                    ) : (
+                      <>
+                        Book Appointment
+                        <Send className="ml-2 w-5 h-5" />
+                      </>
+                    )}
+                  </Button>
+                </form>
+              </>
+            )}
           </div>
         </div>
       </div>
