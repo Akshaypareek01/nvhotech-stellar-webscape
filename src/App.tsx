@@ -11,6 +11,7 @@ import NotFound from "./pages/NotFound";
 const Services = lazy(() => import("./pages/Services"));
 const PrivacyPolicy = lazy(() => import("./pages/legal/PrivacyPolicy"));
 const TermsOfService = lazy(() => import("./pages/legal/TermsOfService"));
+const RefundPolicy = lazy(() => import("./pages/legal/RefundPolicy"));
 const CookiePolicy = lazy(() => import("./pages/legal/CookiePolicy"));
 const GDPR = lazy(() => import("./pages/legal/GDPR"));
 
@@ -34,6 +35,7 @@ const App = () => (
             <Route path="/services" element={<Services />} />
             <Route path="/legal/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/legal/terms-of-service" element={<TermsOfService />} />
+            <Route path="/legal/refund-policy" element={<RefundPolicy />} />
             <Route path="/legal/cookie-policy" element={<CookiePolicy />} />
             <Route path="/legal/gdpr" element={<GDPR />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

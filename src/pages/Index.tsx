@@ -34,10 +34,10 @@ const Index = () => {
           <AboutSection />
         </section>
         <section id="services">
-          <ServicesSection />
+          <ServicesSection locoRef={locoRef} />
         </section>
         <section id="projects">
-          <ProjectsSection />
+          <ProjectsSection locoRef={locoRef} />
         </section>
         <section id="contact">
           <ContactSection />

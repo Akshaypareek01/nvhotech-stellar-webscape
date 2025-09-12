@@ -102,8 +102,8 @@ export const AboutSection = () => {
         {/* Stats Section */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-20">
           {[
-            { number: '500+', label: 'Projects Completed' },
-            { number: '50+', label: 'Happy Clients' },
+            { number: '50+', label: 'Projects Completed' },
+            { number: '100+', label: 'Happy Clients' },
             { number: '99%', label: 'Success Rate' },
             { number: '24/7', label: 'Support Available' }
           ].map((stat, index) => (

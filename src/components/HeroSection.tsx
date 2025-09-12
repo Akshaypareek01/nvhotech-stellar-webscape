@@ -1,9 +1,11 @@
 import { useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ArrowRight, Sparkles, Cpu, Globe } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 export const HeroSection = () => {
   const heroRef = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -95,12 +97,7 @@ export const HeroSection = () => {
             <Button 
               size="lg" 
               className="bg-gradient-primary hover:shadow-neon transition-all duration-300 hover:scale-105 group neon-glow text-lg px-8 py-4"
-              onClick={() => {
-                const el = document.getElementById('projects');
-                if (el) {
-                  el.scrollIntoView({ behavior: 'smooth' });
-                }
-              }}
+              onClick={() => navigate('/services')}
             >
               Explore Our Solutions
               <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />

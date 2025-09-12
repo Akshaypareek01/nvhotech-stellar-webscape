@@ -28,64 +28,76 @@ const TermsOfService = () => {
 
           <div className="glass rounded-3xl p-8 md:p-12 space-y-8">
             <section>
-              <h2 className="text-2xl font-bold mb-4 gradient-text">1. Acceptance of Terms</h2>
+              <h2 className="text-2xl font-bold mb-4 gradient-text">1. Services Provided</h2>
               <p className="text-muted-foreground leading-relaxed mb-4">
-                By accessing and using NVHO TECH services, you accept and agree to be bound by the terms 
-                and provision of this agreement. If you do not agree to abide by the above, please do not 
-                use this service.
+                NvhoTech offers web development, mobile app development, AI solutions, and IT consultancy.
               </p>
             </section>
 
             <section>
-              <h2 className="text-2xl font-bold mb-4 gradient-text">2. Use License</h2>
+              <h2 className="text-2xl font-bold mb-4 gradient-text">2. Use of Services</h2>
+              <div className="text-muted-foreground leading-relaxed mb-4 space-y-2">
+                <p>• You agree not to use our services for illegal activities.</p>
+                <p>• You must provide accurate information when engaging our services.</p>
+              </div>
+            </section>
+
+            <section>
+              <h2 className="text-2xl font-bold mb-4 gradient-text">3. Intellectual Property</h2>
               <p className="text-muted-foreground leading-relaxed mb-4">
-                Permission is granted to temporarily download one copy of the materials on NVHO TECH's 
-                website for personal, non-commercial transitory viewing only. This is the grant of a license, 
-                not a transfer of title.
+                All content on our website, including text, graphics, logos, and software, is our intellectual property. Unauthorized use is prohibited.
               </p>
             </section>
 
             <section>
-              <h2 className="text-2xl font-bold mb-4 gradient-text">3. Service Availability</h2>
+              <h2 className="text-2xl font-bold mb-4 gradient-text">4. Payment Terms</h2>
+              <div className="text-muted-foreground leading-relaxed mb-4 space-y-2">
+                <p>• Payments must be made as per agreed-upon terms.</p>
+                <p>• Late payments may incur penalties.</p>
+              </div>
+            </section>
+
+            <section>
+              <h2 className="text-2xl font-bold mb-4 gradient-text">5. Limitation of Liability</h2>
+              <div className="text-muted-foreground leading-relaxed mb-4 space-y-3">
+                <p>We are not responsible for:</p>
+                <div className="ml-4 space-y-2">
+                  <p>• Losses resulting from service interruptions or third-party issues.</p>
+                  <p>• Indirect or consequential damages.</p>
+                </div>
+              </div>
+            </section>
+
+            <section>
+              <h2 className="text-2xl font-bold mb-4 gradient-text">6. Termination</h2>
               <p className="text-muted-foreground leading-relaxed mb-4">
-                We strive to provide continuous service availability, but we do not guarantee that our 
-                services will be uninterrupted or error-free. We may suspend or terminate services for 
-                maintenance or other reasons.
+                We reserve the right to terminate your access to our services for breach of these Terms.
               </p>
             </section>
 
             <section>
-              <h2 className="text-2xl font-bold mb-4 gradient-text">4. User Responsibilities</h2>
+              <h2 className="text-2xl font-bold mb-4 gradient-text">7. Governing Law</h2>
               <p className="text-muted-foreground leading-relaxed mb-4">
-                You are responsible for maintaining the confidentiality of your account credentials and 
-                for all activities that occur under your account. You must not use our services for any 
-                unlawful or prohibited activities.
+                These Terms are governed by the laws of India.
               </p>
             </section>
 
             <section>
-              <h2 className="text-2xl font-bold mb-4 gradient-text">5. Intellectual Property</h2>
+              <h2 className="text-2xl font-bold mb-4 gradient-text">8. Changes to Terms</h2>
               <p className="text-muted-foreground leading-relaxed mb-4">
-                All content, features, and functionality of our services are owned by NVHO TECH and are 
-                protected by intellectual property laws. You may not reproduce or redistribute our content 
-                without permission.
+                We may update these Terms at any time. Continued use of our services constitutes acceptance of the changes.
               </p>
             </section>
 
             <section>
-              <h2 className="text-2xl font-bold mb-4 gradient-text">6. Limitation of Liability</h2>
-              <p className="text-muted-foreground leading-relaxed mb-4">
-                NVHO TECH shall not be liable for any damages arising from the use or inability to use 
-                our services, even if we have been advised of the possibility of such damages.
-              </p>
-            </section>
-
-            <section>
-              <h2 className="text-2xl font-bold mb-4 gradient-text">7. Contact Information</h2>
-              <p className="text-muted-foreground leading-relaxed">
-                If you have any questions about these Terms of Service, please contact us at 
-                legal@nvhotech.com or through our contact form.
-              </p>
+              <h2 className="text-2xl font-bold mb-4 gradient-text">9. Contact Us</h2>
+              <div className="text-muted-foreground leading-relaxed">
+                <p className="mb-3">For any questions about these Terms, contact us at:</p>
+                <div className="space-y-2">
+                  <p><strong>Email:</strong> info@nvhotech.in</p>
+                  <p><strong>Phone:</strong> +91 8290918154</p>
+                </div>
+              </div>
             </section>
           </div>
         </div>

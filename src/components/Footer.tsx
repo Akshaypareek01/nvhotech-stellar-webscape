@@ -9,10 +9,8 @@ const socialLinks = [
 ];
 
 const footerLinks = {
-  Company: ['About Us', 'Our Team', 'Careers', 'News & Blog'],
   Services: ['Web Development', 'Mobile Apps', 'Cloud Solutions', 'AI & ML'],
-  Resources: ['Documentation', 'Help Center', 'Community', 'Contact Support'],
-  Legal: ['Privacy Policy', 'Terms of Service', 'Cookie Policy', 'GDPR']
+  Legal: ['Privacy Policy', 'Terms of Service', 'Refund Policy', 'Cookie Policy', 'GDPR']
 };
 
 export const Footer = () => {
@@ -28,6 +26,9 @@ export const Footer = () => {
           break;
         case 'Terms of Service':
           navigate('/legal/terms-of-service');
+          break;
+        case 'Refund Policy':
+          navigate('/legal/refund-policy');
           break;
         case 'Cookie Policy':
           navigate('/legal/cookie-policy');
@@ -50,7 +51,7 @@ export const Footer = () => {
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 mb-12">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-12 mb-12">
           {/* Brand Section */}
           <div className="lg:col-span-2">
             <div className="flex items-center space-x-2 mb-6">
@@ -127,11 +128,11 @@ export const Footer = () => {
         </div>
 
         {/* Bottom Section */}
-        <div className="flex flex-col md:flex-row items-center justify-between pt-8 border-t border-primary/20">
+        <div className="flex flex-col md:flex-row items-center justify-center pt-8 border-t border-primary/20">
           <p className="text-muted-foreground text-center md:text-left">
-            © 2024 NVHO TECH. All rights reserved. Crafted with ❤️ for the future.
+            © 2025 NVHO TECH. All rights reserved.
           </p>
-          <div className="flex items-center space-x-6 mt-4 md:mt-0">
+          {/* <div className="flex items-center space-x-6 mt-4 md:mt-0">
             <a href="#" className="text-muted-foreground hover:text-primary transition-colors duration-300">
               Privacy
             </a>
@@ -141,7 +142,7 @@ export const Footer = () => {
             <a href="#" className="text-muted-foreground hover:text-primary transition-colors duration-300">
               Cookies
             </a>
-          </div>
+          </div> */}
         </div>
       </div>
     </footer>

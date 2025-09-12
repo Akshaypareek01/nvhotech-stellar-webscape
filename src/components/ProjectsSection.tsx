@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import { useEffect } from 'react';
 import Autoplay from 'embla-carousel-autoplay';
+import { MutableRefObject } from 'react';
 
 const projects = {
   websites: [
@@ -165,7 +166,18 @@ const ProjectCarousel = ({ projects: projectList, title, icon }: { projects: any
   );
 };
 
-export const ProjectsSection = () => {
+export const ProjectsSection = ({ locoRef }: { locoRef?: MutableRefObject<any> }) => {
+  const scrollToSection = (href: string) => {
+    const element = document.querySelector(href) as HTMLElement;
+    if (element) {
+      if (locoRef && locoRef.current) {
+        locoRef.current.scrollTo(element, { offset: 0, duration: 800 });
+      } else {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+  };
+
   return (
     <section className="py-32 relative overflow-hidden scroll-mt-20">
       {/* Background Elements */}
@@ -215,6 +227,7 @@ export const ProjectsSection = () => {
           <Button 
             size="lg" 
             className="bg-gradient-primary hover:shadow-neon transition-all duration-300 hover:scale-105 text-lg px-10 py-4"
+            onClick={() => scrollToSection('#contact')}
           >
             Start Your Project
             <ExternalLink className="ml-2 w-5 h-5" />
