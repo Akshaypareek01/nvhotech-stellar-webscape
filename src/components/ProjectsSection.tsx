@@ -9,31 +9,31 @@ const projects = {
   websites: [
     {
       title: 'Fun Formulae',
-      image: 'https://nvhotech.in/images/fun.jpeg',
+      image: '/images/fun.jpeg',
       url: 'https://funformulae.com/',
       description: 'Educational platform for mathematical formulas and learning'
     },
     {
       title: 'Samsara Innovations',
-      image: 'https://nvhotech.in/images/samsara.jpg',
+      image: '/images/samsara.jpg',
       url: 'https://samsarainnovations.com/',
       description: 'Innovation and technology solutions company website'
     },
     {
       title: 'Local Adventures',
-      image: 'https://nvhotech.in/images/localad.png',
+      image: '/images/localad.png',
       url: 'https://localadventures.in/',
       description: 'Local tourism and adventure experiences platform'
     },
     {
       title: 'Daevish',
-      image: 'https://nvhotech.in/images/web-garphic.jpeg',
+      image: '/images/web-garphic.jpeg',
       url: 'https://daevish.com/',
       description: 'Creative design and branding solutions'
     },
     {
       title: 'Solitaire Jewel',
-      image: 'https://nvhotech.in/images/soliter.jpeg',
+      image: '/images/soliter.jpeg',
       url: 'https://solitairejewel.com/',
       description: 'Premium jewelry and diamond collection'
     }
@@ -41,19 +41,19 @@ const projects = {
   applications: [
     {
       title: 'Scrap on Wheels',
-      image: 'https://nvhotech.in/images/sow.webp',
+      image: '/images/sow.webp',
       url: 'https://play.google.com/store/apps/details?id=com.scraponwheelscollectorsv1.app&hl=en-US',
       description: 'Mobile app for scrap collection and recycling services'
     },
     {
       title: 'NDFC',
-      image: 'https://nvhotech.in/images/ndfc.webp',
+      image: '/images/ndfc.webp',
       url: 'https://play.google.com/store/apps/details?id=com.ndcp.app&hl=en-US',
       description: 'Financial services and digital banking solution'
     },
     {
       title: 'Master of Jobs',
-      image: 'https://nvhotech.in/images/moj.webp',
+      image: '/images/moj.webp',
       url: 'https://play.google.com/store/apps/details?id=com.masterofjobs_moj&hl=en-US',
       description: 'Job search and career development platform'
     }
@@ -61,31 +61,31 @@ const projects = {
   cms: [
     {
       title: 'Minimals Dashboard',
-      image: 'https://nvhotech.in/images/minimals.webp',
+      image: '/images/minimals.webp',
       url: 'https://minimals.cc/auth/amplify/sign-in?returnTo=%2Fdashboard',
       description: 'Modern admin dashboard with clean design'
     },
     {
       title: 'Uko React',
-      image: 'https://nvhotech.in/images/uko.webp',
+      image: '/images/uko.webp',
       url: 'https://uko-react.vercel.app/login',
       description: 'React-based dashboard with advanced features'
     },
     {
       title: 'Modernize Next.js',
-      image: 'https://nvhotech.in/images/modernize.jpg',
+      image: '/images/modernize.jpg',
       url: 'https://modernize-nextjs-dark.vercel.app/dashboards/ecommerce',
       description: 'Next.js ecommerce dashboard solution'
     },
     {
       title: 'Mantis Dashboard',
-      image: 'https://nvhotech.in/images/mantis.webp',
+      image: '/images/mantis.webp',
       url: 'https://mantisdashboard.io/login',
       description: 'Professional admin panel with modern UI'
     },
     {
       title: 'Berry Dashboard',
-      image: 'https://nvhotech.in/images/berry.webp',
+      image: '/images/berry.webp',
       url: 'https://berrydashboard.io/login',
       description: 'Elegant dashboard with comprehensive features'
     }
