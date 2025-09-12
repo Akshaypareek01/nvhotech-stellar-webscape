@@ -1,6 +1,7 @@
-import { ArrowRight, Globe, Smartphone, Cloud, Brain, ExternalLink } from 'lucide-react';
+import { ArrowRight, Globe, Smartphone, Cloud, Brain, ExternalLink, ArrowLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
+import { useNavigate } from 'react-router-dom';
 
 const services = [
   {
@@ -174,10 +175,20 @@ const ProjectCard = ({ project }: { project: any }) => (
 );
 
 const Services = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="min-h-screen bg-gradient-hero text-foreground">
       {/* Hero Section */}
       <section className="pt-32 pb-20 relative overflow-hidden">
+        <Button 
+          variant="ghost" 
+          onClick={() => navigate('/')}
+          className="absolute top-8 left-4 sm:left-6 z-20 hover:bg-primary/10"
+        >
+          <ArrowLeft className="w-4 h-4 mr-2" />
+          Back
+        </Button>
         <div className="absolute inset-0">
           <div className="absolute top-20 right-20 w-80 h-80 bg-gradient-primary rounded-full opacity-10 blur-3xl animate-float"></div>
           <div className="absolute bottom-20 left-20 w-64 h-64 bg-neon-purple rounded-full opacity-15 blur-2xl animate-float-delayed"></div>
