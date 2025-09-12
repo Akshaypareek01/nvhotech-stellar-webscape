@@ -93,7 +93,7 @@ const projects = {
 
 const ProjectCard = ({ project, index }: { project: any; index: number }) => (
   <div 
-    className="group glass rounded-3xl overflow-hidden hover-lift hover:neon-glow transition-all duration-500 min-w-[350px] h-[400px] mx-2 flex flex-col"
+    className="group glass rounded-3xl overflow-hidden hover-lift hover:neon-glow transition-all duration-500 w-full max-w-sm mx-auto h-[400px] flex flex-col"
     style={{ animationDelay: `${index * 0.1}s` }}
   >
     <div className="relative overflow-hidden h-48 flex-shrink-0">
@@ -101,6 +101,7 @@ const ProjectCard = ({ project, index }: { project: any; index: number }) => (
         src={project.image} 
         alt={project.title}
         className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
+        loading="lazy"
       />
       <div className="absolute inset-0 bg-gradient-primary opacity-0 group-hover:opacity-20 transition-opacity duration-500"></div>
       <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -150,14 +151,14 @@ const ProjectCarousel = ({ projects: projectList, title, icon }: { projects: any
         >
           <CarouselContent className="-ml-2 md:-ml-4">
             {projectList.map((project, index) => (
-              <CarouselItem key={project.title} className="pl-2 md:pl-4 basis-full md:basis-1/2 lg:basis-1/3">
+              <CarouselItem key={project.title} className="pl-2 md:pl-4 basis-full sm:basis-1/2 lg:basis-1/3 xl:basis-1/4">
                 <ProjectCard project={project} index={index} />
               </CarouselItem>
             ))}
           </CarouselContent>
           
-          <CarouselPrevious className="glass border-primary/30 hover:bg-primary/10 hover:border-primary transition-all duration-300 hover:neon-glow -left-12 hidden md:flex" />
-          <CarouselNext className="glass border-primary/30 hover:bg-primary/10 hover:border-primary transition-all duration-300 hover:neon-glow -right-12 hidden md:flex" />
+          <CarouselPrevious className="glass border-primary/30 hover:bg-primary/10 hover:border-primary transition-all duration-300 hover:neon-glow -left-4 md:-left-12 hidden sm:flex" />
+          <CarouselNext className="glass border-primary/30 hover:bg-primary/10 hover:border-primary transition-all duration-300 hover:neon-glow -right-4 md:-right-12 hidden sm:flex" />
         </Carousel>
       </div>
     </div>

@@ -1,4 +1,5 @@
 import { Zap, Github, Twitter, Linkedin, Instagram } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const socialLinks = [
   { icon: Github, href: '#', label: 'GitHub' },
@@ -15,6 +16,31 @@ const footerLinks = {
 };
 
 export const Footer = () => {
+  const navigate = useNavigate();
+
+  const handleLinkClick = (section: string, link: string) => {
+    if (section === 'Services') {
+      navigate('/services');
+    } else if (section === 'Legal') {
+      switch (link) {
+        case 'Privacy Policy':
+          navigate('/legal/privacy-policy');
+          break;
+        case 'Terms of Service':
+          navigate('/legal/terms-of-service');
+          break;
+        case 'Cookie Policy':
+          navigate('/legal/cookie-policy');
+          break;
+        case 'GDPR':
+          navigate('/legal/gdpr');
+          break;
+        default:
+          break;
+      }
+    }
+  };
+
   return (
     <footer className="relative py-20 border-t border-primary/20">
       {/* Background Elements */}
@@ -65,12 +91,12 @@ export const Footer = () => {
               <ul className="space-y-3">
                 {links.map((link) => (
                   <li key={link}>
-                    <a
-                      href="#"
-                      className="text-muted-foreground hover:text-primary transition-colors duration-300 hover:underline"
+                    <button
+                      onClick={() => handleLinkClick(title, link)}
+                      className="text-muted-foreground hover:text-primary transition-colors duration-300 hover:underline text-left"
                     >
                       {link}
-                    </a>
+                    </button>
                   </li>
                 ))}
               </ul>
