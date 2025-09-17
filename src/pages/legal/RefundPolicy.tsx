@@ -7,7 +7,7 @@ const RefundPolicy = () => {
 
   return (
     <div className="min-h-screen bg-gradient-hero text-foreground">
-      <div className="container mx-auto px-4 sm:px-6 py-32">
+      <div className="container mx-auto px-4 sm:px-6 py-16">
         <Button 
           variant="ghost" 
           onClick={() => navigate(-1)}
