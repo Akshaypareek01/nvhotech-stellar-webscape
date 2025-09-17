@@ -18,9 +18,15 @@ export const useSmoothScroll = (
     const scroll = new LocomotiveScroll({
       el: containerRef.current,
       smooth: true,
-      lerp: 0.08, // Lower = more smooth/inertia
-      multiplier: 1, // Scroll speed
+      lerp: 0.12, // Higher = less smooth but faster
+      multiplier: 1.2, // Faster scroll speed
       class: "is-reveal",
+      smartphone: {
+        smooth: false, // Disable on mobile for better performance
+      },
+      tablet: {
+        smooth: false, // Disable on tablet for better performance
+      },
     });
 
     if (locoRef) {

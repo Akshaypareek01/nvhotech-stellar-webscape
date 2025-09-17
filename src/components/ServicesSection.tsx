@@ -7,7 +7,7 @@ const services = [
     icon: Code,
     title: 'Website Development',
     description: 'Your online presence is crucial. Our team of experts will create a stunning and user-friendly website that perfectly represents your brand, engages your audience, and drives results.',
-    price: '₹7,499',
+    price: '₹10,000',
     features: ['Custom Design', 'Responsive Layout', 'SEO Optimized', 'Fast Loading']
   },
   {
@@ -21,7 +21,7 @@ const services = [
     icon: Palette,
     title: 'Marketing',
     description: 'We\'re here to supercharge your startup! Our packages provide expert marketing to make your business stand out, attract more customers, and boost your success.',
-    price: '₹1,999',
+    price: '₹15,000',
     features: ['Digital Marketing', 'Social Media', 'Content Strategy', 'Analytics']
   },
   {
@@ -32,18 +32,18 @@ const services = [
     features: ['Custom Design', 'Multiple Concepts', 'Vector Files', 'Brand Guidelines']
   },
   {
-    icon: Shield,
-    title: 'Company Registration',
-    description: 'We simplify the process of getting your business officially registered, ensuring compliance with all legal requirements. Our experienced team will guide you through the paperwork hassle-free.',
-    price: '₹9,999',
-    features: ['Legal Compliance', 'Documentation', 'Expert Guidance', 'Fast Processing']
+    icon: Database,
+    title: 'CRM Development',
+    description: 'Streamline your business operations with our custom CRM solutions. We build powerful customer relationship management systems tailored to your specific business needs and workflows.',
+    price: '₹50,000',
+    features: ['Custom Workflows', 'Data Management', 'Analytics Dashboard', 'Integration Support']
   },
   {
-    icon: Cloud,
-    title: 'Funding & Visa',
-    description: 'Unlock your entrepreneurial dreams with us. Our packages provide essential funding and visa support to help you launch and grow your business, ensuring a smoother path to success.',
-    price: 'Contact Us',
-    features: ['Funding Support', 'Visa Assistance', 'Business Planning', 'Legal Support']
+    icon: Code,
+    title: 'AI Agent & Tool Development',
+    description: 'Harness the power of artificial intelligence with our custom AI agents and tools. We develop intelligent solutions that automate processes and enhance your business capabilities.',
+    price: '₹40,000',
+    features: ['Custom AI Models', 'Process Automation', 'Data Analysis', 'Smart Integration']
   }
 ];
 

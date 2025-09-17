@@ -1,13 +1,13 @@
-import { useState } from 'react';
-import { Mail, Phone, MapPin, Send, MessageSquare, Clock, Calendar, CalendarIcon } from 'lucide-react';
+import { useState, useCallback, useMemo } from 'react';
+import { Mail, Phone, MapPin, Send, MessageSquare, Clock, Calendar as CalendarIcon, CalendarIcon as CalendarIconLucide } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Calendar as CalendarComponent } from '@/components/ui/calendar';
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { useToast } from '@/hooks/use-toast';
 import { format } from 'date-fns';
 import { cn } from '@/lib/utils';
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
 
 const contactInfo = [
   {
@@ -285,33 +285,33 @@ export const ContactSection = () => {
   const [isSuccess, setIsSuccess] = useState(false);
   const { toast } = useToast();
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData(prev => ({
       ...prev,
       [e.target.name]: e.target.value
     }));
-  };
+  }, []);
 
-  const handleSelectChange = (name: string, value: string) => {
+  const handleSelectChange = useCallback((name: string, value: string) => {
     setFormData(prev => ({
       ...prev,
       [name]: value
     }));
-  };
+  }, []);
 
-  const handleDateChange = (date: Date | undefined) => {
+  const handleDateChange = useCallback((date: Date | undefined) => {
     setFormData(prev => ({
       ...prev,
       date
     }));
-  };
+  }, []);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = useCallback(async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 
     // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 2000));
+    await new Promise(resolve => setTimeout(resolve, 1500));
 
     setIsSuccess(true);
     toast({
@@ -331,7 +331,49 @@ export const ContactSection = () => {
     
     // Reset success state after 3 seconds
     setTimeout(() => setIsSuccess(false), 3000);
-  };
+  }, [toast]);
+
+  const calendarProps = useMemo(() => ({
+    onChange: handleDateChange,
+    value: formData.date,
+    minDate: new Date(),
+    maxDate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+    className: "react-calendar-custom flex-1",
+    showNavigation: false,
+    showNeighboringMonth: false,
+    tileDisabled: ({ date, view }: { date: Date; view: string }) => {
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      const sevenDaysFromNow = new Date(today);
+      sevenDaysFromNow.setDate(today.getDate() + 7);
+      
+      const currentDate = new Date(date);
+      currentDate.setHours(0, 0, 0, 0);
+      
+      return currentDate < today || currentDate > sevenDaysFromNow;
+    },
+    tileClassName: ({ date, view }: { date: Date; view: string }) => {
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      const currentDate = new Date(date);
+      currentDate.setHours(0, 0, 0, 0);
+      
+      const isToday = currentDate.getTime() === today.getTime();
+      const isSelected = formData.date && currentDate.getTime() === formData.date.getTime();
+      const isDisabled = currentDate < today || currentDate > new Date(today.getTime() + 7 * 24 * 60 * 60 * 1000);
+      
+      return cn(
+        "react-calendar__tile",
+        isToday && "react-calendar__tile--now",
+        isSelected && "react-calendar__tile--active",
+        isDisabled && "react-calendar__tile--disabled"
+      );
+    },
+    formatShortWeekday: (locale: string, date: Date) => {
+      const weekdays = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
+      return weekdays[date.getDay()];
+    }
+  }), [formData.date, handleDateChange]);
 
   return (
     <section className="py-24 relative overflow-hidden scroll-mt-20">
@@ -358,7 +400,7 @@ export const ContactSection = () => {
             {isSuccess ? (
               <div className="text-center py-12">
                 <div className="w-20 h-20 bg-gradient-primary rounded-full flex items-center justify-center mx-auto mb-6 neon-glow">
-                  <Calendar className="w-10 h-10 text-white" />
+                  <CalendarIcon className="w-10 h-10 text-white" />
                 </div>
                 <h3 className="text-2xl font-bold mb-4 gradient-text">
                   Appointment Booked Successfully!
@@ -440,61 +482,37 @@ export const ContactSection = () => {
                   </div>
                   
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                    <div>
+                    <div className="flex flex-col">
                       <label className="block text-sm font-medium mb-3">
                         Select Date
                       </label>
-                       <div className="glass rounded-xl border border-primary/30 p-2 sm:p-4 overflow-hidden">
-                        <CalendarComponent
-                          mode="single"
-                          selected={formData.date}
-                          onSelect={handleDateChange}
-                          disabled={(date) => {
-                            const today = new Date();
-                            const sevenDaysFromNow = new Date();
-                            sevenDaysFromNow.setDate(today.getDate() + 7);
-                            return date < today || date > sevenDaysFromNow;
-                          }}
-                          className={cn("pointer-events-auto w-full mx-auto max-w-full")}
-                          classNames={{
-                            months: "flex w-full flex-col justify-center",
-                            month: "space-y-3 w-full flex flex-col",
-                            caption: "flex justify-center pt-1 relative items-center mb-2",
-                            caption_label: "text-sm font-medium text-foreground",
-                            nav: "space-x-1 flex items-center",
-                            nav_button: cn(
-                              "h-6 w-6 sm:h-7 sm:w-7 bg-transparent p-0 opacity-50 hover:opacity-100 hover:bg-primary/10 rounded-md transition-colors"
-                            ),
-                            nav_button_previous: "absolute left-1",
-                            nav_button_next: "absolute right-1",
-                            table: "w-full border-collapse",
-                            head_row: "flex w-full mb-1",
-                            head_cell: "text-muted-foreground rounded-md w-full font-normal text-xs sm:text-sm flex-1 text-center p-1",
-                            row: "flex w-full",
-                            cell: "relative p-0.5 text-center text-xs sm:text-sm focus-within:relative focus-within:z-20 flex-1 aspect-square",
-                            day: cn(
-                              "h-full w-full p-0 font-normal aria-selected:opacity-100 hover:bg-primary/20 rounded-md transition-colors flex items-center justify-center min-h-[32px] sm:min-h-[36px]"
-                            ),
-                            day_selected: "bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground focus:bg-primary focus:text-primary-foreground shadow-sm",
-                            day_today: "bg-accent text-accent-foreground font-semibold",
-                            day_outside: "text-muted-foreground opacity-30",
-                            day_disabled: "text-muted-foreground opacity-30 cursor-not-allowed",
-                            day_range_middle: "aria-selected:bg-accent aria-selected:text-accent-foreground",
-                            day_hidden: "invisible",
-                          }}
-                        />
-                        <div className="mt-3 p-2 bg-muted/20 rounded-lg text-xs text-muted-foreground text-center">
-                          📅 Available for booking: Next 7 days only
+                      <div className="glass rounded-xl border border-primary/30 p-4 overflow-hidden flex-1 flex flex-col">
+                        <div className="text-center mb-4">
+                          <h4 className="text-lg font-semibold text-foreground">
+                            {new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' }).toUpperCase()}
+                          </h4>
+                        </div>
+                        <div className="flex-1 flex flex-col">
+                          <Calendar {...calendarProps} />
+                        </div>
+                        <div className="mt-3 p-2 bg-gradient-to-r from-primary/10 to-accent/10 rounded-lg border border-primary/20 text-center">
+                          <div className="flex items-center justify-center gap-2 text-xs font-medium text-primary">
+                            <CalendarIcon className="w-3 h-3" />
+                            <span>Available for booking: Next 7 days only</span>
+                          </div>
+                          <div className="text-xs text-muted-foreground mt-1">
+                            Past dates and dates beyond 7 days are not available
+                          </div>
                         </div>
                       </div>
                     </div>
                     
-                    <div>
+                    <div className="flex flex-col">
                       <label className="block text-sm font-medium mb-3">
                         Select Time Slot
                       </label>
-                      <div className="glass rounded-xl border border-primary/30 p-4">
-                        <div className="grid grid-cols-2 gap-3">
+                      <div className="glass rounded-xl border border-primary/30 p-4 flex-1 flex flex-col">
+                        <div className="grid grid-cols-2 gap-3 flex-1">
                           {timeSlots.map((slot) => (
                             <button
                               key={slot}

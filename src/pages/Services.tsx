@@ -1,36 +1,50 @@
-import { ArrowRight, Globe, Smartphone, Cloud, Brain, ExternalLink, ArrowLeft } from 'lucide-react';
+import { ArrowRight, Globe, Smartphone, Cloud, Brain, ExternalLink, ArrowLeft, Code, Palette, Database } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { useNavigate } from 'react-router-dom';
 
 const services = [
   {
-    title: 'Web Development',
-    icon: Globe,
-    description: 'Modern, responsive websites built with cutting-edge technologies for optimal performance and user experience.',
-    features: ['React & Next.js', 'Full-stack Development', 'E-commerce Solutions', 'Progressive Web Apps'],
+    title: 'Website Development',
+    icon: Code,
+    description: 'Your online presence is crucial. Our team of experts will create a stunning and user-friendly website that perfectly represents your brand, engages your audience, and drives results.',
+    features: ['Custom Design', 'Responsive Layout', 'SEO Optimized', 'Fast Loading'],
     color: 'text-primary'
   },
   {
-    title: 'Mobile Apps',
+    title: 'App Development',
     icon: Smartphone,
-    description: 'Native and cross-platform mobile applications that deliver exceptional performance across all devices.',
-    features: ['iOS & Android', 'React Native', 'Flutter Development', 'App Store Optimization'],
+    description: 'Elevate your business with our app development expertise. Our packages ensure you have a custom app that\'s user-friendly, efficient, and helps your startup thrive in the digital age.',
+    features: ['iOS & Android', 'Custom Features', 'App Store Publishing', 'Maintenance Support'],
     color: 'text-accent'
   },
   {
-    title: 'Cloud Solutions',
-    icon: Cloud,
-    description: 'Scalable cloud infrastructure and DevOps solutions to power your business growth and efficiency.',
-    features: ['AWS & Azure', 'Docker & Kubernetes', 'CI/CD Pipelines', 'Cloud Migration'],
+    title: 'Marketing',
+    icon: Palette,
+    description: 'We\'re here to supercharge your startup! Our packages provide expert marketing to make your business stand out, attract more customers, and boost your success.',
+    features: ['Digital Marketing', 'Social Media', 'Content Strategy', 'Analytics'],
     color: 'text-neon-purple'
   },
   {
-    title: 'AI & ML',
-    icon: Brain,
-    description: 'Intelligent solutions powered by artificial intelligence and machine learning technologies.',
-    features: ['Machine Learning Models', 'Data Analytics', 'Predictive Systems', 'AI Integration'],
+    title: 'Logo Design',
+    icon: Database,
+    description: 'A memorable logo is the cornerstone of your brand identity. Let our talented designers craft a unique logo that reflects your company\'s values and vision.',
+    features: ['Custom Design', 'Multiple Concepts', 'Vector Files', 'Brand Guidelines'],
     color: 'text-primary'
+  },
+  {
+    title: 'CRM Development',
+    icon: Database,
+    description: 'Streamline your business operations with our custom CRM solutions. We build powerful customer relationship management systems tailored to your specific business needs and workflows.',
+    features: ['Custom Workflows', 'Data Management', 'Analytics Dashboard', 'Integration Support'],
+    color: 'text-accent'
+  },
+  {
+    title: 'AI Agent & Tool Development',
+    icon: Code,
+    description: 'Harness the power of artificial intelligence with our custom AI agents and tools. We develop intelligent solutions that automate processes and enhance your business capabilities.',
+    features: ['Custom AI Models', 'Process Automation', 'Data Analysis', 'Smart Integration'],
+    color: 'text-neon-purple'
   }
 ];
 
@@ -215,7 +229,7 @@ const Services = () => {
                 <p className="text-muted-foreground mb-6 leading-relaxed">
                   {service.description}
                 </p>
-                <ul className="space-y-3 mb-6">
+                <ul className="space-y-3">
                   {service.features.map((feature) => (
                     <li key={feature} className="flex items-center">
                       <ArrowRight className="w-4 h-4 text-primary mr-3 flex-shrink-0" />
@@ -223,9 +237,6 @@ const Services = () => {
                     </li>
                   ))}
                 </ul>
-                <Button className="bg-gradient-primary hover:shadow-neon transition-all duration-300">
-                  Learn More
-                </Button>
               </Card>
             ))}
           </div>

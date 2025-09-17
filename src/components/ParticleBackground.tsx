@@ -21,7 +21,7 @@ export const ParticleBackground = () => {
 
     let animationFrameId: number;
     const particles: Particle[] = [];
-    const maxParticles = 50;
+    const maxParticles = 20;
 
     const resizeCanvas = () => {
       canvas.width = window.innerWidth;
@@ -31,9 +31,9 @@ export const ParticleBackground = () => {
     const createParticle = (): Particle => ({
       x: Math.random() * canvas.width,
       y: canvas.height + 10,
-      size: Math.random() * 4 + 1,
-      speedY: Math.random() * 2 + 0.5,
-      opacity: Math.random() * 0.5 + 0.2,
+      size: Math.random() * 3 + 1,
+      speedY: Math.random() * 1.5 + 0.3,
+      opacity: Math.random() * 0.3 + 0.1,
       hue: Math.random() * 60 + 180, // Blue to cyan range
     });
 
@@ -41,14 +41,15 @@ export const ParticleBackground = () => {
       for (let i = particles.length - 1; i >= 0; i--) {
         const particle = particles[i];
         particle.y -= particle.speedY;
-        particle.opacity -= 0.001;
+        particle.opacity -= 0.0005;
 
         if (particle.y < -10 || particle.opacity <= 0) {
           particles.splice(i, 1);
         }
       }
 
-      while (particles.length < maxParticles) {
+      // Add particles less frequently
+      if (particles.length < maxParticles && Math.random() < 0.3) {
         particles.push(createParticle());
       }
     };
@@ -77,14 +78,21 @@ export const ParticleBackground = () => {
       });
     };
 
-    const animate = () => {
-      updateParticles();
-      drawParticles();
+    let lastTime = 0;
+    const targetFPS = 30; // Reduce from 60fps to 30fps
+    const frameInterval = 1000 / targetFPS;
+
+    const animate = (currentTime: number) => {
+      if (currentTime - lastTime >= frameInterval) {
+        updateParticles();
+        drawParticles();
+        lastTime = currentTime;
+      }
       animationFrameId = requestAnimationFrame(animate);
     };
 
     resizeCanvas();
-    animate();
+    animate(0);
 
     const handleResize = () => resizeCanvas();
     window.addEventListener('resize', handleResize);
