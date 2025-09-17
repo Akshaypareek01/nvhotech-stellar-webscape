@@ -444,40 +444,48 @@ export const ContactSection = () => {
                       <label className="block text-sm font-medium mb-3">
                         Select Date
                       </label>
-                      <div className="glass rounded-xl border border-primary/30 p-4">
+                       <div className="glass rounded-xl border border-primary/30 p-2 sm:p-4 overflow-hidden">
                         <CalendarComponent
                           mode="single"
                           selected={formData.date}
                           onSelect={handleDateChange}
-                          disabled={(date) => date < new Date()}
-                          className={cn("pointer-events-auto w-full mx-auto")}
+                          disabled={(date) => {
+                            const today = new Date();
+                            const sevenDaysFromNow = new Date();
+                            sevenDaysFromNow.setDate(today.getDate() + 7);
+                            return date < today || date > sevenDaysFromNow;
+                          }}
+                          className={cn("pointer-events-auto w-full mx-auto max-w-full")}
                           classNames={{
-                            months: "flex w-full flex-col sm:flex-row space-y-4 sm:space-x-4 sm:space-y-0 justify-center",
-                            month: "space-y-4 w-full flex flex-col",
-                            caption: "flex justify-center pt-1 relative items-center",
-                            caption_label: "text-sm font-medium",
+                            months: "flex w-full flex-col justify-center",
+                            month: "space-y-3 w-full flex flex-col",
+                            caption: "flex justify-center pt-1 relative items-center mb-2",
+                            caption_label: "text-sm font-medium text-foreground",
                             nav: "space-x-1 flex items-center",
                             nav_button: cn(
-                              "h-7 w-7 bg-transparent p-0 opacity-50 hover:opacity-100"
+                              "h-6 w-6 sm:h-7 sm:w-7 bg-transparent p-0 opacity-50 hover:opacity-100 hover:bg-primary/10 rounded-md transition-colors"
                             ),
                             nav_button_previous: "absolute left-1",
                             nav_button_next: "absolute right-1",
-                            table: "w-full border-collapse space-y-1",
-                            head_row: "flex w-full",
-                            head_cell: "text-muted-foreground rounded-md w-8 font-normal text-[0.8rem] flex-1 text-center",
-                            row: "flex w-full mt-2",
-                            cell: "relative p-0 text-center text-sm focus-within:relative focus-within:z-20 flex-1",
+                            table: "w-full border-collapse",
+                            head_row: "flex w-full mb-1",
+                            head_cell: "text-muted-foreground rounded-md w-full font-normal text-xs sm:text-sm flex-1 text-center p-1",
+                            row: "flex w-full",
+                            cell: "relative p-0.5 text-center text-xs sm:text-sm focus-within:relative focus-within:z-20 flex-1 aspect-square",
                             day: cn(
-                              "h-8 w-full p-0 font-normal aria-selected:opacity-100 hover:bg-primary/20 rounded-md transition-colors"
+                              "h-full w-full p-0 font-normal aria-selected:opacity-100 hover:bg-primary/20 rounded-md transition-colors flex items-center justify-center min-h-[32px] sm:min-h-[36px]"
                             ),
-                            day_selected: "bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground focus:bg-primary focus:text-primary-foreground",
-                            day_today: "bg-accent text-accent-foreground",
-                            day_outside: "text-muted-foreground opacity-50",
-                            day_disabled: "text-muted-foreground opacity-50",
+                            day_selected: "bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground focus:bg-primary focus:text-primary-foreground shadow-sm",
+                            day_today: "bg-accent text-accent-foreground font-semibold",
+                            day_outside: "text-muted-foreground opacity-30",
+                            day_disabled: "text-muted-foreground opacity-30 cursor-not-allowed",
                             day_range_middle: "aria-selected:bg-accent aria-selected:text-accent-foreground",
                             day_hidden: "invisible",
                           }}
                         />
+                        <div className="mt-3 p-2 bg-muted/20 rounded-lg text-xs text-muted-foreground text-center">
+                          📅 Available for booking: Next 7 days only
+                        </div>
                       </div>
                     </div>
                     
