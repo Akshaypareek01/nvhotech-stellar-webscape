@@ -80,8 +80,10 @@ export default {
 				'glass': 'var(--shadow-glass)'
 			},
 			fontFamily: {
-				'tech': ['Inter', 'system-ui', 'sans-serif'],
-				'mono': ['JetBrains Mono', 'monospace']
+				'sans': ['Space Grotesk', 'Inter', 'system-ui', 'sans-serif'],
+				'tech': ['Space Grotesk', 'Inter', 'system-ui', 'sans-serif'],
+				'mono': ['JetBrains Mono', 'Fira Code', 'monospace'],
+				'display': ['Space Grotesk', 'Inter', 'system-ui', 'sans-serif']
 			},
 			borderRadius: {
 				lg: 'var(--radius)',

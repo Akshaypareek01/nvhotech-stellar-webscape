@@ -14,10 +14,16 @@ const projects = {
       description: 'Educational platform for mathematical formulas and learning'
     },
     {
-      title: 'Samsara Innovations',
-      image: '/images/samsara.jpg',
-      url: 'https://samsarainnovations.com/',
-      description: 'Innovation and technology solutions company website'
+      title: 'Samsara Wellness',
+      image: '/images/samsaraweb.png',
+      url: 'https://samsarawellness.in/',
+      description: 'Wellness and yoga center website'
+    },
+    {
+      title: 'StepsStamp',
+      image: '/images/stepstampweb.png',
+      url: 'https://www.stepsstamp.com/',
+      description: 'Blockchain-powered fitness app that rewards users with SSBT tokens for movement and staking'
     },
     {
       title: 'Local Adventures',
@@ -40,16 +46,28 @@ const projects = {
   ],
   applications: [
     {
+      title: 'Samsara Wellness',
+      image: '/images/samsatawellnessapp.webp',
+      url: 'https://play.google.com/store/apps/details?id=com.samsarawellnessyogav3.app&pcampaignid=web_share',
+      description: 'Live yoga classes with 15+ body trackers, diet & doctor consultancy'
+    },
+    {
       title: 'Scrap on Wheels',
       image: '/images/sow.webp',
       url: 'https://play.google.com/store/apps/details?id=com.scraponwheelscollectorsv1.app&hl=en-US',
       description: 'Mobile app for scrap collection and recycling services'
     },
     {
+      title: 'StepsStamp App',
+      image: '/images/stepstampapp.webp',
+      url: 'https://play.google.com/store/apps/details?id=com.stepstamp&pcampaignid=web_share',
+      description: 'Transform physical activity into digital assets with blockchain-powered step tracking'
+    },
+    {
       title: 'NDFC',
       image: '/images/ndfc.webp',
       url: 'https://play.google.com/store/apps/details?id=com.ndcp.app&hl=en-US',
-      description: 'Financial services and digital banking solution'
+      description: 'App for furniture shopping with variety for house, office & more'
     },
     {
       title: 'Master of Jobs',

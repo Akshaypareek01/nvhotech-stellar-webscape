@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -7,6 +9,45 @@ All colors MUST be HSL for perfect theming
 */
 
 @layer base {
+  * {
+    font-family: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    font-family: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
+    letter-spacing: -0.01em;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+
+  .font-display {
+    font-family: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+  }
+
+  .font-tech {
+    font-family: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+
+  .font-mono {
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+  }
+
   :root {
     /* Futuristic Dark Theme */
     --background: 220 27% 8%;
@@ -310,7 +351,7 @@ section[id] {
   max-width: 100% !important;
   background: transparent !important;
   border: none !important;
-  font-family: 'Inter', 'system-ui', sans-serif !important;
+  font-family: 'Space Grotesk', 'Inter', 'system-ui', sans-serif !important;
   color: hsl(var(--foreground)) !important;
 }
 
