@@ -82,15 +82,15 @@ export const ServicesSection = ({ locoRef }: { locoRef?: MutableRefObject<any> }
           {services.map((service, index) => (
             <div 
               key={service.title}
-              className="group glass rounded-3xl p-8 hover-lift hover:purple-glow transition-all duration-500 relative overflow-hidden"
+              className="group glass rounded-3xl p-8 hover-lift hover:purple-glow transition-all duration-500 relative overflow-hidden flex flex-col h-full"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               {/* Gradient Overlay */}
               <div className="absolute inset-0 bg-gradient-card opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl"></div>
               
-              <div className="relative z-10">
+              <div className="relative z-10 flex flex-col h-full">
                 <div className="relative mb-6">
-                  <service.icon className="w-14 h-14 text-primary group-hover:text-accent transition-colors duration-300 float-animation" />
+                  <service.icon className="w-14 h-14 text-primary group-hover:text-accent transition-colors duration-300" />
                   <div className="absolute inset-0 w-14 h-14 text-primary opacity-20 blur-sm group-hover:opacity-40 transition-opacity duration-300">
                     <service.icon className="w-14 h-14" />
                   </div>
@@ -104,7 +104,7 @@ export const ServicesSection = ({ locoRef }: { locoRef?: MutableRefObject<any> }
                   Prices start from {service.price}
                 </div>
                 
-                <p className="text-muted-foreground mb-6 leading-relaxed">
+                <p className="text-muted-foreground mb-6 leading-relaxed flex-grow">
                   {service.description}
                 </p>
                 
@@ -123,7 +123,8 @@ export const ServicesSection = ({ locoRef }: { locoRef?: MutableRefObject<any> }
                 
                 <Button 
                   variant="outline" 
-                  className="w-full glass border-primary/30 hover:bg-primary/10 hover:border-primary transition-all duration-300 group-hover:neon-glow"
+                  className="w-full glass border-primary/30 hover:bg-primary/10 hover:border-primary transition-all duration-300 group-hover:neon-glow mt-auto"
+                  onClick={() => scrollToSection('#contact')}
                 >
                   GET QUOTE
                 </Button>
