@@ -1,4 +1,4 @@
-import { Zap, Github, Twitter, Linkedin, Instagram } from 'lucide-react';
+import { Github, Twitter, Linkedin, Instagram } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 const socialLinks = [
@@ -54,14 +54,13 @@ export const Footer = () => {
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-12 mb-12">
           {/* Brand Section */}
           <div className="lg:col-span-2">
-            <div className="flex items-center space-x-2 mb-6">
-              <div className="relative">
-                <Zap className="w-8 h-8 text-primary animate-glow-pulse" />
-                <div className="absolute inset-0 w-8 h-8 text-accent opacity-50 animate-pulse">
-                  <Zap className="w-8 h-8" />
-                </div>
-              </div>
-              <span className="text-2xl font-bold gradient-text">NVHO TECH</span>
+            <div className="flex items-center mb-6">
+              <img 
+                src="/images/logoNT.png" 
+                alt="NVHO Tech Logo" 
+                className="h-16 w-auto drop-shadow-2xl"
+                style={{ filter: 'drop-shadow(0 15px 40px rgba(0, 0, 0, 0.8)) drop-shadow(0 0 30px rgba(193, 100%, 50%, 0.6)) drop-shadow(0 0 50px rgba(270, 100%, 70%, 0.4))' }}
+              />
             </div>
             
             <p className="text-muted-foreground mb-6 leading-relaxed max-w-md">

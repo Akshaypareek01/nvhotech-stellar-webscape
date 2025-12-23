@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Menu, X, Zap } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { MutableRefObject } from 'react';
 
@@ -44,15 +44,17 @@ export const Navigation = ({ locoRef }: { locoRef?: MutableRefObject<any> }) => 
       <div className="container mx-auto px-6">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <div className="flex items-center space-x-2">
-            <div className="relative">
-              <Zap className="w-8 h-8 text-primary animate-glow-pulse" />
-              <div className="absolute inset-0 w-8 h-8 text-accent opacity-50 animate-pulse">
-                <Zap className="w-8 h-8" />
-              </div>
-            </div>
-            <span className="text-2xl font-bold gradient-text">NVHO TECH</span>
-          </div>
+          <button
+            onClick={() => scrollToSection('#home')}
+            className="flex items-center hover:opacity-80 transition-opacity"
+          >
+            <img 
+              src="/images/logoNT.png" 
+              alt="NVHO Tech Logo" 
+              className="h-16 w-auto drop-shadow-2xl"
+              style={{ filter: 'drop-shadow(0 15px 40px rgba(0, 0, 0, 0.8)) drop-shadow(0 0 30px rgba(193, 100%, 50%, 0.6)) drop-shadow(0 0 50px rgba(270, 100%, 70%, 0.4))' }}
+            />
+          </button>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
