@@ -55,19 +55,19 @@ export const Footer = () => {
           {/* Brand Section */}
           <div className="lg:col-span-2">
             <div className="flex items-center mb-6">
-              <img 
-                src="/images/logoNT.png" 
-                alt="NVHO Tech Logo" 
+              <img
+                src="/images/logoNT.png"
+                alt="NVHO Tech Logo"
                 className="h-16 w-auto drop-shadow-2xl"
                 style={{ filter: 'drop-shadow(0 15px 40px rgba(0, 0, 0, 0.8)) drop-shadow(0 0 30px rgba(193, 100%, 50%, 0.6)) drop-shadow(0 0 50px rgba(270, 100%, 70%, 0.4))' }}
               />
             </div>
-            
+
             <p className="text-muted-foreground mb-6 leading-relaxed max-w-md">
-              Leading the future with cutting-edge technology solutions, AI innovations, 
+              Leading the future with cutting-edge technology solutions, AI innovations,
               and digital transformation services that empower businesses worldwide.
             </p>
-            
+
             <div className="flex space-x-4">
               {socialLinks.map((social) => (
                 <a
@@ -113,16 +113,7 @@ export const Footer = () => {
             <p className="text-muted-foreground mb-6">
               Get the latest updates on technology trends, product releases, and exclusive insights.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="flex-1 px-4 py-3 glass rounded-lg border border-primary/30 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all duration-300"
-              />
-              <button className="px-6 py-3 bg-gradient-primary rounded-lg hover:shadow-neon transition-all duration-300 hover:scale-105 font-medium">
-                Subscribe
-              </button>
-            </div>
+
           </div>
         </div>
 
