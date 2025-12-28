@@ -1,8 +1,10 @@
 import { useState, useCallback, useMemo } from 'react';
+import emailjs from '@emailjs/browser';
 import { Mail, Phone, MapPin, Send, MessageSquare, Clock, Calendar as CalendarIcon, CalendarIcon as CalendarIconLucide } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
 import { format } from 'date-fns';
 import { cn } from '@/lib/utils';
@@ -279,13 +281,14 @@ export const ContactSection = () => {
     countryCode: '+91',
     phone: '',
     date: undefined as Date | undefined,
-    timeSlot: ''
+    timeSlot: '',
+    message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const { toast } = useToast();
 
-  const handleInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData(prev => ({
       ...prev,
       [e.target.name]: e.target.value
@@ -310,28 +313,64 @@ export const ContactSection = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1500));
+    try {
+      // Format the date for the email
+      const formattedDate = formData.date ? format(formData.date, 'PPP') : 'Not selected';
 
-    setIsSuccess(true);
-    toast({
-      title: "Appointment Booked Successfully!",
-      description: "See you at the meeting. We'll send you a confirmation email shortly.",
-    });
+      // Prepare the template parameters
+      // These keys (name, email, phone, etc.) must match the variables in your EmailJS template
+      const templateParams = {
+        name: formData.name,
+        email: formData.email,
+        phone: `${formData.countryCode} ${formData.phone}`,
+        date: formattedDate,
+        time_slot: formData.timeSlot,
+        message: formData.message,
+      };
 
-    setFormData({ 
-      name: '', 
-      email: '', 
-      countryCode: '+91',
-      phone: '',
-      date: undefined,
-      timeSlot: ''
-    });
-    setIsSubmitting(false);
-    
-    // Reset success state after 3 seconds
-    setTimeout(() => setIsSuccess(false), 3000);
-  }, [toast]);
+      // Send the email using EmailJS
+      // REPLACE THESE WITH YOUR ACTUAL EMAILJS CREDENTIALS
+      const SERVICE_ID = 'service_u63q2vx';
+      const TEMPLATE_ID_ADMIN = 'template_6w9fe0a'; // Admin notification
+      const TEMPLATE_ID_USER = 'template_vbsiohq';   // User auto-reply
+      const PUBLIC_KEY = '7Pf4DRId8nn1ZpzaW';
+
+      // Send both emails concurrently
+      await Promise.all([
+        emailjs.send(SERVICE_ID, TEMPLATE_ID_ADMIN, templateParams, PUBLIC_KEY),
+        emailjs.send(SERVICE_ID, TEMPLATE_ID_USER, templateParams, PUBLIC_KEY)
+      ]);
+
+      setIsSuccess(true);
+      toast({
+        title: "Appointment Booked Successfully!",
+        description: "We've sent a confirmation email to your inbox.",
+      });
+
+      // Clear the form
+      setFormData({
+        name: '',
+        email: '',
+        countryCode: '+91',
+        phone: '',
+        date: undefined,
+        timeSlot: '',
+        message: ''
+      });
+
+      // Reset success state after 5 seconds
+      setTimeout(() => setIsSuccess(false), 5000);
+    } catch (error) {
+      console.error('EmailJS Error:', error);
+      toast({
+        title: "Booking Failed",
+        description: "There was an error sending your request. Please try again later.",
+        variant: "destructive"
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  }, [formData, toast]);
 
   const calendarProps = useMemo(() => ({
     onChange: handleDateChange,
@@ -346,10 +385,10 @@ export const ContactSection = () => {
       today.setHours(0, 0, 0, 0);
       const sevenDaysFromNow = new Date(today);
       sevenDaysFromNow.setDate(today.getDate() + 7);
-      
+
       const currentDate = new Date(date);
       currentDate.setHours(0, 0, 0, 0);
-      
+
       return currentDate < today || currentDate > sevenDaysFromNow;
     },
     tileClassName: ({ date, view }: { date: Date; view: string }) => {
@@ -357,11 +396,11 @@ export const ContactSection = () => {
       today.setHours(0, 0, 0, 0);
       const currentDate = new Date(date);
       currentDate.setHours(0, 0, 0, 0);
-      
+
       const isToday = currentDate.getTime() === today.getTime();
       const isSelected = formData.date && currentDate.getTime() === formData.date.getTime();
       const isDisabled = currentDate < today || currentDate > new Date(today.getTime() + 7 * 24 * 60 * 60 * 1000);
-      
+
       return cn(
         "react-calendar__tile",
         isToday && "react-calendar__tile--now",
@@ -389,7 +428,7 @@ export const ContactSection = () => {
             Get In <span className="gradient-text">Touch</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Ready to bring your vision to life? Let's start a conversation about 
+            Ready to bring your vision to life? Let's start a conversation about
             how we can help you achieve your technology goals.
           </p>
         </div>
@@ -414,7 +453,7 @@ export const ContactSection = () => {
                 <h3 className="text-3xl font-bold mb-8 gradient-text text-center">
                   Book an Appointment
                 </h3>
-                
+
                 <form onSubmit={handleSubmit} className="space-y-8">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
@@ -431,7 +470,7 @@ export const ContactSection = () => {
                         placeholder="John Doe"
                       />
                     </div>
-                    
+
                     <div>
                       <label htmlFor="email" className="block text-sm font-medium mb-3">
                         Email Address
@@ -448,7 +487,7 @@ export const ContactSection = () => {
                       />
                     </div>
                   </div>
-                  
+
                   <div>
                     <label className="block text-sm font-medium mb-3">
                       Phone Number
@@ -480,7 +519,7 @@ export const ContactSection = () => {
                       />
                     </div>
                   </div>
-                  
+
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                     <div className="flex flex-col">
                       <label className="block text-sm font-medium mb-3">
@@ -506,7 +545,7 @@ export const ContactSection = () => {
                         </div>
                       </div>
                     </div>
-                    
+
                     <div className="flex flex-col">
                       <label className="block text-sm font-medium mb-3">
                         Select Time Slot
@@ -532,8 +571,22 @@ export const ContactSection = () => {
                       </div>
                     </div>
                   </div>
-                  
-                  <Button 
+
+                  <div className="flex flex-col">
+                    <label htmlFor="message" className="block text-sm font-medium mb-3">
+                      Reason for Connecting
+                    </label>
+                    <Textarea
+                      id="message"
+                      name="message"
+                      value={formData.message}
+                      onChange={handleInputChange}
+                      className="glass border-primary/30 focus:border-primary focus:ring-primary/20 min-h-[100px]"
+                      placeholder="Briefly describe what you'd like to discuss..."
+                    />
+                  </div>
+
+                  <Button
                     type="submit"
                     disabled={isSubmitting || !formData.name || !formData.email || !formData.phone || !formData.date || !formData.timeSlot}
                     className="w-full bg-gradient-primary hover:shadow-neon transition-all duration-300 hover:scale-105 text-lg py-4 h-14"
