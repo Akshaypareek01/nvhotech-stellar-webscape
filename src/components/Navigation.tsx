@@ -52,7 +52,7 @@ export const Navigation = ({ locoRef }: { locoRef?: MutableRefObject<any> }) => 
             <OptimizedImage
               src="/images/logoNT.png"
               alt="NVHO Tech Logo"
-              width={200}
+              width={107}
               height={64}
               priority={true}
               className="h-16 w-auto drop-shadow-2xl"

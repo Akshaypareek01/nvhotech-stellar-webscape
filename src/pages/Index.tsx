@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, lazy, Suspense } from 'react';
 import { useSmoothScroll } from '@/hooks/useSmoothScroll';
 import { SEO } from '@/components/SEO';
 import { ParticleBackground } from '@/components/ParticleBackground';
@@ -6,10 +6,18 @@ import { Navigation } from '@/components/Navigation';
 import { HeroSection } from '@/components/HeroSection';
 import { AboutSection } from '@/components/AboutSection';
 import { ServicesSection } from '@/components/ServicesSection';
-import { ProjectsSection } from '@/components/ProjectsSection';
-import { AppSliderSection } from '@/components/AppSliderSection';
-import { ContactSection } from '@/components/ContactSection';
 import { Footer } from '@/components/Footer';
+
+// Lazy load below-the-fold sections
+const AppSliderSection = lazy(() => import('@/components/AppSliderSection').then(module => ({ default: module.AppSliderSection })));
+const ProjectsSection = lazy(() => import('@/components/ProjectsSection').then(module => ({ default: module.ProjectsSection })));
+const ContactSection = lazy(() => import('@/components/ContactSection').then(module => ({ default: module.ContactSection })));
+
+const SectionLoader = () => (
+  <div className="w-full h-[400px] flex items-center justify-center">
+    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+  </div>
+);
 
 const organizationSchema = {
   "@context": "https://schema.org",
@@ -75,16 +83,22 @@ const Index = () => {
             <AboutSection />
           </section>
           <section id="app-designs">
-            <AppSliderSection />
+            <Suspense fallback={<SectionLoader />}>
+              <AppSliderSection />
+            </Suspense>
           </section>
           <section id="services">
             <ServicesSection locoRef={locoRef} />
           </section>
           <section id="projects">
-            <ProjectsSection locoRef={locoRef} />
+            <Suspense fallback={<SectionLoader />}>
+              <ProjectsSection locoRef={locoRef} />
+            </Suspense>
           </section>
           <section id="contact">
-            <ContactSection />
+            <Suspense fallback={<SectionLoader />}>
+              <ContactSection />
+            </Suspense>
           </section>
         </main>
 

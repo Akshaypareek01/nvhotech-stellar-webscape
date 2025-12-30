@@ -46,19 +46,28 @@
   <meta name="twitter:image" content="https://nvhotech.in/images/og-image.jpg" />
 
   <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NW0PTXVT4Y"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-
-    gtag('config', 'G-NW0PTXVT4Y');
-  </script>
 </head>
 
 <body>
   <div id="root"></div>
   <script type="module" src="/src/main.tsx"></script>
+
+  <!-- Google tag (gtag.js) - Loaded after page load for performance -->
+  <script>
+    window.addEventListener('load', function() {
+      // Load GTM script
+      var script = document.createElement('script');
+      script.async = true;
+      script.src = 'https://www.googletagmanager.com/gtag/js?id=G-NW0PTXVT4Y';
+      document.head.appendChild(script);
+
+      // Initialize GTM
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag('js', new Date());
+      gtag('config', 'G-NW0PTXVT4Y');
+    });
+  </script>
 </body>
 
 </html>

@@ -116,6 +116,8 @@ export const AppSliderSection = () => {
                                                 <img
                                                     src={slide.image}
                                                     alt={slide.alt}
+                                                    width="300"
+                                                    height="600"
                                                     className="w-full h-full object-contain bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900"
                                                     loading="lazy"
                                                 />
