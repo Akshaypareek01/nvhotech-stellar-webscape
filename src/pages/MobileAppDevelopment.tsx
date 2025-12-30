@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { ArrowLeft, Smartphone, CheckCircle2, ArrowRight, Code } from 'lucide-react';
 import { SEO } from '@/components/SEO';
 import { Navigation } from '@/components/Navigation';
@@ -23,6 +23,7 @@ const serviceSchema = {
 const MobileAppDevelopment = () => {
     const scrollRef = useRef<HTMLDivElement>(null);
     const locoRef = useRef<any>(null);
+    const navigate = useNavigate();
     useSmoothScroll(scrollRef, locoRef);
 
     const technologies = [
@@ -204,7 +205,7 @@ const MobileAppDevelopment = () => {
                             <Button
                                 size="lg"
                                 className="bg-gradient-primary hover:shadow-neon transition-all duration-300 hover:scale-105"
-                                onClick={() => window.location.href = '/#contact'}
+                                onClick={() => navigate('/', { state: { scrollTo: '#contact' } })}
                             >
                                 Start Your Project
                                 <ArrowRight className="ml-2 w-5 h-5" />

@@ -110,21 +110,21 @@ export const Navigation = ({ locoRef }: { locoRef?: MutableRefObject<any> }) => 
         </div>
 
         {/* Mobile Navigation */}
-        <div className={`md:hidden transition-all duration-300 overflow-hidden ${isOpen ? 'max-h-64 opacity-100 mt-6' : 'max-h-0 opacity-0'
+        <div className={`md:hidden transition-all duration-300 ease-in-out overflow-hidden ${isOpen ? 'max-h-screen opacity-100 mt-6' : 'max-h-0 opacity-0'
           }`}>
           <div className="glass rounded-2xl p-6 space-y-4">
             {navItems.map((item) => (
               <button
                 key={item.label}
                 onClick={() => scrollToSection(item.href)}
-                className="block w-full text-left text-foreground/80 hover:text-primary transition-colors py-2"
+                className="block w-full text-left text-foreground/80 hover:text-primary transition-colors py-3 border-b border-white/5 last:border-0"
               >
                 {item.label}
               </button>
             ))}
             <Button
               onClick={() => scrollToSection('#contact')}
-              className="w-full bg-gradient-primary hover:shadow-neon transition-all duration-300 neon-glow"
+              className="w-full bg-gradient-primary hover:shadow-neon transition-all duration-300 neon-glow mt-4"
             >
               Get Started
             </Button>
