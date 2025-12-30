@@ -10,17 +10,17 @@ export const HeroSection = () => {
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       if (!heroRef.current) return;
-      
+
       const rect = heroRef.current.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
-      
+
       const centerX = rect.width / 2;
       const centerY = rect.height / 2;
-      
+
       const rotateX = (y - centerY) / 20;
       const rotateY = (centerX - x) / 20;
-      
+
       const elements = heroRef.current.querySelectorAll('.float-3d');
       elements.forEach((el, index) => {
         const element = el as HTMLElement;
@@ -65,10 +65,8 @@ export const HeroSection = () => {
             <span className="text-sm font-medium">Welcome to the Future</span>
           </div>
 
-          {/* Main Title */}
+          {/* Main Title - Single H1 for SEO */}
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight flex items-center justify-center gap-4">
-            
-            
             <span className="gradient-text">NVHO</span>
             <span className="text-foreground"> TECH</span>
             {/* Tea cup image with animation */}
@@ -79,12 +77,12 @@ export const HeroSection = () => {
             />
           </h1>
 
-          {/* Business Tagline */}
-          <div className="text-2xl md:text-3xl font-bold text-foreground mb-4 tracking-wider">
-            AI POWERED SOLUTIONS
-          </div>
+          {/* Business Tagline - H2 for SEO hierarchy */}
+          <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4 tracking-wider">
+            Software & App Development Company in India
+          </h2>
           <div className="hidden md:block text-xl md:text-2xl text-accent mb-6 font-medium">
-            FOR AMAZING CLIENTS
+            AI POWERED SOLUTIONS FOR AMAZING CLIENTS
           </div>
 
           {/* Subtitle */}
@@ -94,8 +92,8 @@ export const HeroSection = () => {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
-            <Button 
-              size="lg" 
+            <Button
+              size="lg"
               className="bg-gradient-primary hover:shadow-neon transition-all duration-300 hover:scale-105 group neon-glow text-lg px-8 py-4"
               onClick={() => navigate('/services')}
             >

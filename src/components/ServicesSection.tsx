@@ -1,6 +1,7 @@
 import { Code, Smartphone, Cloud, Shield, Database, Palette } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { MutableRefObject } from 'react';
+import { Link } from 'react-router-dom';
 
 const services = [
   {
@@ -8,42 +9,48 @@ const services = [
     title: 'Website Development',
     description: 'Your online presence is crucial. Our team of experts will create a stunning and user-friendly website that perfectly represents your brand, engages your audience, and drives results.',
     price: '₹10,000',
-    features: ['Custom Design', 'Responsive Layout', 'SEO Optimized', 'Fast Loading']
+    features: ['Custom Design', 'Responsive Layout', 'SEO Optimized', 'Fast Loading'],
+    link: '/web-development'
   },
   {
     icon: Smartphone,
     title: 'App Development',
     description: 'Elevate your business with our app development expertise. Our packages ensure you have a custom app that\'s user-friendly, efficient, and helps your startup thrive in the digital age.',
-    price: '₹71,000',
-    features: ['iOS & Android', 'Custom Features', 'App Store Publishing', 'Maintenance Support']
+    price: '₹50,000',
+    features: ['iOS & Android', 'Custom Features', 'App Store Publishing', 'Maintenance Support'],
+    link: '/mobile-app-development'
   },
   {
     icon: Palette,
     title: 'Marketing',
     description: 'We\'re here to supercharge your startup! Our packages provide expert marketing to make your business stand out, attract more customers, and boost your success.',
     price: '₹15,000',
-    features: ['Digital Marketing', 'Social Media', 'Content Strategy', 'Analytics']
+    features: ['Digital Marketing', 'Social Media', 'Content Strategy', 'Analytics'],
+    link: null
   },
   {
     icon: Database,
     title: 'Logo Design',
     description: 'A memorable logo is the cornerstone of your brand identity. Let our talented designers craft a unique logo that reflects your company\'s values and vision.',
     price: '₹2,999',
-    features: ['Custom Design', 'Multiple Concepts', 'Vector Files', 'Brand Guidelines']
+    features: ['Custom Design', 'Multiple Concepts', 'Vector Files', 'Brand Guidelines'],
+    link: null
   },
   {
     icon: Database,
     title: 'CRM Development',
     description: 'Streamline your business operations with our custom CRM solutions. We build powerful customer relationship management systems tailored to your specific business needs and workflows.',
     price: '₹50,000',
-    features: ['Custom Workflows', 'Data Management', 'Analytics Dashboard', 'Integration Support']
+    features: ['Custom Workflows', 'Data Management', 'Analytics Dashboard', 'Integration Support'],
+    link: '/software-development'
   },
   {
     icon: Code,
     title: 'AI Agent & Tool Development',
     description: 'Harness the power of artificial intelligence with our custom AI agents and tools. We develop intelligent solutions that automate processes and enhance your business capabilities.',
     price: '₹40,000',
-    features: ['Custom AI Models', 'Process Automation', 'Data Analysis', 'Smart Integration']
+    features: ['Custom AI Models', 'Process Automation', 'Data Analysis', 'Smart Integration'],
+    link: '/ai-automation'
   }
 ];
 
@@ -73,21 +80,21 @@ export const ServicesSection = ({ locoRef }: { locoRef?: MutableRefObject<any> }
             YOUR BUSINESS <span className="gradient-text">NEEDS THIS!!</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
-            Comprehensive digital solutions designed to elevate your business and drive success 
+            Comprehensive digital solutions designed to elevate your business and drive success
             in the modern marketplace. From stunning websites to powerful mobile apps.
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
           {services.map((service, index) => (
-            <div 
+            <div
               key={service.title}
               className="group glass rounded-3xl p-8 hover-lift hover:purple-glow transition-all duration-500 relative overflow-hidden flex flex-col h-full"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               {/* Gradient Overlay */}
               <div className="absolute inset-0 bg-gradient-card opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl"></div>
-              
+
               <div className="relative z-10 flex flex-col h-full">
                 <div className="relative mb-6">
                   <service.icon className="w-14 h-14 text-primary group-hover:text-accent transition-colors duration-300" />
@@ -95,22 +102,22 @@ export const ServicesSection = ({ locoRef }: { locoRef?: MutableRefObject<any> }
                     <service.icon className="w-14 h-14" />
                   </div>
                 </div>
-                
+
                 <h3 className="text-2xl font-bold mb-4 group-hover:gradient-text transition-all duration-300">
                   {service.title}
                 </h3>
-                
+
                 <div className="text-3xl font-bold text-accent mb-4">
                   Prices start from {service.price}
                 </div>
-                
+
                 <p className="text-muted-foreground mb-6 leading-relaxed flex-grow">
                   {service.description}
                 </p>
-                
+
                 <ul className="space-y-2 mb-6">
                   {service.features.map((feature, featureIndex) => (
-                    <li 
+                    <li
                       key={feature}
                       className="flex items-center text-sm text-muted-foreground group-hover:text-foreground transition-colors duration-300"
                       style={{ transitionDelay: `${featureIndex * 50}ms` }}
@@ -120,14 +127,29 @@ export const ServicesSection = ({ locoRef }: { locoRef?: MutableRefObject<any> }
                     </li>
                   ))}
                 </ul>
-                
-                <Button 
-                  variant="outline" 
-                  className="w-full glass border-primary/30 hover:bg-primary/10 hover:border-primary transition-all duration-300 group-hover:neon-glow mt-auto"
-                  onClick={() => scrollToSection('#contact')}
-                >
-                  GET QUOTE
-                </Button>
+
+                <div className="space-y-2 mt-auto">
+                  {service.link ? (
+                    <Link to={service.link} className="block">
+                      <Button
+                        variant="outline"
+                        className="w-full glass border-primary/30 hover:bg-primary/10 hover:border-primary transition-all duration-300 group-hover:neon-glow"
+                      >
+                        Learn More
+                      </Button>
+                    </Link>
+                  ) : null}
+                  <Button
+                    variant={service.link ? "default" : "outline"}
+                    className={service.link
+                      ? "w-full bg-gradient-primary hover:shadow-neon transition-all duration-300"
+                      : "w-full glass border-primary/30 hover:bg-primary/10 hover:border-primary transition-all duration-300 group-hover:neon-glow"
+                    }
+                    onClick={() => scrollToSection('#contact')}
+                  >
+                    GET QUOTE
+                  </Button>
+                </div>
               </div>
             </div>
           ))}
@@ -141,8 +163,8 @@ export const ServicesSection = ({ locoRef }: { locoRef?: MutableRefObject<any> }
           <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
             Let's discuss how we can transform your ideas into reality with our cutting-edge technology solutions.
           </p>
-          <Button 
-            size="lg" 
+          <Button
+            size="lg"
             className="bg-gradient-primary hover:shadow-neon transition-all duration-300 hover:scale-105 text-lg px-10 py-4"
             onClick={() => scrollToSection('#contact')}
           >

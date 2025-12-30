@@ -1,4 +1,4 @@
-import { ExternalLink, Globe, Smartphone, Settings, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ExternalLink, Globe, Smartphone, Settings, ChevronLeft, ChevronRight, Wrench } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import { useEffect } from 'react';
@@ -42,6 +42,12 @@ const projects = {
       image: '/images/soliter.jpeg',
       url: 'https://solitairejewel.com/',
       description: 'Premium jewelry and diamond collection'
+    },
+    {
+      title: 'Grocery Web (Mecum)',
+      image: '/images/mecum.png',
+      url: 'https://mecum.in/',
+      description: 'Online grocery shopping and delivery platform'
     }
   ],
   applications: [
@@ -70,10 +76,10 @@ const projects = {
       description: 'App for furniture shopping with variety for house, office & more'
     },
     {
-      title: 'Master of Jobs',
-      image: '/images/moj.webp',
-      url: 'https://play.google.com/store/apps/details?id=com.masterofjobs_moj&hl=en-US',
-      description: 'Job search and career development platform'
+      title: 'Grocery App',
+      image: '/grocery.webp',
+      url: 'https://play.google.com/store/apps/details?id=com.mecum.grocer&pcampaignid=web_share',
+      description: 'Online grocery shopping and delivery platform'
     }
   ],
   cms: [
@@ -107,17 +113,37 @@ const projects = {
       url: 'https://berrydashboard.io/login',
       description: 'Elegant dashboard with comprehensive features'
     }
+  ],
+  tools: [
+    {
+      title: 'BG Remover',
+      image: '/images/bgremover.png',
+      url: 'https://removebg.nvhotech.in/',
+      description: 'Remove backgrounds from images instantly with AI-powered precision'
+    },
+    {
+      title: 'Image Editor',
+      image: '/images/imageEdiotr.png',
+      url: 'https://removebg.nvhotech.in/imageeditor/index.html',
+      description: 'Professional image editing tools for all your creative needs'
+    },
+    {
+      title: 'Image Optimizer',
+      image: '/images/imageoptimizer.png',
+      url: 'https://removebg.nvhotech.in/imageoptimizer/index.html',
+      description: 'Compress and optimize images without losing quality'
+    }
   ]
 };
 
 const ProjectCard = ({ project, index }: { project: any; index: number }) => (
-  <div 
+  <div
     className="group glass rounded-3xl overflow-hidden hover-lift hover:neon-glow transition-all duration-500 w-full max-w-sm mx-auto h-[400px] flex flex-col"
     style={{ animationDelay: `${index * 0.1}s` }}
   >
     <div className="relative overflow-hidden h-48 flex-shrink-0">
-      <img 
-        src={project.image} 
+      <img
+        src={project.image}
         alt={project.title}
         className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
         loading="lazy"
@@ -127,7 +153,7 @@ const ProjectCard = ({ project, index }: { project: any; index: number }) => (
         <ExternalLink className="w-6 h-6 text-white" />
       </div>
     </div>
-    
+
     <div className="p-6 flex-1 flex flex-col justify-between">
       <div>
         <h3 className="text-xl font-bold mb-3 group-hover:gradient-text transition-all duration-300">
@@ -137,8 +163,8 @@ const ProjectCard = ({ project, index }: { project: any; index: number }) => (
           {project.description}
         </p>
       </div>
-      <Button 
-        variant="outline" 
+      <Button
+        variant="outline"
         className="w-full glass border-primary/30 hover:bg-primary/10 hover:border-primary transition-all duration-300 group-hover:neon-glow"
         onClick={() => window.open(project.url, '_blank')}
       >
@@ -151,16 +177,16 @@ const ProjectCard = ({ project, index }: { project: any; index: number }) => (
 
 const ProjectCarousel = ({ projects: projectList, title, icon }: { projects: any[], title: string, icon: any }) => {
   const autoplayPlugin = Autoplay({ delay: 3000, stopOnInteraction: true });
-  
+
   return (
     <div className="mb-20">
       <div className="flex items-center justify-center mb-12">
         {icon}
         <h3 className="text-3xl font-bold">{title}</h3>
       </div>
-      
+
       <div className="relative">
-        <Carousel 
+        <Carousel
           className="w-full"
           plugins={[autoplayPlugin]}
           opts={{
@@ -175,7 +201,7 @@ const ProjectCarousel = ({ projects: projectList, title, icon }: { projects: any
               </CarouselItem>
             ))}
           </CarouselContent>
-          
+
           <CarouselPrevious className="glass border-primary/30 hover:bg-primary/10 hover:border-primary transition-all duration-300 hover:neon-glow -left-4 md:-left-12 hidden sm:flex" />
           <CarouselNext className="glass border-primary/30 hover:bg-primary/10 hover:border-primary transition-all duration-300 hover:neon-glow -right-4 md:-right-12 hidden sm:flex" />
         </Carousel>
@@ -210,28 +236,34 @@ export const ProjectsSection = ({ locoRef }: { locoRef?: MutableRefObject<any> }
             Our <span className="gradient-text">Portfolio</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
-            Discover our latest projects and see how we've helped businesses transform their digital presence 
+            Discover our latest projects and see how we've helped businesses transform their digital presence
             with cutting-edge technology solutions and innovative designs.
           </p>
         </div>
 
         {/* Project Carousels with Auto-scroll */}
-        <ProjectCarousel 
-          projects={projects.websites} 
-          title="Websites" 
+        <ProjectCarousel
+          projects={projects.websites}
+          title="Websites"
           icon={<Globe className="w-8 h-8 text-primary mr-3" />}
         />
-        
-        <ProjectCarousel 
-          projects={projects.applications} 
-          title="Mobile Applications" 
+
+        <ProjectCarousel
+          projects={projects.applications}
+          title="Mobile Applications"
           icon={<Smartphone className="w-8 h-8 text-accent mr-3" />}
         />
-        
-        <ProjectCarousel 
-          projects={projects.cms} 
-          title="CMS & Dashboards" 
+
+        <ProjectCarousel
+          projects={projects.cms}
+          title="CMS & Dashboards"
           icon={<Settings className="w-8 h-8 text-neon-purple mr-3" />}
+        />
+
+        <ProjectCarousel
+          projects={projects.tools}
+          title="Tools"
+          icon={<Wrench className="w-8 h-8 text-primary mr-3" />}
         />
 
         {/* Call to Action */}
@@ -242,8 +274,8 @@ export const ProjectsSection = ({ locoRef }: { locoRef?: MutableRefObject<any> }
           <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
             Let's collaborate and bring your vision to life with our proven expertise and innovative solutions.
           </p>
-          <Button 
-            size="lg" 
+          <Button
+            size="lg"
             className="bg-gradient-primary hover:shadow-neon transition-all duration-300 hover:scale-105 text-lg px-10 py-4"
             onClick={() => scrollToSection('#contact')}
           >
