@@ -45,6 +45,28 @@
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
+
+  <!-- Blog Pages -->
+  <url>
+    <loc>https://nvhotech.in/blog</loc>
+    <lastmod>2025-12-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://nvhotech.in/blog/future-of-mobile-app-development-nvhotech</loc>
+    <lastmod>2025-01-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://nvhotech.in/blog/ai-and-web-development-revolution</loc>
+    <lastmod>2025-01-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
   
   <!-- Legal Pages -->
   <url>

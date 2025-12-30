@@ -3,12 +3,14 @@ import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { OptimizedImage } from '@/components/OptimizedImage';
 import { MutableRefObject } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const navItems = [
   { label: 'Home', href: '#home' },
   { label: 'About', href: '#about' },
   { label: 'Services', href: '#services' },
   { label: 'Projects', href: '#projects' },
+  { label: 'Blog', href: '/blog' },
   { label: 'Contact', href: '#contact' },
 ];
 
@@ -16,6 +18,8 @@ const navItems = [
 export const Navigation = ({ locoRef }: { locoRef?: MutableRefObject<any> }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -27,13 +31,27 @@ export const Navigation = ({ locoRef }: { locoRef?: MutableRefObject<any> }) => 
   }, []);
 
   const scrollToSection = (href: string) => {
-    const element = document.querySelector(href) as HTMLElement;
-    if (element) {
+    // Check if it's an internal route (starts with / and not just #)
+    if (href.startsWith('/') && !href.startsWith('/#')) {
+      navigate(href);
+      setIsOpen(false);
+      return;
+    }
+
+    // Handle hash links
+    const targetId = href.replace('/#', '#');
+    const element = document.querySelector(targetId) as HTMLElement;
+
+    if (location.pathname === '/' && element) {
+      // If we are on the home page, scroll to element
       if (locoRef && locoRef.current) {
         locoRef.current.scrollTo(element, { offset: 0, duration: 800 });
       } else {
         element.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
+    } else {
+      // If we are on a different page, navigate to home and pass the target hash in state
+      navigate('/', { state: { scrollTo: targetId } });
     }
     setIsOpen(false);
   };

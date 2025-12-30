@@ -1,4 +1,5 @@
-import { useRef, lazy, Suspense } from 'react';
+import { useRef, lazy, Suspense, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { useSmoothScroll } from '@/hooks/useSmoothScroll';
 import { SEO } from '@/components/SEO';
 import { ParticleBackground } from '@/components/ParticleBackground';
@@ -53,7 +54,30 @@ const organizationSchema = {
 const Index = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const locoRef = useRef<any>(null); // LocomotiveScroll instance
+  const location = useLocation();
+
   useSmoothScroll(scrollRef, locoRef);
+
+  useEffect(() => {
+    // Handle scrolling from navigation state or hash
+    const targetId = location.state?.scrollTo || location.hash;
+
+    if (targetId && locoRef.current) {
+      const scrollToTarget = () => {
+        const target = document.querySelector(targetId);
+        if (target) {
+          locoRef.current.scrollTo(target, { offset: 0, duration: 800 });
+        } else {
+          // Retry if target is inside a lazy loaded component
+          setTimeout(scrollToTarget, 100);
+        }
+      };
+
+      // Add a small delay to ensure Locomotive Scroll is ready
+      setTimeout(scrollToTarget, 500);
+    }
+  }, [location, locoRef]);
+
   return (
     <>
       <SEO
