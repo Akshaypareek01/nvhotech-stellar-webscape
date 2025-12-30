@@ -222,6 +222,22 @@ export const ProjectsSection = ({ locoRef }: { locoRef?: MutableRefObject<any> }
     }
   };
 
+  useEffect(() => {
+    if (locoRef?.current) {
+      // Immediate update when section mounts
+      locoRef.current.update();
+
+      // Delayed updates to handle image loading shifts
+      const timers = [
+        setTimeout(() => locoRef.current?.update(), 500),
+        setTimeout(() => locoRef.current?.update(), 1500),
+        setTimeout(() => locoRef.current?.update(), 3000)
+      ];
+
+      return () => timers.forEach(clearTimeout);
+    }
+  }, [locoRef]);
+
   return (
     <section className="py-24 relative overflow-hidden scroll-mt-20">
       {/* Background Elements */}

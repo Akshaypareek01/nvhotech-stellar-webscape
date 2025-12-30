@@ -1,4 +1,4 @@
-import { Code, Smartphone, Cloud, Shield, Database, Palette } from 'lucide-react';
+import { Code, Smartphone, Cloud, Shield, Database, Palette, Search, BarChart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { MutableRefObject } from 'react';
 import { Link } from 'react-router-dom';
@@ -51,6 +51,22 @@ const services = [
     price: '₹40,000',
     features: ['Custom AI Models', 'Process Automation', 'Data Analysis', 'Smart Integration'],
     link: '/ai-automation'
+  },
+  {
+    icon: Search,
+    title: 'SEO Optimization',
+    description: 'Boost your visibility and rank higher on search engines. We implement data-driven SEO strategies to drive organic traffic and grow your online presence.',
+    price: '₹15,000',
+    features: ['Keyword Research', 'On-Page Optimization', 'Technical SEO', 'Performance Tracking'],
+    link: null
+  },
+  {
+    icon: BarChart,
+    title: 'Google Analytics',
+    description: 'Make informed decisions with powerful data insights. We set up and configure Google Analytics to track user behavior, conversions, and website performance.',
+    price: '₹5,000',
+    features: ['Setup & Integration', 'Custom Reporting', 'Conversion Tracking', 'User Journey Analysis'],
+    link: null
   }
 ];
 

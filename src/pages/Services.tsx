@@ -172,8 +172,8 @@ const portfolioProjects = {
 const ProjectCard = ({ project }: { project: any }) => (
   <Card className="group glass overflow-hidden hover-lift hover:neon-glow transition-all duration-500 flex flex-col h-full">
     <div className="relative overflow-hidden">
-      <img 
-        src={project.image} 
+      <img
+        src={project.image}
         alt={project.title}
         className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
         loading="lazy"
@@ -188,7 +188,7 @@ const ProjectCard = ({ project }: { project: any }) => (
         </span>
       </div>
     </div>
-    
+
     <div className="p-6 flex-1 flex flex-col">
       <div className="flex-1">
         <h3 className="text-xl font-bold mb-2 group-hover:gradient-text transition-all duration-300">
@@ -198,8 +198,8 @@ const ProjectCard = ({ project }: { project: any }) => (
           {project.description}
         </p>
       </div>
-      <Button 
-        variant="outline" 
+      <Button
+        variant="outline"
         size="sm"
         className="w-full glass border-primary/30 hover:bg-primary/10 hover:border-primary transition-all duration-300 mt-auto"
         onClick={() => window.open(project.url, '_blank')}
@@ -218,8 +218,8 @@ const Services = () => {
     <div className="min-h-screen bg-gradient-hero text-foreground">
       {/* Hero Section */}
       <section className="pt-32 pb-20 relative overflow-hidden">
-        <Button 
-          variant="ghost" 
+        <Button
+          variant="ghost"
           onClick={() => navigate('/')}
           className="absolute top-8 left-4 sm:left-6 z-20 hover:bg-primary/10"
         >
@@ -325,10 +325,10 @@ const Services = () => {
             <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
               Let's collaborate and bring your vision to life with our proven expertise.
             </p>
-            <Button 
-              size="lg" 
+            <Button
+              size="lg"
               className="bg-gradient-primary hover:shadow-neon transition-all duration-300 hover:scale-105"
-              onClick={() => window.location.href = '/#contact'}
+              onClick={() => navigate('/', { state: { scrollTo: '#contact' } })}
             >
               Get Started
               <ArrowRight className="ml-2 w-5 h-5" />

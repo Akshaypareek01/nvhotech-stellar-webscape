@@ -33,7 +33,21 @@ export const useSmoothScroll = (
       locoRef.current = scroll;
     }
 
+    // Update scroll on content resize
+    const resizeObserver = new ResizeObserver(() => {
+      scroll.update();
+    });
+
+    // Observe container and its children for size changes
+    if (containerRef.current) {
+      resizeObserver.observe(containerRef.current);
+      Array.from(containerRef.current.children).forEach((child) => {
+        resizeObserver.observe(child);
+      });
+    }
+
     return () => {
+      resizeObserver.disconnect();
       scroll.destroy();
       if (locoRef) locoRef.current = null;
     };
