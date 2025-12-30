@@ -1,54 +1,62 @@
 import { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ArrowRight, Sparkles, Cpu, Globe } from 'lucide-react';
+import { ArrowRight, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { OptimizedImage } from '@/components/OptimizedImage';
 
 export const HeroSection = () => {
   const heroRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
 
   useEffect(() => {
+    // Throttle mouse move for better performance
+    let rafId: number;
     const handleMouseMove = (e: MouseEvent) => {
       if (!heroRef.current) return;
 
-      const rect = heroRef.current.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
+      if (rafId) {
+        cancelAnimationFrame(rafId);
+      }
 
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
+      rafId = requestAnimationFrame(() => {
+        if (!heroRef.current) return;
 
-      const rotateX = (y - centerY) / 20;
-      const rotateY = (centerX - x) / 20;
+        const rect = heroRef.current.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
 
-      const elements = heroRef.current.querySelectorAll('.float-3d');
-      elements.forEach((el, index) => {
-        const element = el as HTMLElement;
-        const multiplier = (index + 1) * 0.5;
-        element.style.transform = `perspective(1000px) rotateX(${rotateX * multiplier}deg) rotateY(${rotateY * multiplier}deg) translateZ(${index * 20}px)`;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+
+        const rotateX = (y - centerY) / 30; // Reduced intensity
+        const rotateY = (centerX - x) / 30;
+
+        const elements = heroRef.current.querySelectorAll('.float-3d');
+        elements.forEach((el, index) => {
+          const element = el as HTMLElement;
+          const multiplier = (index + 1) * 0.3; // Reduced multiplier
+          element.style.transform = `perspective(1000px) rotateX(${rotateX * multiplier}deg) rotateY(${rotateY * multiplier}deg) translateZ(${index * 15}px)`;
+        });
       });
     };
 
     const heroElement = heroRef.current;
-    if (heroElement) {
-      heroElement.addEventListener('mousemove', handleMouseMove);
-      return () => heroElement.removeEventListener('mousemove', handleMouseMove);
+    if (heroElement && window.innerWidth > 768) { // Only on desktop
+      heroElement.addEventListener('mousemove', handleMouseMove, { passive: true });
+      return () => {
+        if (rafId) cancelAnimationFrame(rafId);
+        heroElement.removeEventListener('mousemove', handleMouseMove);
+      };
     }
   }, []);
 
   return (
     <section
       ref={heroRef}
-      style={{
-        backgroundImage: 'url(/images/fintech/banner-bg.jpg)',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',
-      }}
-      className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20"
+      className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20 bg-gradient-to-br from-background via-background to-primary/5"
     >
-      {/* Blue overlay for theme alignment */}
-      <div className="absolute inset-0 z-0 bg-blue-900/40 mix-blend-multiply pointer-events-none" />
+      {/* Gradient overlay for depth */}
+      <div className="absolute inset-0 z-0 bg-gradient-to-b from-primary/10 via-transparent to-background pointer-events-none" />
       {/* Animated Background Elements */}
       <div className="absolute inset-0">
         <div className="float-3d absolute top-20 left-20 w-32 h-32 bg-gradient-primary rounded-full opacity-10 blur-xl animate-float"></div>
@@ -70,9 +78,11 @@ export const HeroSection = () => {
             <span className="gradient-text">NVHO</span>
             <span className="text-foreground"> TECH</span>
             {/* Tea cup image with animation */}
-            <img
+            <OptimizedImage
               src="/images/banner-image/tea-cup.png"
-              alt="Tea Cup"
+              alt="Tea Cup Icon"
+              width={64}
+              height={64}
               className="w-10 h-10 md:w-15 md:h-16 animate-bounce-slow"
             />
           </h1>

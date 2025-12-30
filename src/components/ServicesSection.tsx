@@ -134,8 +134,12 @@ export const ServicesSection = ({ locoRef }: { locoRef?: MutableRefObject<any> }
                       <Button
                         variant="outline"
                         className="w-full glass border-primary/30 hover:bg-primary/10 hover:border-primary transition-all duration-300 group-hover:neon-glow"
+                        aria-label={`Learn more about ${service.title}`}
                       >
-                        Learn More
+                        {service.title === 'Website Development' && 'Explore Web Development Services'}
+                        {service.title === 'App Development' && 'View Mobile App Solutions'}
+                        {service.title === 'CRM Development' && 'Discover CRM Solutions'}
+                        {service.title === 'AI Agent & Tool Development' && 'Explore AI Automation Services'}
                       </Button>
                     </Link>
                   ) : null}
@@ -146,6 +150,7 @@ export const ServicesSection = ({ locoRef }: { locoRef?: MutableRefObject<any> }
                       : "w-full glass border-primary/30 hover:bg-primary/10 hover:border-primary transition-all duration-300 group-hover:neon-glow"
                     }
                     onClick={() => scrollToSection('#contact')}
+                    aria-label={`Get a quote for ${service.title}`}
                   >
                     GET QUOTE
                   </Button>
