@@ -58,14 +58,19 @@ export const Navigation = ({ locoRef }: { locoRef?: MutableRefObject<any> }) => 
   };
 
   return (
-    <nav className={`fixed top-0 w-full z-50 transition-all duration-500 glass shadow-lg border-b border-white/10 ${scrolled ? 'backdrop-blur-xl py-4' : 'backdrop-blur-xl py-6'
-      }`}>
-      <div className="container mx-auto px-6">
-        <div className="flex items-center justify-between">
-          {/* Logo */}
+    <nav
+      className={`fixed top-0 w-full z-50 transition-all duration-500 glass shadow-lg border-b border-white/10 backdrop-blur-xl ${
+        scrolled
+          ? 'py-2 sm:py-3 md:py-4'
+          : 'py-3 sm:py-4 md:py-5 lg:py-6'
+      }`}
+    >
+      <div className="container mx-auto px-3 sm:px-4 md:px-6 max-w-[100vw]">
+        <div className="flex min-h-0 items-center justify-between gap-2 sm:gap-3">
+          {/* Logo — scales down on narrow viewports so it doesn’t crowd the menu control */}
           <button
             onClick={() => scrollToSection('#home')}
-            className="flex items-center hover:opacity-80 transition-opacity"
+            className="flex shrink-0 items-center hover:opacity-80 transition-opacity max-w-[min(52vw,11rem)] sm:max-w-none"
             aria-label="Navigate to home section"
           >
             <OptimizedImage
@@ -74,18 +79,18 @@ export const Navigation = ({ locoRef }: { locoRef?: MutableRefObject<any> }) => 
               width={107}
               height={64}
               priority={true}
-              className="h-16 w-auto drop-shadow-2xl"
+              className="h-9 w-auto max-h-9 sm:h-10 sm:max-h-10 md:h-12 md:max-h-12 lg:h-14 lg:max-h-14 xl:h-16 xl:max-h-16 drop-shadow-2xl object-contain object-left"
               style={{ filter: 'drop-shadow(0 15px 40px rgba(0, 0, 0, 0.8)) drop-shadow(0 0 30px rgba(193, 100%, 50%, 0.6)) drop-shadow(0 0 50px rgba(270, 100%, 70%, 0.4))' }}
             />
           </button>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          {/* Desktop Navigation — tighter gaps on md so seven links + CTA don’t overflow */}
+          <div className="hidden md:flex md:items-center md:gap-3 lg:gap-6 xl:gap-8 shrink-0">
             {navItems.map((item) => (
               <button
                 key={item.label}
                 onClick={() => scrollToSection(item.href)}
-                className="text-foreground/80 hover:text-primary transition-all duration-300 hover:scale-105 relative group"
+                className="text-sm lg:text-base whitespace-nowrap text-foreground/80 hover:text-primary transition-all duration-300 hover:scale-105 relative group"
               >
                 {item.label}
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-primary group-hover:w-full transition-all duration-300"></span>
@@ -93,7 +98,8 @@ export const Navigation = ({ locoRef }: { locoRef?: MutableRefObject<any> }) => 
             ))}
             <Button
               onClick={() => scrollToSection('/book-appointment')}
-              className="bg-gradient-primary hover:shadow-neon transition-all duration-300 hover:scale-105 neon-glow"
+              size="sm"
+              className="md:text-sm lg:text-base md:px-3 lg:px-4 bg-gradient-primary hover:shadow-neon transition-all duration-300 hover:scale-105 neon-glow shrink-0"
             >
               Get Started
             </Button>
@@ -102,16 +108,16 @@ export const Navigation = ({ locoRef }: { locoRef?: MutableRefObject<any> }) => 
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden text-foreground hover:text-primary transition-colors"
+            className="md:hidden shrink-0 p-1.5 -mr-1 text-foreground hover:text-primary transition-colors touch-manipulation"
             aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
             aria-expanded={isOpen}
           >
-            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {isOpen ? <X className="w-5 h-5 sm:w-6 sm:h-6" /> : <Menu className="w-5 h-5 sm:w-6 sm:h-6" />}
           </button>
         </div>
 
         {/* Mobile Navigation */}
-        <div className={`md:hidden transition-all duration-300 ease-in-out overflow-hidden ${isOpen ? 'max-h-screen opacity-100 mt-6' : 'max-h-0 opacity-0'
+        <div className={`md:hidden transition-all duration-300 ease-in-out overflow-hidden ${isOpen ? 'max-h-screen opacity-100 mt-3 sm:mt-4' : 'max-h-0 opacity-0'
           }`}>
           <div className="glass rounded-2xl p-6 space-y-4">
             {navItems.map((item) => (

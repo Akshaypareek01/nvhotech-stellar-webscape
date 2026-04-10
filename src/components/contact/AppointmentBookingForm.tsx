@@ -15,12 +15,14 @@ import { countryCodes, timeSlots } from './appointmentConstants';
 export type AppointmentBookingFormProps = {
   /** When the page already has a hero title, omit the duplicate heading inside the card. */
   hideFormTitle?: boolean;
+  /** Smaller type, padding, and calendar — used on the dedicated `/book-appointment` page. */
+  compact?: boolean;
 };
 
 /**
  * Appointment booking UI and EmailJS submit flow (shared by the landing contact section and `/book-appointment`).
  */
-export function AppointmentBookingForm({ hideFormTitle = false }: AppointmentBookingFormProps) {
+export function AppointmentBookingForm({ hideFormTitle = false, compact = false }: AppointmentBookingFormProps) {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -153,31 +155,55 @@ export function AppointmentBookingForm({ hideFormTitle = false }: AppointmentBoo
   }), [formData.date, handleDateChange]);
 
   return (
-    <div className="glass w-full min-w-0 max-w-full rounded-2xl p-4 sm:rounded-3xl sm:p-6 md:p-8 hover-lift transition-all duration-300">
+    <div
+      className={cn(
+        'glass w-full min-w-0 max-w-full hover-lift transition-all duration-300',
+        compact && 'booking-form-compact text-sm',
+        compact ? 'rounded-xl p-3 sm:rounded-2xl sm:p-5 md:p-6' : 'rounded-2xl p-4 sm:rounded-3xl sm:p-6 md:p-8'
+      )}
+    >
       {isSuccess ? (
-        <div className="text-center py-8 sm:py-12 px-1">
-          <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-primary rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6 neon-glow">
-            <CalendarIcon className="w-8 h-8 sm:w-10 sm:h-10 text-white" />
+        <div className={cn('text-center px-1', compact ? 'py-6 sm:py-8' : 'py-8 sm:py-12')}>
+          <div
+            className={cn(
+              'bg-gradient-primary rounded-full flex items-center justify-center mx-auto neon-glow',
+              compact ? 'w-12 h-12 sm:w-14 sm:h-14 mb-3' : 'w-16 h-16 sm:w-20 sm:h-20 mb-4 sm:mb-6'
+            )}
+          >
+            <CalendarIcon className={cn('text-white', compact ? 'w-6 h-6 sm:w-7 sm:h-7' : 'w-8 h-8 sm:w-10 sm:h-10')} />
           </div>
-          <h3 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 gradient-text">
+          <h3 className={cn('font-bold gradient-text', compact ? 'text-lg sm:text-xl mb-2' : 'text-xl sm:text-2xl mb-3 sm:mb-4')}>
             Appointment Booked Successfully!
           </h3>
-          <p className="text-muted-foreground text-sm sm:text-base md:text-lg leading-relaxed">
+          <p
+            className={cn(
+              'text-muted-foreground leading-relaxed',
+              compact ? 'text-xs sm:text-sm' : 'text-sm sm:text-base md:text-lg'
+            )}
+          >
             See you at the meeting. We&apos;ll send you a confirmation email shortly.
           </p>
         </div>
       ) : (
         <>
           {!hideFormTitle && (
-            <h3 className="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 gradient-text text-center px-1 leading-tight">
+            <h3
+              className={cn(
+                'font-bold gradient-text text-center px-1 leading-tight',
+                compact ? 'text-lg sm:text-xl mb-4 sm:mb-5' : 'text-2xl sm:text-3xl mb-6 sm:mb-8'
+              )}
+            >
               Book an Appointment
             </h3>
           )}
 
-          <form onSubmit={handleSubmit} className="space-y-6 sm:space-y-8 min-w-0">
-            <div className="grid grid-cols-1 gap-5 sm:gap-6 md:grid-cols-2">
+          <form onSubmit={handleSubmit} className={cn('min-w-0', compact ? 'space-y-4 sm:space-y-5' : 'space-y-6 sm:space-y-8')}>
+            <div className={cn('grid grid-cols-1 md:grid-cols-2', compact ? 'gap-3 sm:gap-4' : 'gap-5 sm:gap-6')}>
               <div className="min-w-0">
-                <label htmlFor="name" className="block text-sm font-medium mb-2 sm:mb-3">
+                <label
+                  htmlFor="name"
+                  className={cn('block font-medium', compact ? 'text-xs mb-1.5 sm:mb-2' : 'text-sm mb-2 sm:mb-3')}
+                >
                   Your Name
                 </label>
                 <Input
@@ -186,14 +212,20 @@ export function AppointmentBookingForm({ hideFormTitle = false }: AppointmentBoo
                   value={formData.name}
                   onChange={handleInputChange}
                   required
-                  className="glass border-primary/30 focus:border-primary focus:ring-primary/20 h-12 min-h-[44px] text-base sm:text-sm"
+                  className={cn(
+                    'glass border-primary/30 focus:border-primary focus:ring-primary/20 min-h-[44px] text-sm',
+                    compact ? 'h-10 px-2.5' : 'h-12 text-base sm:text-sm'
+                  )}
                   placeholder="John Doe"
                   autoComplete="name"
                 />
               </div>
 
               <div className="min-w-0">
-                <label htmlFor="email" className="block text-sm font-medium mb-2 sm:mb-3">
+                <label
+                  htmlFor="email"
+                  className={cn('block font-medium', compact ? 'text-xs mb-1.5 sm:mb-2' : 'text-sm mb-2 sm:mb-3')}
+                >
                   Email Address
                 </label>
                 <Input
@@ -204,7 +236,10 @@ export function AppointmentBookingForm({ hideFormTitle = false }: AppointmentBoo
                   value={formData.email}
                   onChange={handleInputChange}
                   required
-                  className="glass border-primary/30 focus:border-primary focus:ring-primary/20 h-12 min-h-[44px] text-base sm:text-sm"
+                  className={cn(
+                    'glass border-primary/30 focus:border-primary focus:ring-primary/20 min-h-[44px] text-sm',
+                    compact ? 'h-10 px-2.5' : 'h-12 text-base sm:text-sm'
+                  )}
                   placeholder="john@example.com"
                   autoComplete="email"
                 />
@@ -212,12 +247,17 @@ export function AppointmentBookingForm({ hideFormTitle = false }: AppointmentBoo
             </div>
 
             <div className="min-w-0">
-              <label className="block text-sm font-medium mb-2 sm:mb-3">
+              <label className={cn('block font-medium', compact ? 'text-xs mb-1.5 sm:mb-2' : 'text-sm mb-2 sm:mb-3')}>
                 Phone Number
               </label>
               <div className="flex flex-col gap-3 sm:flex-row sm:items-stretch">
                 <Select value={formData.countryCode} onValueChange={(value) => handleSelectChange('countryCode', value)}>
-                  <SelectTrigger className="w-full min-h-[44px] h-12 shrink-0 glass border-primary/30 focus:border-primary sm:w-40 sm:min-w-[10rem] touch-manipulation">
+                  <SelectTrigger
+                    className={cn(
+                      'w-full min-h-[44px] shrink-0 glass border-primary/30 focus:border-primary sm:w-40 sm:min-w-[10rem] touch-manipulation text-sm',
+                      compact ? 'h-10 px-2.5' : 'h-12'
+                    )}
+                  >
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent className="glass backdrop-blur-xl border-primary/30 max-h-[min(70vh,20rem)] max-w-[calc(100vw-2rem)]">
@@ -237,7 +277,10 @@ export function AppointmentBookingForm({ hideFormTitle = false }: AppointmentBoo
                   value={formData.phone}
                   onChange={handleInputChange}
                   required
-                  className="min-h-[44px] h-12 flex-1 glass border-primary/30 focus:border-primary focus:ring-primary/20 text-base sm:text-sm"
+                  className={cn(
+                    'min-h-[44px] flex-1 glass border-primary/30 focus:border-primary focus:ring-primary/20 text-sm',
+                    compact ? 'h-10 px-2.5' : 'h-12 text-base sm:text-sm'
+                  )}
                   placeholder="1234567890"
                   inputMode="tel"
                   autoComplete="tel-national"
@@ -245,26 +288,46 @@ export function AppointmentBookingForm({ hideFormTitle = false }: AppointmentBoo
               </div>
             </div>
 
-            <div className="grid grid-cols-1 gap-6 sm:gap-8 lg:grid-cols-2 min-w-0">
+            <div className={cn('grid grid-cols-1 lg:grid-cols-2 min-w-0', compact ? 'gap-4 sm:gap-5' : 'gap-6 sm:gap-8')}>
               <div className="flex min-w-0 flex-col">
-                <label className="block text-sm font-medium mb-2 sm:mb-3">
+                <label className={cn('block font-medium', compact ? 'text-xs mb-1.5 sm:mb-2' : 'text-sm mb-2 sm:mb-3')}>
                   Select Date
                 </label>
-                <div className="glass rounded-xl border border-primary/30 p-3 sm:p-4 overflow-hidden flex min-w-0 flex-1 flex-col">
-                  <div className="mb-3 text-center sm:mb-4">
-                    <h4 className="text-base font-semibold text-foreground sm:text-lg">
+                <div
+                  className={cn(
+                    'glass rounded-xl border border-primary/30 overflow-hidden flex min-w-0 flex-1 flex-col',
+                    compact ? 'p-2 sm:p-3' : 'p-3 sm:p-4'
+                  )}
+                >
+                  <div className={cn('text-center', compact ? 'mb-2 sm:mb-3' : 'mb-3 sm:mb-4')}>
+                    <h4
+                      className={cn(
+                        'font-semibold text-foreground',
+                        compact ? 'text-xs sm:text-sm tracking-wide' : 'text-base sm:text-lg'
+                      )}
+                    >
                       {new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' }).toUpperCase()}
                     </h4>
                   </div>
                   <div className="flex min-w-0 flex-1 flex-col overflow-x-auto [-webkit-overflow-scrolling:touch]">
                     <Calendar {...calendarProps} />
                   </div>
-                  <div className="mt-3 rounded-lg border border-primary/20 bg-gradient-to-r from-primary/10 to-accent/10 p-2.5 text-center sm:p-2">
-                    <div className="flex flex-wrap items-center justify-center gap-2 text-[11px] font-medium text-primary sm:text-xs">
-                      <CalendarIcon className="h-3 w-3 shrink-0" aria-hidden />
+                  <div className={cn('mt-2 rounded-lg border border-primary/20 bg-gradient-to-r from-primary/10 to-accent/10 text-center', compact ? 'p-2' : 'mt-3 p-2.5 sm:p-2')}>
+                    <div
+                      className={cn(
+                        'flex flex-wrap items-center justify-center gap-1.5 font-medium text-primary',
+                        compact ? 'text-[10px] sm:text-[11px]' : 'text-[11px] sm:text-xs gap-2'
+                      )}
+                    >
+                      <CalendarIcon className={cn('shrink-0', compact ? 'h-2.5 w-2.5' : 'h-3 w-3')} aria-hidden />
                       <span>Next 7 days only</span>
                     </div>
-                    <p className="mt-1 text-[11px] text-muted-foreground sm:text-xs leading-snug">
+                    <p
+                      className={cn(
+                        'text-muted-foreground leading-snug',
+                        compact ? 'mt-0.5 text-[10px] sm:text-[11px]' : 'mt-1 text-[11px] sm:text-xs'
+                      )}
+                    >
                       Older or later dates can&apos;t be selected
                     </p>
                   </div>
@@ -272,11 +335,16 @@ export function AppointmentBookingForm({ hideFormTitle = false }: AppointmentBoo
               </div>
 
               <div className="flex min-w-0 flex-col">
-                <label className="block text-sm font-medium mb-2 sm:mb-3">
+                <label className={cn('block font-medium', compact ? 'text-xs mb-1.5 sm:mb-2' : 'text-sm mb-2 sm:mb-3')}>
                   Select Time Slot
                 </label>
-                <div className="glass flex min-h-0 flex-1 flex-col rounded-xl border border-primary/30 p-3 sm:p-4">
-                  <div className="grid grid-cols-2 gap-2 sm:gap-3">
+                <div
+                  className={cn(
+                    'glass flex min-h-0 flex-1 flex-col rounded-xl border border-primary/30',
+                    compact ? 'p-2 sm:p-3' : 'p-3 sm:p-4'
+                  )}
+                >
+                  <div className={cn('grid grid-cols-2', compact ? 'gap-1.5 sm:gap-2' : 'gap-2 sm:gap-3')}>
                     {timeSlots.map((slot) => (
                       <button
                         key={slot}
@@ -285,10 +353,13 @@ export function AppointmentBookingForm({ hideFormTitle = false }: AppointmentBoo
                         aria-pressed={formData.timeSlot === slot}
                         aria-label={`Time ${slot}`}
                         className={cn(
-                          "min-h-[44px] rounded-lg border px-2 py-2.5 text-xs font-medium transition-all duration-300 touch-manipulation sm:min-h-[48px] sm:p-3 sm:text-sm",
+                          'min-h-[44px] rounded-lg border px-1.5 py-2 font-medium transition-all duration-300 touch-manipulation',
+                          compact
+                            ? 'text-[11px] sm:text-xs sm:min-h-[44px] sm:px-2 sm:py-2'
+                            : 'px-2 py-2.5 text-xs sm:min-h-[48px] sm:p-3 sm:text-sm',
                           formData.timeSlot === slot
-                            ? "bg-primary text-primary-foreground border-primary shadow-neon"
-                            : "glass border-primary/30 active:border-primary active:bg-primary/15 sm:hover:border-primary sm:hover:bg-primary/10"
+                            ? 'bg-primary text-primary-foreground border-primary shadow-neon'
+                            : 'glass border-primary/30 active:border-primary active:bg-primary/15 sm:hover:border-primary sm:hover:bg-primary/10'
                         )}
                       >
                         {slot}
@@ -300,7 +371,10 @@ export function AppointmentBookingForm({ hideFormTitle = false }: AppointmentBoo
             </div>
 
             <div className="min-w-0 flex flex-col">
-              <label htmlFor="message" className="block text-sm font-medium mb-2 sm:mb-3">
+              <label
+                htmlFor="message"
+                className={cn('block font-medium', compact ? 'text-xs mb-1.5 sm:mb-2' : 'text-sm mb-2 sm:mb-3')}
+              >
                 Reason for Connecting
               </label>
               <Textarea
@@ -308,7 +382,10 @@ export function AppointmentBookingForm({ hideFormTitle = false }: AppointmentBoo
                 name="message"
                 value={formData.message}
                 onChange={handleInputChange}
-                className="glass border-primary/30 focus:border-primary focus:ring-primary/20 min-h-[120px] text-base sm:text-sm sm:min-h-[100px]"
+                className={cn(
+                  'glass border-primary/30 focus:border-primary focus:ring-primary/20 text-sm',
+                  compact ? 'min-h-[88px] px-2.5 py-2 sm:min-h-[96px]' : 'min-h-[120px] text-base sm:text-sm sm:min-h-[100px]'
+                )}
                 placeholder="Briefly describe what you'd like to discuss..."
               />
             </div>
@@ -316,17 +393,20 @@ export function AppointmentBookingForm({ hideFormTitle = false }: AppointmentBoo
             <Button
               type="submit"
               disabled={isSubmitting || !formData.name || !formData.email || !formData.phone || !formData.date || !formData.timeSlot}
-              className="h-14 min-h-[48px] w-full touch-manipulation bg-gradient-primary text-base sm:text-lg transition-all duration-300 hover:shadow-neon active:scale-[0.99] sm:hover:scale-[1.02]"
+              className={cn(
+                'min-h-[48px] w-full touch-manipulation bg-gradient-primary transition-all duration-300 hover:shadow-neon active:scale-[0.99] sm:hover:scale-[1.02]',
+                compact ? 'h-11 text-sm' : 'h-14 text-base sm:text-lg'
+              )}
             >
               {isSubmitting ? (
                 <>
-                  <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
+                  <div className={cn('animate-spin rounded-full border-b-2 border-white mr-2', compact ? 'h-4 w-4' : 'h-5 w-5')} />
                   Booking...
                 </>
               ) : (
                 <>
                   Book Appointment
-                  <Send className="ml-2 w-5 h-5" />
+                  <Send className={cn('ml-2', compact ? 'w-4 h-4' : 'w-5 h-5')} />
                 </>
               )}
             </Button>
