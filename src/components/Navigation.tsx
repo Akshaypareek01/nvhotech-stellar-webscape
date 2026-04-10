@@ -11,6 +11,7 @@ const navItems = [
   { label: 'Services', href: '#services' },
   { label: 'Projects', href: '#projects' },
   { label: 'Blog', href: '/blog' },
+  { label: 'Book', href: '/book-appointment' },
   { label: 'Contact', href: '#contact' },
 ];
 
@@ -91,7 +92,7 @@ export const Navigation = ({ locoRef }: { locoRef?: MutableRefObject<any> }) => 
               </button>
             ))}
             <Button
-              onClick={() => scrollToSection('#contact')}
+              onClick={() => scrollToSection('/book-appointment')}
               className="bg-gradient-primary hover:shadow-neon transition-all duration-300 hover:scale-105 neon-glow"
             >
               Get Started
@@ -123,7 +124,7 @@ export const Navigation = ({ locoRef }: { locoRef?: MutableRefObject<any> }) => 
               </button>
             ))}
             <Button
-              onClick={() => scrollToSection('#contact')}
+              onClick={() => scrollToSection('/book-appointment')}
               className="w-full bg-gradient-primary hover:shadow-neon transition-all duration-300 neon-glow mt-4"
             >
               Get Started
