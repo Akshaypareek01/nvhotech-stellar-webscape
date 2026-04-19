@@ -32,7 +32,7 @@ const serviceSchema = {
   provider: {
     '@type': 'Organization',
     name: 'NVHO Tech',
-    url: 'https://nvhotech.in',
+    url: 'https://nvhotech.com',
   },
   areaServed: 'Worldwide',
   description:
@@ -89,7 +89,7 @@ const DigitalMarketing = () => {
       <SEO
         title="Digital Marketing Services in India - SEO, PPC & Social"
         description="NVHO Tech offers digital marketing in India: SEO, paid ads, social media, content, and analytics. Grow traffic, leads, and revenue with a measurable strategy."
-        canonical="https://nvhotech.in/digital-marketing"
+        canonical="https://nvhotech.com/digital-marketing"
         keywords="digital marketing India, SEO services, PPC Google Ads, social media marketing, content marketing, NVHO Tech, lead generation"
         schema={serviceSchema}
       />

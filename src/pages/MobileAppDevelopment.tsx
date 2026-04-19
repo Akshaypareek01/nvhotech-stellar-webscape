@@ -32,7 +32,7 @@ const serviceSchema = {
     "provider": {
         "@type": "Organization",
         "name": "NVHO Tech",
-        "url": "https://nvhotech.in"
+        "url": "https://nvhotech.com"
     },
     "areaServed": "Worldwide",
     "description": "Professional mobile app development services for iOS and Android. We build native and cross-platform mobile applications using React Native, Flutter, and modern technologies."
@@ -84,7 +84,7 @@ const MobileAppDevelopment = () => {
             <SEO
                 title="Mobile App Development Services - iOS & Android Apps"
                 description="Professional mobile app development services in India. We build native and cross-platform mobile apps for iOS and Android using React Native, Flutter, Swift, and Kotlin."
-                canonical="https://nvhotech.in/mobile-app-development"
+                canonical="https://nvhotech.com/mobile-app-development"
                 keywords="mobile app development India, iOS app development, Android app development, React Native development, Flutter development, cross-platform apps, custom mobile apps"
                 schema={serviceSchema}
             />

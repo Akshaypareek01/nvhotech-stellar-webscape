@@ -28,9 +28,9 @@ const projects = {
     { title: 'Berry Dashboard', image: '/images/berry.webp', url: 'https://berrydashboard.io/login', description: 'Elegant, feature-complete dashboard with modern UI components' },
   ],
   tools: [
-    { title: 'AI Background Remover', image: '/images/bgremover.png', url: 'https://removebg.nvhotech.in/', description: 'Remove backgrounds from images instantly using AI-powered precision' },
-    { title: 'Image Editor', image: '/images/imageEdiotr.png', url: 'https://removebg.nvhotech.in/imageeditor/index.html', description: 'Professional in-browser image editing tools for creatives' },
-    { title: 'Image Optimizer', image: '/images/imageoptimizer.png', url: 'https://removebg.nvhotech.in/imageoptimizer/index.html', description: 'Compress and optimize images without sacrificing quality' },
+    { title: 'AI Background Remover', image: '/images/bgremover.png', url: 'https://removebg.nvhotech.com/', description: 'Remove backgrounds from images instantly using AI-powered precision' },
+    { title: 'Image Editor', image: '/images/imageEdiotr.png', url: 'https://removebg.nvhotech.com/imageeditor/index.html', description: 'Professional in-browser image editing tools for creatives' },
+    { title: 'Image Optimizer', image: '/images/imageoptimizer.png', url: 'https://removebg.nvhotech.com/imageoptimizer/index.html', description: 'Compress and optimize images without sacrificing quality' },
   ],
 };
 

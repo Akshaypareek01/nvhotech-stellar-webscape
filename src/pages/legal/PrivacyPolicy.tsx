@@ -1,12 +1,20 @@
 import { Shield, ArrowLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useNavigate } from 'react-router-dom';
+import { SEO } from '@/components/SEO';
 
 const PrivacyPolicy = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen bg-gradient-hero text-foreground">
+    <>
+      <SEO
+        title="Privacy Policy - How We Handle Your Data"
+        description="Read NVHO Tech's privacy policy to understand how we collect, use, and protect your personal data. We are committed to your privacy and data security."
+        canonical="https://nvhotech.com/legal/privacy-policy"
+        keywords="NVHO Tech privacy policy, data protection, personal data, GDPR compliance"
+      />
+      <div className="min-h-screen bg-gradient-hero text-foreground">
       <div className="container mx-auto px-4 sm:px-6 py-16">
         <Button 
           variant="ghost" 
@@ -87,6 +95,7 @@ const PrivacyPolicy = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

@@ -8,11 +8,11 @@ const bookAppointmentSchema = {
   "@type": "WebPage",
   "name": "Book an Appointment — NVHO Tech",
   "description": "Schedule a consultation with NVHO Tech. Pick a date and time and we will confirm by email.",
-  "url": "https://nvhotech.in/book-appointment",
+  "url": "https://nvhotech.com/book-appointment",
   "isPartOf": {
     "@type": "WebSite",
     "name": "NVHO Tech",
-    "url": "https://nvhotech.in"
+    "url": "https://nvhotech.com"
   }
 };
 
@@ -25,7 +25,7 @@ const BookAppointment = () => {
       <SEO
         title="Book an Appointment — NVHO Tech"
         description="Schedule a consultation with NVHO Tech. Choose a date and time slot; we will email you a confirmation."
-        canonical="https://nvhotech.in/book-appointment"
+        canonical="https://nvhotech.com/book-appointment"
         keywords="book appointment, schedule call, NVHO Tech consultation, software development meeting"
         schema={bookAppointmentSchema}
       />

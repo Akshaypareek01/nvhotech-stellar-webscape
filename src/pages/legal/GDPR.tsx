@@ -1,12 +1,20 @@
 import { Scale, ArrowLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useNavigate } from 'react-router-dom';
+import { SEO } from '@/components/SEO';
 
 const GDPR = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen bg-gradient-hero text-foreground">
+    <>
+      <SEO
+        title="GDPR Compliance & Data Privacy Rights"
+        description="NVHO Tech's GDPR compliance policy for users in the EU and EEA. Understand your data rights, how we process personal data, and how to exercise your rights."
+        canonical="https://nvhotech.com/legal/gdpr"
+        keywords="NVHO Tech GDPR, data privacy, EU data rights, GDPR compliance, data processing, right to erasure"
+      />
+      <div className="min-h-screen bg-gradient-hero text-foreground">
       <div className="container mx-auto px-4 sm:px-6 py-16">
         <Button 
           variant="ghost" 
@@ -95,6 +103,7 @@ const GDPR = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

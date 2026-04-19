@@ -1,7 +1,36 @@
-import { defineConfig } from "vite";
+import { defineConfig, type Plugin } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
 import { componentTagger } from "lovable-tagger";
+import { writeFileSync } from "fs";
+
+interface RouteEntry { path: string; priority: string; freq: string; }
+
+function sitemapPlugin(): Plugin {
+  return {
+    name: 'generate-sitemap',
+    apply: 'build',
+    closeBundle() {
+      const today = new Date().toISOString().split('T')[0];
+      const entries: RouteEntry[] = [
+        { path: '/', priority: '1.0', freq: 'weekly' },
+        { path: '/services', priority: '0.8', freq: 'weekly' },
+        { path: '/blog', priority: '0.8', freq: 'weekly' },
+        { path: '/book-appointment', priority: '0.6', freq: 'monthly' },
+        ...(['/web-development', '/mobile-app-development', '/ai-automation', '/software-development', '/digital-marketing', '/logo-design'] as string[])
+          .map(p => ({ path: p, priority: '0.9', freq: 'weekly' })),
+        ...(['/blog/future-of-mobile-app-development-nvhotech', '/blog/ai-and-web-development-revolution'] as string[])
+          .map(p => ({ path: p, priority: '0.7', freq: 'monthly' })),
+        ...(['/legal/privacy-policy', '/legal/terms-of-service', '/legal/refund-policy', '/legal/cookie-policy', '/legal/gdpr'] as string[])
+          .map(p => ({ path: p, priority: '0.5', freq: 'monthly' })),
+      ];
+      const toUrl = ({ path: loc, priority, freq }: RouteEntry) =>
+        `  <url>\n    <loc>https://nvhotech.com${loc}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>${freq}</changefreq>\n    <priority>${priority}</priority>\n  </url>`;
+      const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${entries.map(toUrl).join('\n')}\n</urlset>\n`;
+      writeFileSync(path.resolve(__dirname, 'dist/sitemap.xml'), sitemap, 'utf-8');
+    },
+  };
+}
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
@@ -11,8 +40,8 @@ export default defineConfig(({ mode }) => ({
   },
   plugins: [
     react(),
-    mode === 'development' &&
-    componentTagger(),
+    mode === 'development' && componentTagger(),
+    sitemapPlugin(),
   ].filter(Boolean),
   resolve: {
     alias: {

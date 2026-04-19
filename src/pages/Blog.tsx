@@ -11,8 +11,8 @@ const Blog = () => {
         <>
             <SEO
                 title="NVHO Tech Blog - Insights on AI, Apps, and Web Development"
-                description="Explore the latest insights from Nvhotech Private Ltd on Mobile Apps, Artificial Intelligence, and Web Development. Stay updated with nvhotech.in."
-                canonical="https://nvhotech.in/blog"
+                description="Explore the latest insights from Nvhotech Private Ltd on Mobile Apps, Artificial Intelligence, and Web Development. Stay updated with nvhotech.com."
+                canonical="https://nvhotech.com/blog"
                 keywords="NVHO Tech blog, Nvhotech Private Ltd insights, web development blog, AI trends, mobile app development news"
             />
 

@@ -32,7 +32,7 @@ const serviceSchema = {
     "provider": {
         "@type": "Organization",
         "name": "NVHO Tech",
-        "url": "https://nvhotech.in"
+        "url": "https://nvhotech.com"
     },
     "areaServed": "Worldwide",
     "description": "AI automation services to streamline business processes, reduce costs, and improve efficiency using machine learning, natural language processing, and intelligent automation."
@@ -111,7 +111,7 @@ const AIAutomation = () => {
             <SEO
                 title="AI Automation Services - Machine Learning & Intelligent Automation"
                 description="Transform your business with AI automation services. We implement chatbots, process automation, machine learning, and custom AI solutions to increase efficiency and reduce costs."
-                canonical="https://nvhotech.in/ai-automation"
+                canonical="https://nvhotech.com/ai-automation"
                 keywords="AI automation, machine learning services, chatbot development, process automation, RPA, artificial intelligence, business automation, AI solutions India"
                 schema={serviceSchema}
             />

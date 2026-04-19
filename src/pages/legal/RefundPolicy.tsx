@@ -1,12 +1,20 @@
 import { RefreshCw, ArrowLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useNavigate } from 'react-router-dom';
+import { SEO } from '@/components/SEO';
 
 const RefundPolicy = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen bg-gradient-hero text-foreground">
+    <>
+      <SEO
+        title="Refund & Cancellation Policy"
+        description="NVHO Tech's refund and cancellation policy for software development and digital services. Learn about our terms for refunds, cancellations and project changes."
+        canonical="https://nvhotech.com/legal/refund-policy"
+        keywords="NVHO Tech refund policy, cancellation policy, software development refund, service cancellation"
+      />
+      <div className="min-h-screen bg-gradient-hero text-foreground">
       <div className="container mx-auto px-4 sm:px-6 py-16">
         <Button 
           variant="ghost" 
@@ -102,6 +110,7 @@ const RefundPolicy = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

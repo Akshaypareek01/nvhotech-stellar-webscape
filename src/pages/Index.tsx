@@ -26,8 +26,8 @@ const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
   "name": "NVHO Tech",
-  "url": "https://nvhotech.in",
-  "logo": "https://nvhotech.in/images/logo.png",
+  "url": "https://nvhotech.com",
+  "logo": "https://nvhotech.com/images/logo.png",
   "description": "NVHO Tech provides web development, mobile apps, AI automation, and custom software solutions globally.",
   "address": {
     "@type": "PostalAddress",
@@ -37,7 +37,7 @@ const organizationSchema = {
   "contactPoint": {
     "@type": "ContactPoint",
     "contactType": "Customer Service",
-    "url": "https://nvhotech.in/#contact"
+    "url": "https://nvhotech.com/#contact"
   },
   "sameAs": [
     "https://www.linkedin.com/company/nvhotech",
@@ -54,7 +54,7 @@ const organizationSchema = {
 };
 
 const LANDING_CHATBOT_SCRIPT_ID = 'nvho-landing-chatbot';
-const LANDING_CHATBOT_SRC = 'https://apis.chatbot.nvhotech.in/chatbot.js';
+const LANDING_CHATBOT_SRC = 'https://apis.chatbot.nvhotech.com/chatbot.js';
 const LANDING_CHATBOT_USER_ID = '69e4a092120e9155a83b92ab';
 
 const Index = () => {
@@ -94,7 +94,7 @@ const Index = () => {
       <SEO
         title="Software, App & Web Development Company in India"
         description="NVHO Tech provides web development, mobile apps, AI automation, and custom software solutions globally. Transform your business with cutting-edge technology."
-        canonical="https://nvhotech.in"
+        canonical="https://nvhotech.com"
         keywords="software development company India, web development, mobile app development, AI automation, custom software solutions, CRM development, business software"
         schema={organizationSchema}
       />

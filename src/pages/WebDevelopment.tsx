@@ -32,7 +32,7 @@ const serviceSchema = {
     "provider": {
         "@type": "Organization",
         "name": "NVHO Tech",
-        "url": "https://nvhotech.in"
+        "url": "https://nvhotech.com"
     },
     "areaServed": "Worldwide",
     "description": "Professional web development services including responsive websites, web applications, e-commerce platforms, and custom web solutions."
@@ -84,7 +84,7 @@ const WebDevelopment = () => {
             <SEO
                 title="Web Development Services in India - Custom Web Solutions"
                 description="Professional web development services in India. We build responsive websites, web applications, e-commerce platforms, and custom web solutions using React, Next.js, and modern technologies."
-                canonical="https://nvhotech.in/web-development"
+                canonical="https://nvhotech.com/web-development"
                 keywords="web development India, custom web development, responsive website design, web application development, e-commerce development, React development, Next.js development"
                 schema={serviceSchema}
             />

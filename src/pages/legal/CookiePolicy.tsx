@@ -1,12 +1,20 @@
 import { Cookie, ArrowLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useNavigate } from 'react-router-dom';
+import { SEO } from '@/components/SEO';
 
 const CookiePolicy = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen bg-gradient-hero text-foreground">
+    <>
+      <SEO
+        title="Cookie Policy - How We Use Cookies"
+        description="Learn how NVHO Tech uses cookies on our website to improve your experience, analyze traffic, and deliver personalized content. Manage your cookie preferences."
+        canonical="https://nvhotech.com/legal/cookie-policy"
+        keywords="NVHO Tech cookie policy, cookies, website tracking, cookie preferences, analytics cookies"
+      />
+      <div className="min-h-screen bg-gradient-hero text-foreground">
       <div className="container mx-auto px-4 sm:px-6 py-16">
         <Button 
           variant="ghost" 
@@ -102,6 +110,7 @@ const CookiePolicy = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

@@ -1,9 +1,8 @@
 User-agent: *
 Allow: /
 
-# Sitemap location
-Sitemap: https://nvhotech.in/sitemap.xml
-
-# Disallow crawling of specific paths (if any)
+# Block crawlers that don't respect robots.txt anyway - no benefit to blocking
 # Disallow: /admin/
-# Disallow: /private/
+
+# Sitemap location
+Sitemap: https://nvhotech.com/sitemap.xml

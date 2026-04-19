@@ -17,7 +17,7 @@ const serviceSchema = {
   "@context": "https://schema.org",
   "@type": "Service",
   "serviceType": "Custom Software Development",
-  "provider": { "@type": "Organization", "name": "NVHO Tech", "url": "https://nvhotech.in" },
+  "provider": { "@type": "Organization", "name": "NVHO Tech", "url": "https://nvhotech.com" },
   "areaServed": "Worldwide",
   "description": "Custom software development services including enterprise applications, CRM systems, ERP solutions, and bespoke software tailored to your business needs."
 };
@@ -114,7 +114,7 @@ const SoftwareDevelopment = () => {
       <SEO
         title="Custom Software Development Services - Enterprise Solutions"
         description="Professional custom software development services in India. We build enterprise applications, CRM systems, ERP solutions, and bespoke software tailored to your business needs."
-        canonical="https://nvhotech.in/software-development"
+        canonical="https://nvhotech.com/software-development"
         keywords="custom software development, enterprise software, CRM development, ERP solutions, software development company India, bespoke software, business software"
         schema={serviceSchema}
       />

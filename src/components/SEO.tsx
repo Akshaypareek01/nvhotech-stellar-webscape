@@ -13,8 +13,8 @@ interface SEOProps {
 export const SEO = ({
     title,
     description,
-    canonical = 'https://nvhotech.in',
-    ogImage = 'https://nvhotech.in/images/og-image.jpg',
+    canonical = 'https://nvhotech.com',
+    ogImage = 'https://nvhotech.com/images/og-image.jpg',
     ogType = 'website',
     keywords = 'software development, web development, mobile app development, AI automation, custom software, India',
     schema,

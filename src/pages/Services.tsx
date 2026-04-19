@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { ThemeToggle } from '@/components/ThemeToggle';
 import { useNavigate } from 'react-router-dom';
+import { SEO } from '@/components/SEO';
 
 const services = [
   {
@@ -214,7 +215,14 @@ const Services = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <>
+      <SEO
+        title="Services - Web, Mobile, AI & Custom Software"
+        description="Explore NVHO Tech's software services: custom web development, mobile apps, AI automation, CRM, logo design & digital marketing for startups and enterprises."
+        canonical="https://nvhotech.com/services"
+        keywords="software services India, web development, mobile app development, AI automation, CRM development, logo design, digital marketing, NVHO Tech"
+      />
+      <div className="min-h-screen bg-background text-foreground">
       {/* Hero Section */}
       <section className="pt-32 pb-16 relative overflow-hidden bg-secondary/40">
         <div className="absolute inset-0 dot-pattern opacity-40 pointer-events-none" />
@@ -357,6 +365,7 @@ const Services = () => {
         </div>
       </section>
     </div>
+    </>
   );
 };
 

@@ -35,7 +35,7 @@ const BlogPost = () => {
             <SEO
                 title={`${post.title} - NVHO Tech Blog`}
                 description={post.excerpt}
-                canonical={`https://nvhotech.in/blog/${post.slug}`}
+                canonical={`https://nvhotech.com/blog/${post.slug}`}
                 ogType="article"
             />
 

@@ -1,12 +1,20 @@
 import { FileText, ArrowLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useNavigate } from 'react-router-dom';
+import { SEO } from '@/components/SEO';
 
 const TermsOfService = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen bg-gradient-hero text-foreground">
+    <>
+      <SEO
+        title="Terms of Service - User Agreement"
+        description="Review NVHO Tech's terms of service governing use of our website and software development services. Understand your rights and responsibilities as a user."
+        canonical="https://nvhotech.com/legal/terms-of-service"
+        keywords="NVHO Tech terms of service, user agreement, website terms, software development terms"
+      />
+      <div className="min-h-screen bg-gradient-hero text-foreground">
       <div className="container mx-auto px-4 sm:px-6 py-16">
         <Button 
           variant="ghost" 
@@ -103,6 +111,7 @@ const TermsOfService = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

@@ -32,7 +32,7 @@ const serviceSchema = {
   provider: {
     '@type': 'Organization',
     name: 'NVHO Tech',
-    url: 'https://nvhotech.in',
+    url: 'https://nvhotech.com',
   },
   areaServed: 'Worldwide',
   description:
@@ -89,7 +89,7 @@ const LogoDesign = () => {
       <SEO
         title="Logo Design & Brand Identity Services in India | NVHO Tech"
         description="Professional logo design and brand identity in India. Custom logos, vector deliverables, brand guidelines, and collateral from NVHO Tech."
-        canonical="https://nvhotech.in/logo-design"
+        canonical="https://nvhotech.com/logo-design"
         keywords="logo design India, brand identity, custom logo, vector logo, brand guidelines, NVHO Tech, graphic design"
         schema={serviceSchema}
       />
