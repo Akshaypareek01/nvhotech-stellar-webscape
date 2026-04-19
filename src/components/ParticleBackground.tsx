@@ -15,13 +15,12 @@ export const ParticleBackground = () => {
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
     let animationFrameId: number;
     const particles: Particle[] = [];
-    const maxParticles = 20;
+    const maxParticles = 12;
 
     const resizeCanvas = () => {
       canvas.width = window.innerWidth;
@@ -31,56 +30,42 @@ export const ParticleBackground = () => {
     const createParticle = (): Particle => ({
       x: Math.random() * canvas.width,
       y: canvas.height + 10,
-      size: Math.random() * 3 + 1,
-      speedY: Math.random() * 1.5 + 0.3,
-      opacity: Math.random() * 0.3 + 0.1,
-      hue: Math.random() * 60 + 180, // Blue to cyan range
+      size: Math.random() * 2.5 + 0.5,
+      speedY: Math.random() * 0.8 + 0.2,
+      opacity: Math.random() * 0.28 + 0.12,
+      hue: Math.random() * 40 + 200,
     });
 
     const updateParticles = () => {
       for (let i = particles.length - 1; i >= 0; i--) {
-        const particle = particles[i];
-        particle.y -= particle.speedY;
-        particle.opacity -= 0.0005;
-
-        if (particle.y < -10 || particle.opacity <= 0) {
-          particles.splice(i, 1);
-        }
+        const p = particles[i];
+        p.y -= p.speedY;
+        p.opacity -= 0.0003;
+        if (p.y < -10 || p.opacity <= 0) particles.splice(i, 1);
       }
-
-      // Add particles less frequently
-      if (particles.length < maxParticles && Math.random() < 0.3) {
+      if (particles.length < maxParticles && Math.random() < 0.2) {
         particles.push(createParticle());
       }
     };
 
     const drawParticles = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      particles.forEach((particle) => {
+      particles.forEach((p) => {
         ctx.save();
-        ctx.globalAlpha = particle.opacity;
-        
-        // Create radial gradient for glow effect
-        const gradient = ctx.createRadialGradient(
-          particle.x, particle.y, 0,
-          particle.x, particle.y, particle.size * 3
-        );
-        gradient.addColorStop(0, `hsl(${particle.hue}, 100%, 50%)`);
+        ctx.globalAlpha = p.opacity;
+        const gradient = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.size * 4);
+        gradient.addColorStop(0, `hsl(${p.hue}, 85%, 68%)`);
         gradient.addColorStop(1, 'transparent');
-        
         ctx.fillStyle = gradient;
         ctx.beginPath();
-        ctx.arc(particle.x, particle.y, particle.size * 3, 0, Math.PI * 2);
+        ctx.arc(p.x, p.y, p.size * 4, 0, Math.PI * 2);
         ctx.fill();
-        
         ctx.restore();
       });
     };
 
     let lastTime = 0;
-    const targetFPS = 30; // Reduce from 60fps to 30fps
-    const frameInterval = 1000 / targetFPS;
+    const frameInterval = 1000 / 24;
 
     const animate = (currentTime: number) => {
       if (currentTime - lastTime >= frameInterval) {
@@ -94,11 +79,9 @@ export const ParticleBackground = () => {
     resizeCanvas();
     animate(0);
 
-    const handleResize = () => resizeCanvas();
-    window.addEventListener('resize', handleResize);
-
+    window.addEventListener('resize', resizeCanvas);
     return () => {
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('resize', resizeCanvas);
       cancelAnimationFrame(animationFrameId);
     };
   }, []);

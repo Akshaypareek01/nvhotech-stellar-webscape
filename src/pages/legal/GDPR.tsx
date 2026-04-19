@@ -80,7 +80,7 @@ const GDPR = () => {
               <h2 className="text-2xl font-bold mb-4 gradient-text">7. Data Protection Officer</h2>
               <p className="text-muted-foreground leading-relaxed mb-4">
                 For questions about data protection or to exercise your rights, you can contact our 
-                Data Protection Officer at dpo@nvhotech.com.
+                Data Protection Officer at info@nvhotech.com.
               </p>
             </section>
 

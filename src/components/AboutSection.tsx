@@ -1,125 +1,147 @@
-import { Brain, Rocket, Zap, Users } from 'lucide-react';
+import { ShieldCheck, Rocket, Clock, HeartHandshake, Target, Star } from 'lucide-react';
 
-const features = [
+const pillars = [
   {
-    icon: Brain,
+    icon: ShieldCheck,
     title: 'Quality Assurance',
-    description: 'We take pride in delivering high-quality work that exceeds your expectations.'
+    description: 'Every project goes through rigorous testing and quality checks before delivery — no shortcuts.',
+    color: '#3B82F6',
+    bg: 'rgba(59, 130, 246, 0.14)',
   },
   {
     icon: Rocket,
-    title: 'Affordability',
-    description: 'Our competitive prices are designed to fit your budget without compromising quality.'
+    title: 'Affordable Pricing',
+    description: 'Competitive, transparent pricing designed for startups and growing businesses worldwide.',
+    color: '#8B5CF6',
+    bg: 'rgba(139, 92, 246, 0.14)',
   },
   {
-    icon: Zap,
-    title: 'Timely Delivery',
-    description: 'We understand the importance of deadlines, and we promise to deliver on time.'
+    icon: Clock,
+    title: 'On-Time Delivery',
+    description: 'We respect your deadlines. Our structured process ensures timely delivery, every time.',
+    color: '#06B6D4',
+    bg: 'rgba(6, 182, 212, 0.14)',
   },
   {
-    icon: Users,
+    icon: HeartHandshake,
     title: 'Dedicated Support',
-    description: 'Our team is always here to assist you every step of the way.'
-  }
+    description: 'From kickoff to launch and beyond — our team is always available to support your growth.',
+    color: '#10B981',
+    bg: 'rgba(16, 185, 129, 0.14)',
+  },
+];
+
+const extras = [
+  {
+    icon: Target,
+    title: 'Custom-Built Solutions',
+    description: 'No templates. No one-size-fits-all. Every product we build is architected around your specific goals and users.',
+    color: '#F59E0B',
+    bg: 'rgba(245, 158, 11, 0.14)',
+  },
+  {
+    icon: Star,
+    title: 'Client-First Mindset',
+    description: 'We treat your project like our own. Transparent communication, honest timelines, and a relentless focus on results.',
+    color: '#EF4444',
+    bg: 'rgba(239, 68, 68, 0.14)',
+  },
+];
+
+const stats = [
+  { value: '50+', label: 'Projects Delivered' },
+  { value: '100+', label: 'Happy Clients' },
+  { value: '99%', label: 'Satisfaction Rate' },
+  { value: '24/7', label: 'Support Available' },
 ];
 
 export const AboutSection = () => {
   return (
-    <section className="py-24 relative overflow-hidden scroll-mt-20">
-      {/* Background Elements */}
-      <div className="absolute inset-0">
-        <div className="absolute top-20 right-10 w-64 h-64 bg-gradient-primary rounded-full opacity-5 blur-3xl animate-float"></div>
-        <div className="absolute bottom-20 left-10 w-48 h-48 bg-neon-purple rounded-full opacity-10 blur-2xl animate-float-delayed"></div>
-      </div>
+    <section className="py-24 bg-secondary/40 relative overflow-hidden scroll-mt-20">
+      {/* Subtle background */}
+      <div className="absolute inset-0 dot-pattern opacity-40 pointer-events-none" />
 
       <div className="container mx-auto px-6 relative z-10">
-        <div className="text-center mb-20">
-          <h2 className="text-4xl md:text-6xl font-bold mb-6">
-            About <span className="gradient-text">NVHO TECH</span>
+        {/* Header */}
+        <div className="text-center mb-16">
+          <div className="inline-flex items-center gap-2 badge-blue mb-5">
+            <span>Why Choose NVHO Tech</span>
+          </div>
+          <h2 className="text-4xl md:text-5xl font-extrabold text-foreground mb-5">
+            Built on Trust.{' '}
+            <span className="gradient-text">Driven by Results.</span>
           </h2>
-          <p className="text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
-            Our client-centric approach and proven expertise across platforms guarantee tailored solutions that elevate your business. 
-            With a track record of success, transparent communication, and a commitment to user-centric design, we ensure a collaborative 
-            partnership that builds scalable and efficient digital solutions.
+          <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+            We're not just a development agency — we're a technology partner committed to building
+            products that make a real difference for your business.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {features.map((feature, index) => (
-            <div 
-              key={feature.title}
-              className="group glass rounded-3xl p-8 hover-lift hover:neon-glow transition-all duration-500"
-              style={{ animationDelay: `${index * 0.1}s` }}
+        {/* Main pillars grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+          {pillars.map((item) => (
+            <div
+              key={item.title}
+              className="bg-card rounded-2xl p-7 border border-border shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group"
             >
-              <div className="relative mb-6">
-                <feature.icon className="w-12 h-12 text-primary group-hover:text-accent transition-colors duration-300" />
-                <div className="absolute inset-0 w-12 h-12 text-primary opacity-20 blur-sm group-hover:opacity-40 transition-opacity duration-300">
-                  <feature.icon className="w-12 h-12" />
-                </div>
+              <div
+                className="w-12 h-12 rounded-xl flex items-center justify-center mb-5"
+                style={{ background: item.bg }}
+              >
+                <item.icon className="w-6 h-6" style={{ color: item.color }} />
               </div>
-              
-              <h3 className="text-xl font-semibold mb-4 group-hover:gradient-text transition-all duration-300">
-                {feature.title}
+              <h3 className="text-base font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
+                {item.title}
               </h3>
-              
-              <p className="text-muted-foreground leading-relaxed">
-                {feature.description}
-              </p>
+              <p className="text-sm text-muted-foreground leading-relaxed">{item.description}</p>
             </div>
           ))}
         </div>
 
-        {/* Additional Features */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-16">
-          {[
-            { 
-              title: 'Custom Solutions', 
-              description: 'Every project is unique, and we tailor our services to your specific needs.',
-              icon: '🎯'
-            },
-            { 
-              title: 'Client Satisfaction', 
-              description: 'Your satisfaction is our top priority, and we strive to build long-lasting relationships.',
-              icon: '⭐'
-            }
-          ].map((feature, index) => (
-            <div 
-              key={feature.title}
-              className="group glass rounded-3xl p-8 hover-lift hover:neon-glow transition-all duration-500 text-center"
-              style={{ animationDelay: `${index * 0.1}s` }}
+        {/* Extra two cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
+          {extras.map((item) => (
+            <div
+              key={item.title}
+              className="bg-card rounded-2xl p-8 border border-border shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex gap-5 group"
             >
-              <div className="text-4xl mb-4">{feature.icon}</div>
-              <h3 className="text-xl font-semibold mb-4 group-hover:gradient-text transition-all duration-300">
-                {feature.title}
-              </h3>
-              <p className="text-muted-foreground leading-relaxed">
-                {feature.description}
-              </p>
+              <div
+                className="w-13 h-12 rounded-xl flex items-center justify-center flex-shrink-0"
+                style={{ background: item.bg }}
+              >
+                <item.icon className="w-6 h-6" style={{ color: item.color }} />
+              </div>
+              <div>
+                <h3 className="text-base font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
+                  {item.title}
+                </h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{item.description}</p>
+              </div>
             </div>
           ))}
         </div>
 
-        {/* Stats Section */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-20">
-          {[
-            { number: '50+', label: 'Projects Completed' },
-            { number: '100+', label: 'Happy Clients' },
-            { number: '99%', label: 'Success Rate' },
-            { number: '24/7', label: 'Support Available' }
-          ].map((stat, index) => (
-            <div 
-              key={stat.label}
-              className="text-center group"
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
-              <div className="text-3xl md:text-4xl font-bold gradient-text mb-2 group-hover:scale-110 transition-transform duration-300">
-                {stat.number}
+        {/* Stats banner */}
+        <div
+          className="rounded-3xl p-10 text-white relative overflow-hidden"
+          style={{ background: 'linear-gradient(135deg, hsl(217 91% 52%) 0%, hsl(267 83% 57%) 100%)' }}
+        >
+          {/* Pattern overlay */}
+          <div
+            className="absolute inset-0 opacity-10"
+            style={{
+              backgroundImage: 'radial-gradient(circle, white 1px, transparent 1px)',
+              backgroundSize: '28px 28px',
+            }}
+          />
+          <div className="relative grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            {stats.map((stat) => (
+              <div key={stat.label}>
+                <div className="text-3xl md:text-4xl font-extrabold mb-1">{stat.value}</div>
+                <div className="text-sm text-blue-100 font-medium">{stat.label}</div>
               </div>
-              <div className="text-muted-foreground font-medium">
-                {stat.label}
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </section>

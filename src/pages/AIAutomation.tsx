@@ -1,11 +1,31 @@
 import { useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { ArrowLeft, Cpu, CheckCircle2, ArrowRight, Smartphone, Zap } from 'lucide-react';
+import { ArrowLeft, Cpu, CheckCircle2, ArrowRight, Smartphone, Zap, Link2 } from 'lucide-react';
 import { SEO } from '@/components/SEO';
+import { TechStackBrandIcon, type TechBrandIconSource } from '@/components/TechStackBrandIcon';
 import { Navigation } from '@/components/Navigation';
 import { Footer } from '@/components/Footer';
 import { Button } from '@/components/ui/button';
+import {
+  ServiceAgileProcessSection,
+  type ServiceProcessStep,
+} from '@/components/ServiceAgileProcessSection';
 import { useSmoothScroll } from '@/hooks/useSmoothScroll';
+
+const AI_TECH_STACK: { name: string; icon: TechBrandIconSource }[] = [
+    { name: 'OpenAI GPT', icon: { type: 'simple', slug: 'openai' } },
+    { name: 'TensorFlow', icon: { type: 'simple', slug: 'tensorflow' } },
+    { name: 'PyTorch', icon: { type: 'simple', slug: 'pytorch' } },
+    { name: 'LangChain', icon: { type: 'lucide', icon: Link2 } },
+    { name: 'Python', icon: { type: 'simple', slug: 'python' } },
+    { name: 'Machine Learning', icon: { type: 'simple', slug: 'scikitlearn' } },
+    { name: 'NLP', icon: { type: 'simple', slug: 'spacy' } },
+    { name: 'Computer Vision', icon: { type: 'simple', slug: 'opencv' } },
+    { name: 'RPA Tools', icon: { type: 'simple', slug: 'robotframework' } },
+    { name: 'Azure AI', icon: { type: 'simple', slug: 'microsoftazure' } },
+    { name: 'AWS AI', icon: { type: 'simple', slug: 'amazonaws' } },
+    { name: 'Google Cloud AI', icon: { type: 'simple', slug: 'googlecloud' } },
+];
 
 const serviceSchema = {
     "@context": "https://schema.org",
@@ -20,17 +40,19 @@ const serviceSchema = {
     "description": "AI automation services to streamline business processes, reduce costs, and improve efficiency using machine learning, natural language processing, and intelligent automation."
 };
 
+const AI_AUTOMATION_PROCESS: ServiceProcessStep[] = [
+  { step: '01', title: 'Discovery', desc: 'Use cases, ROI, data availability & compliance boundaries', color: '#3B82F6' },
+  { step: '02', title: 'Design', desc: 'Workflow maps, model/tool choice, prompts & guardrails', color: '#8B5CF6' },
+  { step: '03', title: 'Build', desc: 'Integrations, RAG/agents, APIs & automation into your stack', color: '#06B6D4' },
+  { step: '04', title: 'Validate', desc: 'Accuracy, safety, load tests & human-in-the-loop review', color: '#10B981' },
+  { step: '05', title: 'Operate', desc: 'Rollout, monitoring, drift checks & continuous improvement', color: '#F59E0B' },
+];
+
 const AIAutomation = () => {
     const scrollRef = useRef<HTMLDivElement>(null);
     const locoRef = useRef<any>(null);
     const navigate = useNavigate();
     useSmoothScroll(scrollRef, locoRef);
-
-    const technologies = [
-        'OpenAI GPT', 'TensorFlow', 'PyTorch', 'Langchain',
-        'Python', 'Machine Learning', 'NLP', 'Computer Vision',
-        'RPA Tools', 'Azure AI', 'AWS AI', 'Google Cloud AI'
-    ];
 
     const benefits = [
         'Reduced Operational Costs',
@@ -99,13 +121,12 @@ const AIAutomation = () => {
                 schema={serviceSchema}
             />
 
+            <Navigation locoRef={locoRef} />
             <div
                 ref={scrollRef}
                 data-scroll-container
                 className="min-h-screen bg-gradient-hero text-foreground"
             >
-                <Navigation locoRef={locoRef} />
-
                 {/* Hero Section */}
                 <section className="pt-32 pb-20 px-6">
                     <div className="container mx-auto max-w-6xl">
@@ -165,13 +186,13 @@ const AIAutomation = () => {
                         </h2>
 
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                            {technologies.map((tech, index) => (
+                            {AI_TECH_STACK.map(({ name, icon }) => (
                                 <div
-                                    key={index}
-                                    className="glass p-4 rounded-lg text-center hover:bg-primary/10 transition-colors"
+                                    key={name}
+                                    className="glass p-4 rounded-lg text-center hover:bg-primary/10 transition-colors flex flex-col items-center gap-2"
                                 >
-                                    <Cpu className="w-8 h-8 mx-auto mb-2 text-primary" />
-                                    <p className="font-medium">{tech}</p>
+                                    <TechStackBrandIcon source={icon} />
+                                    <p className="font-medium text-sm leading-snug">{name}</p>
                                 </div>
                             ))}
                         </div>
@@ -213,6 +234,15 @@ const AIAutomation = () => {
                         </div>
                     </div>
                 </section>
+
+                <ServiceAgileProcessSection
+                  headingId="ai-automation-process-heading"
+                  eyebrow="How We Automate"
+                  titleLead="Our"
+                  titleAccent="AI Implementation Process"
+                  description="Experiment safely, prove value on real workflows, then scale with observability and governance built in."
+                  steps={AI_AUTOMATION_PROCESS}
+                />
 
                 {/* CTA Section */}
                 <section className="py-20 px-6 bg-background/50">

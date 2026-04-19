@@ -75,7 +75,7 @@ const RefundPolicy = () => {
             <section>
               <h2 className="text-2xl font-bold mb-4 gradient-text">4. Refund Process</h2>
               <div className="text-muted-foreground leading-relaxed mb-4 space-y-2">
-                <p>• To request a refund, email us at info@nvhotech.in with your invoice number and details of the issue.</p>
+                <p>• To request a refund, email us at info@nvhotech.com with your invoice number and details of the issue.</p>
                 <p>• Refunds will be processed within 7-14 business days of approval.</p>
                 <p>• Refunds will be issued to the original payment method used during the purchase.</p>
               </div>
@@ -93,7 +93,7 @@ const RefundPolicy = () => {
               <div className="text-muted-foreground leading-relaxed">
                 <p className="mb-3">For any questions or concerns regarding our Refund & Cancellation Policy, please reach out to us at:</p>
                 <div className="space-y-2">
-                  <p><strong>Email:</strong> info@nvhotech.in</p>
+                  <p><strong>Email:</strong> info@nvhotech.com</p>
                   <p><strong>Phone:</strong> +91 8290918154</p>
                 </div>
               </div>

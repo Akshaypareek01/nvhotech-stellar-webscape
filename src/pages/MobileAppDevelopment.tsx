@@ -1,11 +1,31 @@
 import { useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { ArrowLeft, Smartphone, CheckCircle2, ArrowRight, Code } from 'lucide-react';
+import { ArrowLeft, Smartphone, CheckCircle2, ArrowRight, Bell } from 'lucide-react';
 import { SEO } from '@/components/SEO';
+import { TechStackBrandIcon, type TechBrandIconSource } from '@/components/TechStackBrandIcon';
 import { Navigation } from '@/components/Navigation';
 import { Footer } from '@/components/Footer';
 import { Button } from '@/components/ui/button';
+import {
+  ServiceAgileProcessSection,
+  type ServiceProcessStep,
+} from '@/components/ServiceAgileProcessSection';
 import { useSmoothScroll } from '@/hooks/useSmoothScroll';
+
+const TECH_STACK: { name: string; icon: TechBrandIconSource }[] = [
+    { name: 'React Native', icon: { type: 'simple', slug: 'react' } },
+    { name: 'Flutter', icon: { type: 'simple', slug: 'flutter' } },
+    { name: 'Swift', icon: { type: 'simple', slug: 'swift' } },
+    { name: 'Kotlin', icon: { type: 'simple', slug: 'kotlin' } },
+    { name: 'Firebase', icon: { type: 'simple', slug: 'firebase' } },
+    { name: 'Redux', icon: { type: 'simple', slug: 'redux' } },
+    { name: 'TypeScript', icon: { type: 'simple', slug: 'typescript' } },
+    { name: 'REST APIs', icon: { type: 'simple', slug: 'axios' } },
+    { name: 'GraphQL', icon: { type: 'simple', slug: 'graphql' } },
+    { name: 'Push Notifications', icon: { type: 'lucide', icon: Bell } },
+    { name: 'In-App Purchases', icon: { type: 'simple', slug: 'googleplay' } },
+    { name: 'Analytics', icon: { type: 'simple', slug: 'googleanalytics' } },
+];
 
 const serviceSchema = {
     "@context": "https://schema.org",
@@ -20,17 +40,19 @@ const serviceSchema = {
     "description": "Professional mobile app development services for iOS and Android. We build native and cross-platform mobile applications using React Native, Flutter, and modern technologies."
 };
 
+const MOBILE_APP_PROCESS: ServiceProcessStep[] = [
+  { step: '01', title: 'Discovery', desc: 'Product goals, platforms, store policies & third-party APIs', color: '#3B82F6' },
+  { step: '02', title: 'UX & UI', desc: 'Flows, high-fidelity screens & platform design guidelines', color: '#8B5CF6' },
+  { step: '03', title: 'Development', desc: 'Sprint-based builds: features, offline, auth & backend sync', color: '#06B6D4' },
+  { step: '04', title: 'QA & beta', desc: 'Device labs, TestFlight / internal testing & crash analytics', color: '#10B981' },
+  { step: '05', title: 'Store launch', desc: 'Submission, ASO assets, releases, monitoring & updates', color: '#F59E0B' },
+];
+
 const MobileAppDevelopment = () => {
     const scrollRef = useRef<HTMLDivElement>(null);
     const locoRef = useRef<any>(null);
     const navigate = useNavigate();
     useSmoothScroll(scrollRef, locoRef);
-
-    const technologies = [
-        'React Native', 'Flutter', 'Swift', 'Kotlin',
-        'Firebase', 'Redux', 'TypeScript', 'REST APIs',
-        'GraphQL', 'Push Notifications', 'In-App Purchases', 'Analytics'
-    ];
 
     const benefits = [
         'Native & Cross-Platform Development',
@@ -72,13 +94,12 @@ const MobileAppDevelopment = () => {
                 schema={serviceSchema}
             />
 
+            <Navigation locoRef={locoRef} />
             <div
                 ref={scrollRef}
                 data-scroll-container
                 className="min-h-screen bg-gradient-hero text-foreground"
             >
-                <Navigation locoRef={locoRef} />
-
                 {/* Hero Section */}
                 <section className="pt-32 pb-20 px-6">
                     <div className="container mx-auto max-w-6xl">
@@ -137,13 +158,13 @@ const MobileAppDevelopment = () => {
                         </h2>
 
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                            {technologies.map((tech, index) => (
+                            {TECH_STACK.map(({ name, icon }) => (
                                 <div
-                                    key={index}
-                                    className="glass p-4 rounded-lg text-center hover:bg-primary/10 transition-colors"
+                                    key={name}
+                                    className="glass p-4 rounded-lg text-center hover:bg-primary/10 transition-colors flex flex-col items-center gap-2"
                                 >
-                                    <Code className="w-8 h-8 mx-auto mb-2 text-primary" />
-                                    <p className="font-medium">{tech}</p>
+                                    <TechStackBrandIcon source={icon} />
+                                    <p className="font-medium text-sm leading-snug">{name}</p>
                                 </div>
                             ))}
                         </div>
@@ -168,29 +189,14 @@ const MobileAppDevelopment = () => {
                     </div>
                 </section>
 
-                {/* Process Section */}
-                <section className="py-16 px-6">
-                    <div className="container mx-auto max-w-6xl">
-                        <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
-                            Our Development Process
-                        </h2>
-
-                        <div className="grid md:grid-cols-4 gap-6">
-                            {[
-                                { step: '01', title: 'Discovery', desc: 'Understanding your requirements and goals' },
-                                { step: '02', title: 'Design', desc: 'Creating intuitive UI/UX designs' },
-                                { step: '03', title: 'Development', desc: 'Building your app with best practices' },
-                                { step: '04', title: 'Launch', desc: 'Deploying to app stores and beyond' }
-                            ].map((phase, index) => (
-                                <div key={index} className="text-center">
-                                    <div className="text-5xl font-bold text-primary/20 mb-4">{phase.step}</div>
-                                    <h3 className="text-xl font-bold mb-2">{phase.title}</h3>
-                                    <p className="text-muted-foreground">{phase.desc}</p>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                </section>
+                <ServiceAgileProcessSection
+                  headingId="mobile-app-process-heading"
+                  eyebrow="How We Ship Apps"
+                  titleLead="Our"
+                  titleAccent="Mobile App Process"
+                  description="Clear checkpoints from idea to App Store and Play Store — you always see the next milestone before we ship it."
+                  steps={MOBILE_APP_PROCESS}
+                />
 
                 {/* CTA Section */}
                 <section className="py-20 px-6 bg-background/50">

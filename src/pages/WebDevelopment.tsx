@@ -1,11 +1,31 @@
 import { useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { ArrowLeft, Code, Globe, Smartphone, Zap, CheckCircle2, ArrowRight } from 'lucide-react';
+import { ArrowLeft, Globe, Smartphone, CheckCircle2, ArrowRight } from 'lucide-react';
 import { SEO } from '@/components/SEO';
+import { TechStackBrandIcon, type TechBrandIconSource } from '@/components/TechStackBrandIcon';
 import { Navigation } from '@/components/Navigation';
 import { Footer } from '@/components/Footer';
 import { Button } from '@/components/ui/button';
+import {
+  ServiceAgileProcessSection,
+  type ServiceProcessStep,
+} from '@/components/ServiceAgileProcessSection';
 import { useSmoothScroll } from '@/hooks/useSmoothScroll';
+
+const WEB_TECH_STACK: { name: string; icon: TechBrandIconSource }[] = [
+    { name: 'React.js', icon: { type: 'simple', slug: 'react' } },
+    { name: 'Next.js', icon: { type: 'simple', slug: 'nextdotjs' } },
+    { name: 'Vue.js', icon: { type: 'simple', slug: 'vuedotjs' } },
+    { name: 'Angular', icon: { type: 'simple', slug: 'angular' } },
+    { name: 'Node.js', icon: { type: 'simple', slug: 'nodedotjs' } },
+    { name: 'Express', icon: { type: 'simple', slug: 'express' } },
+    { name: 'MongoDB', icon: { type: 'simple', slug: 'mongodb' } },
+    { name: 'PostgreSQL', icon: { type: 'simple', slug: 'postgresql' } },
+    { name: 'TypeScript', icon: { type: 'simple', slug: 'typescript' } },
+    { name: 'Tailwind CSS', icon: { type: 'simple', slug: 'tailwindcss' } },
+    { name: 'GraphQL', icon: { type: 'simple', slug: 'graphql' } },
+    { name: 'REST APIs', icon: { type: 'simple', slug: 'axios' } },
+];
 
 const serviceSchema = {
     "@context": "https://schema.org",
@@ -20,17 +40,19 @@ const serviceSchema = {
     "description": "Professional web development services including responsive websites, web applications, e-commerce platforms, and custom web solutions."
 };
 
+const WEB_DELIVERY_PROCESS: ServiceProcessStep[] = [
+  { step: '01', title: 'Discovery', desc: 'Goals, audiences, sitemap & technical constraints', color: '#3B82F6' },
+  { step: '02', title: 'UX & UI', desc: 'Wireframes, design system, responsive layouts & content structure', color: '#8B5CF6' },
+  { step: '03', title: 'Build', desc: 'Front-end, APIs, CMS/e-commerce & integrations in iterative sprints', color: '#06B6D4' },
+  { step: '04', title: 'QA & SEO', desc: 'Cross-browser checks, performance, accessibility & on-page SEO', color: '#10B981' },
+  { step: '05', title: 'Launch', desc: 'Hosting, SSL, analytics, handover & ongoing improvements', color: '#F59E0B' },
+];
+
 const WebDevelopment = () => {
     const scrollRef = useRef<HTMLDivElement>(null);
     const locoRef = useRef<any>(null);
     const navigate = useNavigate();
     useSmoothScroll(scrollRef, locoRef);
-
-    const technologies = [
-        'React.js', 'Next.js', 'Vue.js', 'Angular',
-        'Node.js', 'Express', 'MongoDB', 'PostgreSQL',
-        'TypeScript', 'Tailwind CSS', 'GraphQL', 'REST APIs'
-    ];
 
     const benefits = [
         'Responsive & Mobile-First Design',
@@ -72,13 +94,12 @@ const WebDevelopment = () => {
                 schema={serviceSchema}
             />
 
+            <Navigation locoRef={locoRef} />
             <div
                 ref={scrollRef}
                 data-scroll-container
                 className="min-h-screen bg-gradient-hero text-foreground"
             >
-                <Navigation locoRef={locoRef} />
-
                 {/* Hero Section */}
                 <section className="pt-32 pb-20 px-6">
                     <div className="container mx-auto max-w-6xl">
@@ -137,13 +158,13 @@ const WebDevelopment = () => {
                         </h2>
 
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                            {technologies.map((tech, index) => (
+                            {WEB_TECH_STACK.map(({ name, icon }) => (
                                 <div
-                                    key={index}
-                                    className="glass p-4 rounded-lg text-center hover:bg-primary/10 transition-colors"
+                                    key={name}
+                                    className="glass p-4 rounded-lg text-center hover:bg-primary/10 transition-colors flex flex-col items-center gap-2"
                                 >
-                                    <Code className="w-8 h-8 mx-auto mb-2 text-primary" />
-                                    <p className="font-medium">{tech}</p>
+                                    <TechStackBrandIcon source={icon} />
+                                    <p className="font-medium text-sm leading-snug">{name}</p>
                                 </div>
                             ))}
                         </div>
@@ -167,6 +188,15 @@ const WebDevelopment = () => {
                         </div>
                     </div>
                 </section>
+
+                <ServiceAgileProcessSection
+                  headingId="web-delivery-process-heading"
+                  eyebrow="How We Build"
+                  titleLead="Our"
+                  titleAccent="Web Delivery Process"
+                  description="From discovery to launch — structured milestones with room to refine as your product evolves."
+                  steps={WEB_DELIVERY_PROCESS}
+                />
 
                 {/* CTA Section */}
                 <section className="py-20 px-6">

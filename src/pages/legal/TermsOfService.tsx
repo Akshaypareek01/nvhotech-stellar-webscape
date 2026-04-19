@@ -94,7 +94,7 @@ const TermsOfService = () => {
               <div className="text-muted-foreground leading-relaxed">
                 <p className="mb-3">For any questions about these Terms, contact us at:</p>
                 <div className="space-y-2">
-                  <p><strong>Email:</strong> info@nvhotech.in</p>
+                  <p><strong>Email:</strong> info@nvhotech.com</p>
                   <p><strong>Phone:</strong> +91 8290918154</p>
                 </div>
               </div>

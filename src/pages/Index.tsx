@@ -15,8 +15,11 @@ const ProjectsSection = lazy(() => import('@/components/ProjectsSection').then(m
 const ContactSection = lazy(() => import('@/components/ContactSection').then(module => ({ default: module.ContactSection })));
 
 const SectionLoader = () => (
-  <div className="w-full h-[400px] flex items-center justify-center">
-    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+  <div className="w-full h-[400px] flex items-center justify-center bg-background">
+    <div className="flex flex-col items-center gap-3">
+      <div className="w-10 h-10 border-2 border-border border-t-primary rounded-full animate-spin" />
+      <p className="text-sm text-muted-foreground font-medium">Loading...</p>
+    </div>
   </div>
 );
 
@@ -51,12 +54,36 @@ const organizationSchema = {
   ]
 };
 
+const LANDING_CHATBOT_SCRIPT_ID = 'nvho-landing-chatbot';
+const LANDING_CHATBOT_SRC = 'https://apis.chatbot.nvhotech.in/chatbot.js';
+const LANDING_CHATBOT_USER_ID = '69e4a092120e9155a83b92ab';
+
 const Index = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const locoRef = useRef<any>(null); // LocomotiveScroll instance
   const location = useLocation();
 
   useSmoothScroll(scrollRef, locoRef);
+
+  /**
+   * Loads NVHO chatbot on `/` only; removes the loader script when navigating away.
+   * (If the widget injects extra DOM, the vendor script may still handle teardown.)
+   */
+  useEffect(() => {
+    if (document.getElementById(LANDING_CHATBOT_SCRIPT_ID)) {
+      return;
+    }
+    const script = document.createElement('script');
+    script.id = LANDING_CHATBOT_SCRIPT_ID;
+    script.src = LANDING_CHATBOT_SRC;
+    script.defer = true;
+    script.setAttribute('data-user-id', LANDING_CHATBOT_USER_ID);
+    document.body.appendChild(script);
+
+    return () => {
+      document.getElementById(LANDING_CHATBOT_SCRIPT_ID)?.remove();
+    };
+  }, []);
 
   useEffect(() => {
     // Handle scrolling from navigation state or hash
@@ -87,16 +114,14 @@ const Index = () => {
         keywords="software development company India, web development, mobile app development, AI automation, custom software solutions, CRM development, business software"
         schema={organizationSchema}
       />
+      <Navigation locoRef={locoRef} />
       <div
         ref={scrollRef}
         data-scroll-container
-        className="min-h-screen bg-gradient-hero text-foreground font-tech"
+        className="min-h-screen bg-background text-foreground"
       >
         {/* Particle Background */}
         <ParticleBackground />
-
-        {/* Navigation */}
-        <Navigation locoRef={locoRef} />
 
         {/* Main Content */}
         <main className="relative z-10">

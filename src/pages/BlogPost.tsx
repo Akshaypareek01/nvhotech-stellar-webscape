@@ -43,9 +43,8 @@ const BlogPost = () => {
                 ogType="article"
             />
 
+            <Navigation locoRef={locoRef} />
             <div ref={scrollRef} data-scroll-container className="min-h-screen bg-gradient-hero text-foreground">
-                <Navigation locoRef={locoRef} />
-
                 <article className="pt-32 pb-20 px-6">
                     <div className="container mx-auto max-w-4xl">
                         <Link to="/blog" className="inline-flex items-center text-primary hover:text-primary/80 mb-8 transition-colors">

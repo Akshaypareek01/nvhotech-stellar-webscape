@@ -1,138 +1,178 @@
-import { Github, Twitter, Linkedin, Instagram } from 'lucide-react';
+import { Mail, Phone, MapPin, ArrowRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
-const socialLinks = [
-  { icon: Github, href: '#', label: 'GitHub' },
-  { icon: Twitter, href: '#', label: 'Twitter' },
-  { icon: Linkedin, href: '#', label: 'LinkedIn' },
-  { icon: Instagram, href: '#', label: 'Instagram' }
+const serviceLinks = [
+  { label: 'Website Development', href: '/web-development' },
+  { label: 'Mobile App Development', href: '/mobile-app-development' },
+  { label: 'AI Automation', href: '/ai-automation' },
+  { label: 'CRM Development', href: '/software-development' },
+  { label: 'Digital Marketing', href: '/digital-marketing' },
+  { label: 'Logo Design', href: '/logo-design' },
 ];
 
-const footerLinks = {
-  Services: ['Web Development', 'Mobile Apps', 'Cloud Solutions', 'AI & ML'],
-  Legal: ['Privacy Policy', 'Terms of Service', 'Refund Policy', 'Cookie Policy', 'GDPR']
-};
+const legalLinks = [
+  { label: 'Privacy Policy', href: '/legal/privacy-policy' },
+  { label: 'Terms of Service', href: '/legal/terms-of-service' },
+  { label: 'Refund Policy', href: '/legal/refund-policy' },
+  { label: 'Cookie Policy', href: '/legal/cookie-policy' },
+  { label: 'GDPR', href: '/legal/gdpr' },
+];
+
+const companyLinks = [
+  { label: 'About Us', href: '/#about' },
+  { label: 'Portfolio', href: '/#projects' },
+  { label: 'Blog', href: '/blog' },
+  { label: 'Book Appointment', href: '/book-appointment' },
+  { label: 'Contact', href: '/#contact' },
+];
 
 export const Footer = () => {
   const navigate = useNavigate();
 
-  const handleLinkClick = (section: string, link: string) => {
-    if (section === 'Services') {
-      navigate('/services');
-    } else if (section === 'Legal') {
-      switch (link) {
-        case 'Privacy Policy':
-          navigate('/legal/privacy-policy');
-          break;
-        case 'Terms of Service':
-          navigate('/legal/terms-of-service');
-          break;
-        case 'Refund Policy':
-          navigate('/legal/refund-policy');
-          break;
-        case 'Cookie Policy':
-          navigate('/legal/cookie-policy');
-          break;
-        case 'GDPR':
-          navigate('/legal/gdpr');
-          break;
-        default:
-          break;
-      }
+  const handleNav = (href: string) => {
+    if (href.startsWith('/') && !href.startsWith('/#')) {
+      navigate(href);
+    } else {
+      navigate('/');
     }
   };
 
   return (
-    <footer className="relative py-20 border-t border-primary/20">
-      {/* Background Elements */}
-      <div className="absolute inset-0">
-        <div className="absolute top-10 left-20 w-48 h-48 bg-gradient-primary rounded-full opacity-5 blur-2xl"></div>
-        <div className="absolute bottom-10 right-20 w-32 h-32 bg-neon-purple rounded-full opacity-10 blur-xl"></div>
+    <footer className="bg-slate-900 text-slate-300">
+      {/* Top CTA band */}
+      <div
+        className="relative overflow-hidden py-14 px-6"
+        style={{ background: 'linear-gradient(135deg, hsl(217 91% 48%) 0%, hsl(267 83% 50%) 100%)' }}
+      >
+        <div
+          className="absolute inset-0 opacity-10"
+          style={{
+            backgroundImage: 'radial-gradient(circle, white 1px, transparent 1px)',
+            backgroundSize: '28px 28px',
+          }}
+        />
+        <div className="container mx-auto relative flex flex-col md:flex-row items-center justify-between gap-6">
+          <div>
+            <h3 className="text-2xl md:text-3xl font-extrabold text-white mb-2">
+              Let's Build Something Amazing Together
+            </h3>
+            <p className="text-blue-100 text-base">
+              Book a free consultation — no commitment, just ideas.
+            </p>
+          </div>
+          <button
+            onClick={() => navigate('/book-appointment')}
+            className="flex items-center gap-2 bg-foreground text-background font-bold px-7 py-3.5 rounded-xl shadow-lg hover:shadow-xl hover:bg-foreground/90 transition-all duration-200 flex-shrink-0"
+          >
+            Book Free Call
+            <ArrowRight className="w-4 h-4" />
+          </button>
+        </div>
       </div>
 
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-12 mb-12">
-          {/* Brand Section */}
+      {/* Main footer content */}
+      <div className="container mx-auto px-6 py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-14">
+          {/* Brand column */}
           <div className="lg:col-span-2">
-            <div className="flex items-center mb-6">
+            <div className="mb-5">
               <img
                 src="/images/logoNT.png"
                 alt="NVHO Tech Logo"
-                className="h-16 w-auto drop-shadow-2xl"
-                style={{ filter: 'drop-shadow(0 15px 40px rgba(0, 0, 0, 0.8)) drop-shadow(0 0 30px rgba(193, 100%, 50%, 0.6)) drop-shadow(0 0 50px rgba(270, 100%, 70%, 0.4))' }}
+                className="h-11 w-auto brightness-0 invert"
               />
             </div>
-
-            <p className="text-muted-foreground mb-6 leading-relaxed max-w-md">
-              Leading the future with cutting-edge technology solutions, AI innovations,
-              and digital transformation services that empower businesses worldwide.
+            <p className="text-slate-400 text-sm leading-relaxed mb-6 max-w-sm">
+              NVHO Tech is an India-based IT company delivering world-class web development,
+              mobile apps, AI automation, and custom software solutions to businesses globally.
             </p>
 
-            <div className="flex space-x-4">
-              {socialLinks.map((social) => (
-                <a
-                  key={social.label}
-                  href={social.href}
-                  aria-label={social.label}
-                  className="w-10 h-10 glass rounded-lg flex items-center justify-center hover:neon-glow transition-all duration-300 hover:scale-110 group"
-                >
-                  <social.icon className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors duration-300" />
-                </a>
+            {/* Contact info */}
+            <div className="space-y-3 mb-6">
+              <a
+                href="https://wa.me/918290918154"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 text-sm text-slate-400 hover:text-white transition-colors"
+              >
+                <Phone className="w-4 h-4 text-blue-400 flex-shrink-0" />
+                +91 82909 18154
+              </a>
+              <a
+                href="mailto:info@nvhotech.com"
+                className="flex items-center gap-3 text-sm text-slate-400 hover:text-white transition-colors"
+              >
+                <Mail className="w-4 h-4 text-blue-400 flex-shrink-0" />
+                info@nvhotech.com
+              </a>
+              <div className="flex items-center gap-3 text-sm text-slate-400">
+                <MapPin className="w-4 h-4 text-blue-400 flex-shrink-0" />
+                India (Serving Worldwide)
+              </div>
+            </div>
+          </div>
+
+          {/* Services */}
+          <div>
+            <h4 className="text-sm font-bold text-white mb-5 uppercase tracking-widest">Services</h4>
+            <ul className="space-y-3">
+              {serviceLinks.map((link) => (
+                <li key={link.label}>
+                  <button
+                    onClick={() => handleNav(link.href)}
+                    className="text-sm text-slate-400 hover:text-white transition-colors text-left"
+                  >
+                    {link.label}
+                  </button>
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
 
-          {/* Links Sections */}
-          {Object.entries(footerLinks).map(([title, links]) => (
-            <div key={title}>
-              <h3 className="font-semibold text-foreground mb-4 text-lg">
-                {title}
-              </h3>
-              <ul className="space-y-3">
-                {links.map((link) => (
-                  <li key={link}>
-                    <button
-                      onClick={() => handleLinkClick(title, link)}
-                      className="text-muted-foreground hover:text-primary transition-colors duration-300 hover:underline text-left"
-                    >
-                      {link}
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
+          {/* Company */}
+          <div>
+            <h4 className="text-sm font-bold text-white mb-5 uppercase tracking-widest">Company</h4>
+            <ul className="space-y-3">
+              {companyLinks.map((link) => (
+                <li key={link.label}>
+                  <button
+                    onClick={() => handleNav(link.href)}
+                    className="text-sm text-slate-400 hover:text-white transition-colors text-left"
+                  >
+                    {link.label}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-        {/* Newsletter Section */}
-        <div className="glass rounded-2xl p-8 mb-12">
-          <div className="text-center max-w-2xl mx-auto">
-            <h3 className="text-2xl font-bold mb-4 gradient-text">
-              Stay Updated with NVHO TECH
-            </h3>
-            <p className="text-muted-foreground mb-6">
-              Get the latest updates on technology trends, product releases, and exclusive insights.
-            </p>
-
+          {/* Legal */}
+          <div>
+            <h4 className="text-sm font-bold text-white mb-5 uppercase tracking-widest">Legal</h4>
+            <ul className="space-y-3">
+              {legalLinks.map((link) => (
+                <li key={link.label}>
+                  <button
+                    onClick={() => navigate(link.href)}
+                    className="text-sm text-slate-400 hover:text-white transition-colors text-left"
+                  >
+                    {link.label}
+                  </button>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
 
-        {/* Bottom Section */}
-        <div className="flex flex-col md:flex-row items-center justify-center pt-8 border-t border-primary/20">
-          <p className="text-muted-foreground text-center md:text-left">
-            © 2025 NVHO TECH. All rights reserved.
+        {/* Divider */}
+        <div className="h-px bg-slate-800 mb-8" />
+
+        {/* Bottom row */}
+        <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+          <p>© 2025 NVHO Tech. All rights reserved. Crafted with care in India.</p>
+          <p className="text-slate-600">
+            Web Development · Mobile Apps · AI Automation · CRM Systems
           </p>
-          {/* <div className="flex items-center space-x-6 mt-4 md:mt-0">
-            <a href="#" className="text-muted-foreground hover:text-primary transition-colors duration-300">
-              Privacy
-            </a>
-            <a href="#" className="text-muted-foreground hover:text-primary transition-colors duration-300">
-              Terms
-            </a>
-            <a href="#" className="text-muted-foreground hover:text-primary transition-colors duration-300">
-              Cookies
-            </a>
-          </div> */}
         </div>
       </div>
     </footer>

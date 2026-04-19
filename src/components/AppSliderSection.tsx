@@ -1,177 +1,172 @@
 import { useState, useEffect, useRef } from 'react';
-import { ChevronLeft, ChevronRight, Smartphone } from 'lucide-react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const slides = [
-    { id: 1, image: '/appslider/slider1.webp', alt: 'App UI Design 1' },
-    { id: 2, image: '/appslider/slider2.webp', alt: 'App UI Design 2' },
-    { id: 3, image: '/appslider/slider3.webp', alt: 'App UI Design 3' },
-    { id: 4, image: '/appslider/slider4.webp', alt: 'App UI Design 4' },
-    { id: 5, image: '/appslider/slider5.webp', alt: 'App UI Design 5' },
-    { id: 6, image: '/appslider/slider6.webp', alt: 'App UI Design 6' },
-    { id: 7, image: '/appslider/slider7.webp', alt: 'App UI Design 7' },
-    { id: 8, image: '/appslider/slider8.webp', alt: 'App UI Design 8' },
-    { id: 9, image: '/appslider/slider9.webp', alt: 'App UI Design 9' },
-    { id: 10, image: '/appslider/slider10.webp', alt: 'App UI Design 10' },
-    { id: 11, image: '/appslider/slider11.webp', alt: 'App UI Design 11' },
-    { id: 12, image: '/appslider/sldier12.webp', alt: 'App UI Design 12' },
+  { id: 1, image: '/appslider/slider1.webp', alt: 'App UI Design 1' },
+  { id: 2, image: '/appslider/slider2.webp', alt: 'App UI Design 2' },
+  { id: 3, image: '/appslider/slider3.webp', alt: 'App UI Design 3' },
+  { id: 4, image: '/appslider/slider4.webp', alt: 'App UI Design 4' },
+  { id: 5, image: '/appslider/slider5.webp', alt: 'App UI Design 5' },
+  { id: 6, image: '/appslider/slider6.webp', alt: 'App UI Design 6' },
+  { id: 7, image: '/appslider/slider7.webp', alt: 'App UI Design 7' },
+  { id: 8, image: '/appslider/slider8.webp', alt: 'App UI Design 8' },
+  { id: 9, image: '/appslider/slider9.webp', alt: 'App UI Design 9' },
+  { id: 10, image: '/appslider/slider10.webp', alt: 'App UI Design 10' },
+  { id: 11, image: '/appslider/slider11.webp', alt: 'App UI Design 11' },
+  { id: 12, image: '/appslider/sldier12.webp', alt: 'App UI Design 12' },
 ];
 
 export const AppSliderSection = () => {
-    const [currentIndex, setCurrentIndex] = useState(0);
-    const [isAutoPlaying, setIsAutoPlaying] = useState(true);
-    const [direction, setDirection] = useState<'left' | 'right'>('right');
-    const sliderRef = useRef<HTMLDivElement>(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const sliderRef = useRef<HTMLDivElement>(null);
 
-    // Auto-play functionality
-    useEffect(() => {
-        if (!isAutoPlaying) return;
+  useEffect(() => {
+    if (!isAutoPlaying) return;
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
+    }, 3800);
+    return () => clearInterval(interval);
+  }, [currentIndex, isAutoPlaying]);
 
-        const interval = setInterval(() => {
-            handleNext();
-        }, 4000);
+  const handlePrev = () => setCurrentIndex((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
+  const handleNext = () => setCurrentIndex((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
 
-        return () => clearInterval(interval);
-    }, [currentIndex, isAutoPlaying]);
+  const getVisibleSlides = () => {
+    const prevIndex = currentIndex === 0 ? slides.length - 1 : currentIndex - 1;
+    const nextIndex = currentIndex === slides.length - 1 ? 0 : currentIndex + 1;
+    return [prevIndex, currentIndex, nextIndex];
+  };
+  const visibleSlides = getVisibleSlides();
 
-    const handlePrevious = () => {
-        setDirection('left');
-        setCurrentIndex((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
-    };
+  return (
+    <section className="py-24 bg-background relative overflow-hidden">
+      {/* Subtle background */}
+      <div className="absolute inset-0 grid-pattern opacity-40 pointer-events-none" />
+      <div
+        className="absolute top-0 left-1/3 w-96 h-96 rounded-full pointer-events-none"
+        style={{ background: 'radial-gradient(circle, hsl(217 91% 52% / 0.06) 0%, transparent 70%)', filter: 'blur(60px)' }}
+      />
+      <div
+        className="absolute bottom-0 right-1/3 w-96 h-96 rounded-full pointer-events-none"
+        style={{ background: 'radial-gradient(circle, hsl(267 83% 57% / 0.06) 0%, transparent 70%)', filter: 'blur(60px)' }}
+      />
 
-    const handleNext = () => {
-        setDirection('right');
-        setCurrentIndex((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
-    };
+      <div className="container mx-auto px-4 relative z-10">
+        {/* Header */}
+        <div className="text-center mb-14">
+          <div className="inline-flex items-center gap-2 badge-blue mb-5">
+            <span>UI Design Showcase</span>
+          </div>
+          <h2 className="text-4xl md:text-5xl font-extrabold text-foreground mb-4">
+            Beautiful App Designs{' '}
+            <span className="gradient-text">We've Crafted</span>
+          </h2>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            Pixel-perfect mobile interfaces designed for exceptional user experiences.
+          </p>
+        </div>
 
-    const goToSlide = (index: number) => {
-        setDirection(index > currentIndex ? 'right' : 'left');
-        setCurrentIndex(index);
-    };
+        {/* 3D Carousel */}
+        <div
+          ref={sliderRef}
+          className="relative max-w-5xl mx-auto"
+          onMouseEnter={() => setIsAutoPlaying(false)}
+          onMouseLeave={() => setIsAutoPlaying(true)}
+        >
+          <div className="relative h-[400px] md:h-[520px] lg:h-[620px] flex items-center justify-center perspective-1000">
+            <div className="relative w-full h-full flex items-center justify-center">
+              {visibleSlides.map((slideIndex, position) => {
+                const slide = slides[slideIndex];
+                const isCenter = position === 1;
+                const isLeft = position === 0;
 
-    // Get visible slides (current, previous, next)
-    const getVisibleSlides = () => {
-        const prevIndex = currentIndex === 0 ? slides.length - 1 : currentIndex - 1;
-        const nextIndex = currentIndex === slides.length - 1 ? 0 : currentIndex + 1;
-        return [prevIndex, currentIndex, nextIndex];
-    };
-
-    const visibleSlides = getVisibleSlides();
-
-    return (
-        <section className="relative py-20 md:py-32 overflow-hidden bg-gradient-to-b from-background via-background/95 to-background">
-            {/* Background Elements */}
-            <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:50px_50px]" />
-            <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-pulse" />
-            <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-accent/10 rounded-full blur-3xl animate-pulse delay-1000" />
-
-            <div className="container mx-auto px-4 relative z-10">
-                {/* Section Header */}
-                <div className="text-center mb-16 space-y-4" data-scroll data-scroll-speed="0.5">
-                    <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-white via-primary to-accent bg-clip-text text-transparent">
-                        Checkout Our Application UI Design
-                    </h2>
-
-                    <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
-                        Explore our stunning mobile app designs crafted with precision and creativity
-                    </p>
-                </div>
-
-                {/* Slider Container */}
-                <div
-                    ref={sliderRef}
-                    className="relative max-w-6xl mx-auto"
-                    onMouseEnter={() => setIsAutoPlaying(false)}
-                    onMouseLeave={() => setIsAutoPlaying(true)}
-                >
-                    {/* Main Slider */}
-                    <div className="relative h-[400px] md:h-[500px] lg:h-[600px] flex items-center justify-center perspective-1000">
-                        {/* Slides */}
-                        <div className="relative w-full h-full flex items-center justify-center">
-                            {visibleSlides.map((slideIndex, position) => {
-                                const slide = slides[slideIndex];
-                                const isCenter = position === 1;
-                                const isLeft = position === 0;
-                                const isRight = position === 2;
-
-                                return (
-                                    <div
-                                        key={slide.id}
-                                        className={`absolute transition-all duration-700 ease-out ${isCenter
-                                            ? 'z-30 scale-100 opacity-100 translate-x-0'
-                                            : isLeft
-                                                ? 'z-10 scale-75 opacity-40 -translate-x-[60%] md:-translate-x-[70%]'
-                                                : 'z-10 scale-75 opacity-40 translate-x-[60%] md:translate-x-[70%]'
-                                            }`}
-                                        style={{
-                                            transform: `
-                        translateX(${isCenter ? '0' : isLeft ? '-60%' : '60%'})
-                        scale(${isCenter ? '1' : '0.75'})
-                        rotateY(${isCenter ? '0' : isLeft ? '15deg' : '-15deg'})
+                return (
+                  <div
+                    key={slide.id}
+                    className="absolute transition-all duration-700 ease-out cursor-pointer"
+                    style={{
+                      transform: `
+                        translateX(${isCenter ? '0' : isLeft ? '-58%' : '58%'})
+                        scale(${isCenter ? '1' : '0.72'})
+                        rotateY(${isCenter ? '0' : isLeft ? '18deg' : '-18deg'})
                       `,
-                                        }}
-                                    >
-                                        <div className="relative group cursor-pointer" onClick={() => !isCenter && goToSlide(slideIndex)}>
-                                            {/* Image Container */}
-                                            <div className="relative w-[200px] md:w-[250px] lg:w-[300px] h-[400px] md:h-[500px] lg:h-[600px] rounded-2xl overflow-hidden shadow-2xl">
-                                                <img
-                                                    src={slide.image}
-                                                    alt={slide.alt}
-                                                    width="300"
-                                                    height="600"
-                                                    className="w-full h-full object-contain bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900"
-                                                    loading="lazy"
-                                                />
+                      zIndex: isCenter ? 30 : 10,
+                      opacity: isCenter ? 1 : 0.45,
+                    }}
+                    onClick={() => !isCenter && (isLeft ? handlePrev() : handleNext())}
+                  >
+                    <div className="relative group">
+                      {/* Phone frame */}
+                      <div
+                        className="w-[190px] md:w-[240px] lg:w-[280px] h-[380px] md:h-[480px] lg:h-[560px] rounded-[2.5rem] overflow-hidden"
+                        style={{
+                          boxShadow: isCenter
+                            ? '0 32px 64px rgba(59,130,246,0.20), 0 8px 24px rgba(0,0,0,0.12)'
+                            : '0 8px 24px rgba(0,0,0,0.08)',
+                          border: isCenter ? '2px solid rgba(59,130,246,0.15)' : '1px solid rgba(0,0,0,0.06)',
+                        }}
+                      >
+                        <img
+                          src={slide.image}
+                          alt={slide.alt}
+                          width="280"
+                          height="560"
+                          className="w-full h-full object-cover"
+                          loading="lazy"
+                        />
+                        {!isCenter && (
+                          <div className="absolute inset-0 bg-background/40 backdrop-blur-[1px]" />
+                        )}
+                      </div>
 
-                                                {/* Overlay on non-center slides */}
-                                                {!isCenter && (
-                                                    <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px] transition-opacity duration-300" />
-                                                )}
-                                            </div>
-
-                                            {/* Glow Effect for Center Slide */}
-                                            {isCenter && (
-                                                <div className="absolute inset-0 bg-gradient-to-r from-primary/20 via-accent/20 to-primary/20 blur-2xl -z-10 animate-pulse" />
-                                            )}
-                                        </div>
-                                    </div>
-                                );
-                            })}
-                        </div>
+                      {/* Active glow */}
+                      {isCenter && (
+                        <div
+                          className="absolute inset-0 -z-10 blur-2xl opacity-30 rounded-[2.5rem]"
+                          style={{ background: 'linear-gradient(135deg, #3B82F6, #8B5CF6)' }}
+                        />
+                      )}
                     </div>
-
-                    {/* Navigation Buttons */}
-                    <button
-                        onClick={handlePrevious}
-                        className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-40 w-12 h-12 md:w-14 md:h-14 rounded-full bg-background/80 backdrop-blur-md border border-primary/20 flex items-center justify-center hover:bg-primary/20 hover:border-primary/40 transition-all duration-300 group shadow-lg"
-                        aria-label="Previous slide"
-                    >
-                        <ChevronLeft className="w-6 h-6 text-primary group-hover:scale-110 transition-transform" />
-                    </button>
-
-                    <button
-                        onClick={handleNext}
-                        className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-40 w-12 h-12 md:w-14 md:h-14 rounded-full bg-background/80 backdrop-blur-md border border-primary/20 flex items-center justify-center hover:bg-primary/20 hover:border-primary/40 transition-all duration-300 group shadow-lg"
-                        aria-label="Next slide"
-                    >
-                        <ChevronRight className="w-6 h-6 text-primary group-hover:scale-110 transition-transform" />
-                    </button>
-
-                    {/* Dots Indicator */}
-                    <div className="flex justify-center gap-2 mt-12">
-                        {slides.map((slide, index) => (
-                            <button
-                                key={slide.id}
-                                onClick={() => goToSlide(index)}
-                                className={`transition-all duration-300 rounded-full ${index === currentIndex
-                                    ? 'w-8 h-2 bg-primary'
-                                    : 'w-2 h-2 bg-primary/30 hover:bg-primary/50'
-                                    }`}
-                                aria-label={`Go to slide ${index + 1}`}
-                            />
-                        ))}
-                    </div>
-                </div>
+                  </div>
+                );
+              })}
             </div>
-        </section>
-    );
+          </div>
+
+          {/* Nav buttons */}
+          <button
+            onClick={handlePrev}
+            className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 z-40 w-11 h-11 rounded-full bg-card border border-border shadow-md flex items-center justify-center hover:bg-primary/10 hover:border-primary hover:text-primary transition-all duration-200 text-muted-foreground"
+            aria-label="Previous"
+          >
+            <ChevronLeft className="w-5 h-5" />
+          </button>
+          <button
+            onClick={handleNext}
+            className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 z-40 w-11 h-11 rounded-full bg-card border border-border shadow-md flex items-center justify-center hover:bg-primary/10 hover:border-primary hover:text-primary transition-all duration-200 text-muted-foreground"
+            aria-label="Next"
+          >
+            <ChevronRight className="w-5 h-5" />
+          </button>
+
+          {/* Dots */}
+          <div className="flex justify-center gap-2 mt-10">
+            {slides.map((slide, index) => (
+              <button
+                key={slide.id}
+                onClick={() => setCurrentIndex(index)}
+                className={`transition-all duration-300 rounded-full ${
+                  index === currentIndex
+                    ? 'w-7 h-2 bg-blue-500'
+                    : 'w-2 h-2 bg-muted-foreground/35 hover:bg-muted-foreground/55'
+                }`}
+                aria-label={`Go to slide ${index + 1}`}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
 };

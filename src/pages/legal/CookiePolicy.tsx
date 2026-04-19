@@ -95,7 +95,7 @@ const CookiePolicy = () => {
               <h2 className="text-2xl font-bold mb-4 gradient-text">6. Contact Us</h2>
               <p className="text-muted-foreground leading-relaxed">
                 If you have any questions about our use of cookies, please contact us at 
-                cookies@nvhotech.com or through our contact form.
+                info@nvhotech.com or through our contact form.
               </p>
             </section>
           </div>

@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Suspense, lazy } from "react";
 import { HelmetProvider } from "react-helmet-async";
+import { ThemeProvider } from "next-themes";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 
@@ -14,6 +15,8 @@ const WebDevelopment = lazy(() => import("./pages/WebDevelopment"));
 const MobileAppDevelopment = lazy(() => import("./pages/MobileAppDevelopment"));
 const AIAutomation = lazy(() => import("./pages/AIAutomation"));
 const SoftwareDevelopment = lazy(() => import("./pages/SoftwareDevelopment"));
+const DigitalMarketing = lazy(() => import("./pages/DigitalMarketing"));
+const LogoDesign = lazy(() => import("./pages/LogoDesign"));
 const PrivacyPolicy = lazy(() => import("./pages/legal/PrivacyPolicy"));
 const TermsOfService = lazy(() => import("./pages/legal/TermsOfService"));
 const RefundPolicy = lazy(() => import("./pages/legal/RefundPolicy"));
@@ -33,34 +36,38 @@ const LoadingSpinner = () => (
 
 const App = () => (
   <HelmetProvider>
-    <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <Suspense fallback={<LoadingSpinner />}>
-            <Routes>
-              <Route path="/" element={<Index />} />
-              <Route path="/services" element={<Services />} />
-              <Route path="/web-development" element={<WebDevelopment />} />
-              <Route path="/mobile-app-development" element={<MobileAppDevelopment />} />
-              <Route path="/ai-automation" element={<AIAutomation />} />
-              <Route path="/software-development" element={<SoftwareDevelopment />} />
-              <Route path="/legal/privacy-policy" element={<PrivacyPolicy />} />
-              <Route path="/legal/terms-of-service" element={<TermsOfService />} />
-              <Route path="/legal/refund-policy" element={<RefundPolicy />} />
-              <Route path="/legal/cookie-policy" element={<CookiePolicy />} />
-              <Route path="/legal/gdpr" element={<GDPR />} />
-              <Route path="/blog" element={<Blog />} />
-              <Route path="/blog/:slug" element={<BlogPost />} />
-              <Route path="/book-appointment" element={<BookAppointment />} />
-              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </Suspense>
-        </BrowserRouter>
-      </TooltipProvider>
-    </QueryClientProvider>
+    <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} storageKey="nvho-theme">
+      <QueryClientProvider client={queryClient}>
+        <TooltipProvider>
+          <Toaster />
+          <Sonner />
+          <BrowserRouter>
+            <Suspense fallback={<LoadingSpinner />}>
+              <Routes>
+                <Route path="/" element={<Index />} />
+                <Route path="/services" element={<Services />} />
+                <Route path="/web-development" element={<WebDevelopment />} />
+                <Route path="/mobile-app-development" element={<MobileAppDevelopment />} />
+                <Route path="/ai-automation" element={<AIAutomation />} />
+                <Route path="/software-development" element={<SoftwareDevelopment />} />
+                <Route path="/digital-marketing" element={<DigitalMarketing />} />
+                <Route path="/logo-design" element={<LogoDesign />} />
+                <Route path="/legal/privacy-policy" element={<PrivacyPolicy />} />
+                <Route path="/legal/terms-of-service" element={<TermsOfService />} />
+                <Route path="/legal/refund-policy" element={<RefundPolicy />} />
+                <Route path="/legal/cookie-policy" element={<CookiePolicy />} />
+                <Route path="/legal/gdpr" element={<GDPR />} />
+                <Route path="/blog" element={<Blog />} />
+                <Route path="/blog/:slug" element={<BlogPost />} />
+                <Route path="/book-appointment" element={<BookAppointment />} />
+                {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </Suspense>
+          </BrowserRouter>
+        </TooltipProvider>
+      </QueryClientProvider>
+    </ThemeProvider>
   </HelmetProvider>
 );
 
