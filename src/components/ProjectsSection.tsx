@@ -1,9 +1,7 @@
 import { ExternalLink, Globe, Smartphone, LayoutDashboard, Wrench, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
-import { useEffect } from 'react';
 import Autoplay from 'embla-carousel-autoplay';
-import { MutableRefObject } from 'react';
 
 const projects = {
   websites: [
@@ -52,6 +50,7 @@ const ProjectCard = ({ project, accentColor }: { project: any; accentColor: stri
         alt={project.title}
         className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
         loading="lazy"
+        decoding="async"
       />
       {/* Overlay on hover */}
       <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -130,29 +129,13 @@ const ProjectCarousel = ({
   );
 };
 
-export const ProjectsSection = ({ locoRef }: { locoRef?: MutableRefObject<any> }) => {
+export const ProjectsSection = () => {
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href) as HTMLElement;
     if (element) {
-      if (locoRef && locoRef.current) {
-        locoRef.current.scrollTo(element, { offset: 0, duration: 800 });
-      } else {
-        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   };
-
-  useEffect(() => {
-    if (locoRef?.current) {
-      locoRef.current.update();
-      const timers = [
-        setTimeout(() => locoRef.current?.update(), 500),
-        setTimeout(() => locoRef.current?.update(), 1500),
-        setTimeout(() => locoRef.current?.update(), 3000),
-      ];
-      return () => timers.forEach(clearTimeout);
-    }
-  }, [locoRef]);
 
   return (
     <section className="py-24 bg-secondary/40 relative overflow-hidden scroll-mt-20">

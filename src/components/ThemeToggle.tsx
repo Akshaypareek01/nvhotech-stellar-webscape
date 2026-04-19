@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Moon, Sun } from 'lucide-react';
 import { useTheme } from 'next-themes';
-import { Button } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
 
 type ThemeToggleProps = {
   /** Optional extra classes for the icon button */
@@ -10,6 +10,7 @@ type ThemeToggleProps = {
 
 /**
  * Switches between light and dark themes; preference is persisted by next-themes.
+ * Uses a ≥44px touch target and a subtle repeating animation so the control is easier to spot and tap.
  */
 export function ThemeToggle({ className }: ThemeToggleProps) {
   const { resolvedTheme, setTheme } = useTheme();
@@ -22,7 +23,10 @@ export function ThemeToggle({ className }: ThemeToggleProps) {
   if (!mounted) {
     return (
       <span
-        className={`inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-md border border-transparent ${className ?? ''}`}
+        className={cn(
+          'inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-transparent',
+          className
+        )}
         aria-hidden
       />
     );
@@ -31,16 +35,30 @@ export function ThemeToggle({ className }: ThemeToggleProps) {
   const isDark = resolvedTheme === 'dark';
 
   return (
-    <Button
+    <button
       type="button"
-      variant="ghost"
-      size="icon"
-      className={className}
+      className={cn(
+        'group relative z-[60] inline-flex h-11 min-h-[44px] w-11 min-w-[44px] shrink-0 touch-manipulation items-center justify-center rounded-xl',
+        'border border-border bg-card/80 text-muted-foreground shadow-sm backdrop-blur-sm',
+        'transition-colors hover:bg-primary/15 hover:text-foreground hover:border-primary/30',
+        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background',
+        'active:scale-95',
+        className
+      )}
       aria-label={isDark ? 'Switch to light theme' : 'Switch to dark theme'}
       aria-pressed={isDark}
       onClick={() => setTheme(isDark ? 'light' : 'dark')}
     >
-      {isDark ? <Sun className="h-5 w-5" aria-hidden /> : <Moon className="h-5 w-5" aria-hidden />}
-    </Button>
+      <span
+        className="animate-theme-toggle-hint group-hover:[animation-play-state:paused] group-focus-visible:[animation-play-state:paused]"
+        aria-hidden
+      >
+        {isDark ? (
+          <Sun className="h-5 w-5 text-amber-400" strokeWidth={2} />
+        ) : (
+          <Moon className="h-5 w-5 text-primary" strokeWidth={2} />
+        )}
+      </span>
+    </button>
   );
 }

@@ -1,18 +1,12 @@
-import { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, Calendar, User, ArrowRight, Tag } from 'lucide-react';
 import { SEO } from '@/components/SEO';
 import { Navigation } from '@/components/Navigation';
 import { Footer } from '@/components/Footer';
 import { blogPosts } from '@/data/blogData';
-import { useSmoothScroll } from '@/hooks/useSmoothScroll';
 import { BlogCTA } from '@/components/BlogCTA';
 
 const Blog = () => {
-    const scrollRef = useRef<HTMLDivElement>(null);
-    const locoRef = useRef<any>(null);
-    useSmoothScroll(scrollRef, locoRef);
-
     return (
         <>
             <SEO
@@ -22,8 +16,8 @@ const Blog = () => {
                 keywords="NVHO Tech blog, Nvhotech Private Ltd insights, web development blog, AI trends, mobile app development news"
             />
 
-            <Navigation locoRef={locoRef} />
-            <div ref={scrollRef} data-scroll-container className="min-h-screen bg-gradient-hero text-foreground">
+            <Navigation />
+            <div className="min-h-screen bg-gradient-hero text-foreground">
                 <section className="pt-32 pb-20 px-6">
                     <div className="container mx-auto max-w-6xl">
                         <Link to="/" className="inline-flex items-center text-primary hover:text-primary/80 mb-8 transition-colors">

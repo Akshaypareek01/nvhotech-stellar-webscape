@@ -1,7 +1,16 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowRight, Sparkles, Code2, Smartphone, Brain, Globe } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+
+/** Each entry = three rows shown inside the `<h1>`. */
+const HEADLINES = [
+  { top: 'We Build',   accent: 'Digital Futures',     bottom: 'That Deliver.' },
+  { top: 'We Craft',   accent: 'Scalable Software',   bottom: 'That Grows.' },
+  { top: 'We Design',  accent: 'Mobile Experiences',  bottom: 'Users Love.' },
+  { top: 'We Power',   accent: 'AI Automation',       bottom: 'That Works.' },
+  { top: 'We Ship',    accent: 'Web Platforms',       bottom: 'That Convert.' },
+];
 
 const services = ['Web Development', 'Mobile Apps', 'AI Automation', 'Custom Software', 'CRM Systems'];
 
@@ -19,9 +28,31 @@ const techBadges = [
   { icon: Globe, label: 'Cloud Ready', color: '#10B981' },
 ];
 
+const ROTATE_MS = 3500;
+const EXIT_MS = 250;
+
 export const HeroSection = () => {
   const [currentService, setCurrentService] = useState(0);
+  const [headlineIdx, setHeadlineIdx] = useState(0);
+  const [phase, setPhase] = useState<'enter' | 'exit'>('enter');
+  const timerRef = useRef<ReturnType<typeof setTimeout>>();
   const navigate = useNavigate();
+
+  const advanceHeadline = useCallback(() => {
+    setPhase('exit');
+    timerRef.current = setTimeout(() => {
+      setHeadlineIdx(i => (i + 1) % HEADLINES.length);
+      setPhase('enter');
+    }, EXIT_MS);
+  }, []);
+
+  useEffect(() => {
+    const id = setInterval(advanceHeadline, ROTATE_MS);
+    return () => {
+      clearInterval(id);
+      if (timerRef.current) clearTimeout(timerRef.current);
+    };
+  }, [advanceHeadline]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -29,6 +60,9 @@ export const HeroSection = () => {
     }, 2500);
     return () => clearInterval(interval);
   }, []);
+
+  const h = HEADLINES[headlineIdx];
+  const animClass = phase === 'enter' ? 'hero-word-enter' : 'hero-word-exit';
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background pt-20">
@@ -77,16 +111,31 @@ export const HeroSection = () => {
               <span>India's Premier IT Solutions Company</span>
             </div>
 
-            {/* Main headline */}
+            {/* Main headline — three rows that cycle with a glitch swap */}
             <h1
               className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold text-foreground mb-6 animate-fade-in-up"
               style={{ letterSpacing: '-0.03em', lineHeight: '1.05' }}
+              aria-label={`${h.top} ${h.accent} ${h.bottom}`}
             >
-              We Build
+              <span key={`top-${headlineIdx}`} className={`inline-block ${animClass}`}>
+                {h.top}
+              </span>
               <br />
-              <span className="gradient-text">Digital Futures</span>
+              <span
+                key={`mid-${headlineIdx}`}
+                className={`inline-block gradient-text ${animClass}`}
+                style={{ animationDelay: '0.06s' }}
+              >
+                {h.accent}
+              </span>
               <br />
-              That Deliver.
+              <span
+                key={`bot-${headlineIdx}`}
+                className={`inline-block ${animClass}`}
+                style={{ animationDelay: '0.12s' }}
+              >
+                {h.bottom}
+              </span>
             </h1>
 
             {/* Animated service line */}

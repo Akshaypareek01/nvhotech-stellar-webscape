@@ -1,6 +1,5 @@
 import { Code, Smartphone, TrendingUp, Palette, Database, Bot, Search, BarChart3, ArrowRight, CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { MutableRefObject } from 'react';
 import { Link } from 'react-router-dom';
 
 const services = [
@@ -94,15 +93,11 @@ const services = [
   },
 ];
 
-export const ServicesSection = ({ locoRef }: { locoRef?: MutableRefObject<any> }) => {
+export const ServicesSection = () => {
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href) as HTMLElement;
     if (element) {
-      if (locoRef && locoRef.current) {
-        locoRef.current.scrollTo(element, { offset: 0, duration: 800 });
-      } else {
-        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   };
 

@@ -153,7 +153,11 @@
   }
 
   html {
-    scroll-behavior: auto;
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
   }
 
   body {
@@ -161,9 +165,8 @@
     -webkit-overflow-scrolling: touch;
   }
 
-  .scroll-container {
-    will-change: scroll-position;
-    contain: layout style paint;
+  section[id] {
+    contain: layout style;
   }
 }
 
@@ -365,9 +368,51 @@
     100% { background-position:  200% center; }
   }
 
+  /* Hero headline smooth word swap */
+  @keyframes hero-swap-in {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes hero-swap-out {
+    from { opacity: 1; transform: translateY(0); }
+    to   { opacity: 0; transform: translateY(-24px); }
+  }
+
+  .hero-word-enter {
+    animation: hero-swap-in 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .hero-word-exit {
+    animation: hero-swap-out 0.25s ease-in both;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-word-enter,
+    .hero-word-exit { animation-duration: 0.01ms; }
+  }
+
   @keyframes count-up {
     from { opacity: 0; transform: translateY(8px); }
     to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /** Soft “notice me” pulse on header theme control (pauses on hover via ThemeToggle). */
+  @keyframes theme-toggle-hint {
+    0%,
+    72%,
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    78% {
+      opacity: 0.4;
+      transform: scale(0.88);
+    }
+    84% {
+      opacity: 1;
+      transform: scale(1.12);
+    }
   }
 
   .animate-aurora {
@@ -405,6 +450,17 @@
 
   .animate-pulse-ring {
     animation: pulse-ring 2s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite;
+  }
+
+  .animate-theme-toggle-hint {
+    animation: theme-toggle-hint 3s ease-in-out infinite;
+    will-change: transform, opacity;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-theme-toggle-hint {
+      animation: none;
+    }
   }
 
   .delay-100 { animation-delay: 0.1s; }

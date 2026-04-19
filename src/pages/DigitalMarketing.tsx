@@ -1,4 +1,3 @@
-import { useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ArrowLeft, Megaphone, Smartphone, CheckCircle2, ArrowRight } from 'lucide-react';
 import { SEO } from '@/components/SEO';
@@ -10,7 +9,6 @@ import {
   ServiceAgileProcessSection,
   type ServiceProcessStep,
 } from '@/components/ServiceAgileProcessSection';
-import { useSmoothScroll } from '@/hooks/useSmoothScroll';
 
 const MARKETING_TECH_STACK: { name: string; icon: TechBrandIconSource }[] = [
   { name: 'Google Ads', icon: { type: 'simple', slug: 'googleads' } },
@@ -50,10 +48,7 @@ const DIGITAL_MARKETING_PROCESS: ServiceProcessStep[] = [
 ];
 
 const DigitalMarketing = () => {
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const locoRef = useRef<any>(null);
   const navigate = useNavigate();
-  useSmoothScroll(scrollRef, locoRef);
 
   const benefits = [
     'Data-Driven Campaigns',
@@ -99,12 +94,8 @@ const DigitalMarketing = () => {
         schema={serviceSchema}
       />
 
-      <Navigation locoRef={locoRef} />
-      <div
-        ref={scrollRef}
-        data-scroll-container
-        className="min-h-screen bg-gradient-hero text-foreground"
-      >
+      <Navigation />
+      <div className="min-h-screen bg-gradient-hero text-foreground">
         <section className="pt-32 pb-20 px-6">
           <div className="container mx-auto max-w-6xl">
             <Link

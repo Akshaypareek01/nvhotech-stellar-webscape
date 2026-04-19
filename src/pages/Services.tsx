@@ -226,8 +226,8 @@ const Services = () => {
           <ArrowLeft className="w-4 h-4 mr-2" />
           Back
         </Button>
-        <div className="absolute top-8 right-4 sm:right-6 z-20 flex items-center">
-          <ThemeToggle className="text-muted-foreground hover:text-foreground" />
+        <div className="absolute right-4 top-8 z-[60] flex items-center sm:right-6">
+          <ThemeToggle />
         </div>
 
         <div className="container mx-auto px-4 sm:px-6 relative z-10">

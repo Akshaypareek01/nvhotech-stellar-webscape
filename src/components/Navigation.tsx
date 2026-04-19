@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { OptimizedImage } from '@/components/OptimizedImage';
@@ -15,50 +15,19 @@ const navItems = [
   { label: 'Contact', href: '#contact' },
 ];
 
-export const Navigation = ({ locoRef }: { locoRef?: MutableRefObject<any> }) => {
+export const Navigation = ({ locoRef: _locoRef }: { locoRef?: MutableRefObject<any> }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
 
   useEffect(() => {
-    const cleanups: Array<() => void> = [];
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
-    const onWindowScroll = () => setScrolled(window.scrollY > 40);
-    window.addEventListener('scroll', onWindowScroll, { passive: true });
-    cleanups.push(() => window.removeEventListener('scroll', onWindowScroll));
-
-    /**
-     * Locomotive Scroll is created in the parent after mount; poll briefly then listen for `scroll.y`.
-     */
-    const bindLocomotive = (): boolean => {
-      const inst = locoRef?.current as { on?: (ev: string, fn: (args: { scroll?: { y?: number } }) => void) => void; off?: (ev: string, fn: (args: { scroll?: { y?: number } }) => void) => void } | null;
-      if (!inst?.on) return false;
-      const handler = (args: { scroll?: { y?: number } }) => {
-        setScrolled((args?.scroll?.y ?? 0) > 40);
-      };
-      inst.on('scroll', handler);
-      cleanups.push(() => inst.off?.('scroll', handler));
-      return true;
-    };
-
-    if (!bindLocomotive()) {
-      const intervalId = window.setInterval(() => {
-        if (bindLocomotive()) window.clearInterval(intervalId);
-      }, 48);
-      const timeoutId = window.setTimeout(() => window.clearInterval(intervalId), 4000);
-      cleanups.push(() => {
-        window.clearInterval(intervalId);
-        window.clearTimeout(timeoutId);
-      });
-    }
-
-    return () => {
-      cleanups.forEach((fn) => fn());
-    };
-  }, [locoRef]);
-
-  const scrollToSection = (href: string) => {
+  const scrollToSection = useCallback((href: string) => {
     if (href.startsWith('/') && !href.startsWith('/#')) {
       navigate(href);
       setIsOpen(false);
@@ -68,16 +37,12 @@ export const Navigation = ({ locoRef }: { locoRef?: MutableRefObject<any> }) => 
     const element = document.querySelector(targetId) as HTMLElement;
 
     if (location.pathname === '/' && element) {
-      if (locoRef && locoRef.current) {
-        locoRef.current.scrollTo(element, { offset: 0, duration: 800 });
-      } else {
-        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
     } else {
       navigate('/', { state: { scrollTo: targetId } });
     }
     setIsOpen(false);
-  };
+  }, [location.pathname, navigate]);
 
   return (
     <nav
@@ -118,8 +83,8 @@ export const Navigation = ({ locoRef }: { locoRef?: MutableRefObject<any> }) => 
             ))}
           </div>
 
-          <div className="flex items-center gap-0.5 sm:gap-1 shrink-0">
-            <ThemeToggle className="shrink-0 text-muted-foreground hover:text-foreground" />
+          <div className="relative z-[60] flex shrink-0 items-center gap-2">
+            <ThemeToggle />
             <Button
               onClick={() => scrollToSection('/book-appointment')}
               size="sm"

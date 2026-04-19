@@ -1,4 +1,3 @@
-import { useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ArrowLeft, Smartphone, CheckCircle2, ArrowRight, Bell } from 'lucide-react';
 import { SEO } from '@/components/SEO';
@@ -10,7 +9,6 @@ import {
   ServiceAgileProcessSection,
   type ServiceProcessStep,
 } from '@/components/ServiceAgileProcessSection';
-import { useSmoothScroll } from '@/hooks/useSmoothScroll';
 
 const TECH_STACK: { name: string; icon: TechBrandIconSource }[] = [
     { name: 'React Native', icon: { type: 'simple', slug: 'react' } },
@@ -49,10 +47,7 @@ const MOBILE_APP_PROCESS: ServiceProcessStep[] = [
 ];
 
 const MobileAppDevelopment = () => {
-    const scrollRef = useRef<HTMLDivElement>(null);
-    const locoRef = useRef<any>(null);
     const navigate = useNavigate();
-    useSmoothScroll(scrollRef, locoRef);
 
     const benefits = [
         'Native & Cross-Platform Development',
@@ -94,12 +89,8 @@ const MobileAppDevelopment = () => {
                 schema={serviceSchema}
             />
 
-            <Navigation locoRef={locoRef} />
-            <div
-                ref={scrollRef}
-                data-scroll-container
-                className="min-h-screen bg-gradient-hero text-foreground"
-            >
+            <Navigation />
+            <div className="min-h-screen bg-gradient-hero text-foreground">
                 {/* Hero Section */}
                 <section className="pt-32 pb-20 px-6">
                     <div className="container mx-auto max-w-6xl">

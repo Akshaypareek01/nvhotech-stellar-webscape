@@ -1,55 +1,44 @@
-import { useEffect } from "react";
-import LocomotiveScroll from "locomotive-scroll";
-import "locomotive-scroll/dist/locomotive-scroll.css";
-
 /**
- * useSmoothScroll
- * Attaches Locomotive Scroll to a container for inertia-based smooth scrolling.
- * @param containerRef - React ref to the scroll container
- * @param locoRef - React ref to expose the LocomotiveScroll instance
+ * useSmoothScroll — lightweight replacement for Locomotive Scroll.
+ *
+ * Does nothing heavy. Native `scroll-behavior: smooth` in CSS handles momentum.
+ * The hook exists only so every page that called `useSmoothScroll(ref, locoRef)`
+ * keeps compiling — locoRef is set to a thin shim with a `scrollTo` helper and a
+ * no-op `update()` so downstream code (Navigation, ProjectsSection, etc.) works.
  */
 export const useSmoothScroll = (
-  containerRef: React.RefObject<HTMLElement>,
-  locoRef?: React.MutableRefObject<LocomotiveScroll | null>
+  _containerRef: React.RefObject<HTMLElement>,
+  locoRef?: React.MutableRefObject<any>
 ) => {
-  useEffect(() => {
-    if (!containerRef.current) return;
+  if (locoRef) {
+    locoRef.current = {
+      /** Scroll to an element; mirrors the Locomotive API so call-sites don't break. */
+      scrollTo(
+        target: HTMLElement | string,
+        opts?: { offset?: number; duration?: number }
+      ) {
+        const el =
+          typeof target === 'string'
+            ? document.querySelector(target)
+            : target;
+        if (!el) return;
 
-    const scroll = new LocomotiveScroll({
-      el: containerRef.current,
-      smooth: true,
-      lerp: 0.12, // Higher = less smooth but faster
-      multiplier: 1.2, // Faster scroll speed
-      class: "is-reveal",
-      smartphone: {
-        smooth: false, // Disable on mobile for better performance
+        const top =
+          el.getBoundingClientRect().top +
+          window.scrollY +
+          (opts?.offset ?? 0);
+
+        window.scrollTo({ top, behavior: 'smooth' });
       },
-      tablet: {
-        smooth: false, // Disable on tablet for better performance
+      update() {
+        /* no-op — native scroll doesn't need layout recalculation */
       },
-    });
-
-    if (locoRef) {
-      locoRef.current = scroll;
-    }
-
-    // Update scroll on content resize
-    const resizeObserver = new ResizeObserver(() => {
-      scroll.update();
-    });
-
-    // Observe container and its children for size changes
-    if (containerRef.current) {
-      resizeObserver.observe(containerRef.current);
-      Array.from(containerRef.current.children).forEach((child) => {
-        resizeObserver.observe(child);
-      });
-    }
-
-    return () => {
-      resizeObserver.disconnect();
-      scroll.destroy();
-      if (locoRef) locoRef.current = null;
+      on() {
+        /* no-op shim */
+      },
+      off() {
+        /* no-op shim */
+      },
     };
-  }, [containerRef, locoRef]);
-}; 
+  }
+};

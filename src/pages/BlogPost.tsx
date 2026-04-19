@@ -1,11 +1,10 @@
 import { useParams, Link, useNavigate } from 'react-router-dom';
-import { useRef, useEffect } from 'react';
+import { useEffect } from 'react';
 import { ArrowLeft, Calendar, User, Share2 } from 'lucide-react';
 import { SEO } from '@/components/SEO';
 import { Navigation } from '@/components/Navigation';
 import { Footer } from '@/components/Footer';
 import { blogPosts } from '@/data/blogData';
-import { useSmoothScroll } from '@/hooks/useSmoothScroll';
 import { Button } from '@/components/ui/button';
 import { toast } from "sonner";
 import { BlogCTA } from '@/components/BlogCTA';
@@ -14,9 +13,6 @@ const BlogPost = () => {
     const { slug } = useParams();
     const navigate = useNavigate();
     const post = blogPosts.find(p => p.slug === slug);
-    const scrollRef = useRef<HTMLDivElement>(null);
-    const locoRef = useRef<any>(null);
-    useSmoothScroll(scrollRef, locoRef);
 
     useEffect(() => {
         if (!post) {
@@ -43,8 +39,8 @@ const BlogPost = () => {
                 ogType="article"
             />
 
-            <Navigation locoRef={locoRef} />
-            <div ref={scrollRef} data-scroll-container className="min-h-screen bg-gradient-hero text-foreground">
+            <Navigation />
+            <div className="min-h-screen bg-gradient-hero text-foreground">
                 <article className="pt-32 pb-20 px-6">
                     <div className="container mx-auto max-w-4xl">
                         <Link to="/blog" className="inline-flex items-center text-primary hover:text-primary/80 mb-8 transition-colors">

@@ -79,6 +79,8 @@ export const Footer = () => {
               <img
                 src="/images/logoNT.png"
                 alt="NVHO Tech Logo"
+                loading="lazy"
+                decoding="async"
                 className="h-11 w-auto brightness-0 invert"
               />
             </div>

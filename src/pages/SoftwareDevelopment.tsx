@@ -1,4 +1,3 @@
-import { useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import {
   ArrowLeft, ArrowRight, Smartphone,
@@ -13,7 +12,6 @@ import { Navigation } from '@/components/Navigation';
 import { Footer } from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { ServiceAgileProcessSection } from '@/components/ServiceAgileProcessSection';
-import { useSmoothScroll } from '@/hooks/useSmoothScroll';
 
 const serviceSchema = {
   "@context": "https://schema.org",
@@ -109,10 +107,7 @@ const industries = [
 ];
 
 const SoftwareDevelopment = () => {
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const locoRef = useRef<any>(null);
   const navigate = useNavigate();
-  useSmoothScroll(scrollRef, locoRef);
 
   return (
     <>
@@ -124,12 +119,8 @@ const SoftwareDevelopment = () => {
         schema={serviceSchema}
       />
 
-      <Navigation locoRef={locoRef} />
-      <div
-        ref={scrollRef}
-        data-scroll-container
-        className="min-h-screen bg-background text-foreground"
-      >
+      <Navigation />
+      <div className="min-h-screen bg-background text-foreground">
         {/* ── Hero ─────────────────────────────────────────────── */}
         <section className="relative overflow-hidden bg-secondary/30 px-6 pb-20 pt-32 dark:bg-secondary/20">
           <div className="pointer-events-none absolute inset-0 dot-pattern opacity-40" />

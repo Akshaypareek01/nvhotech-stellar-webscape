@@ -312,25 +312,6 @@ export function AppointmentBookingForm({ hideFormTitle = false, compact = false 
                   <div className="flex min-w-0 flex-1 flex-col overflow-x-auto [-webkit-overflow-scrolling:touch]">
                     <Calendar {...calendarProps} />
                   </div>
-                  <div className={cn('mt-2 rounded-lg border border-primary/20 bg-gradient-to-r from-primary/10 to-accent/10 text-center', compact ? 'p-2' : 'mt-3 p-2.5 sm:p-2')}>
-                    <div
-                      className={cn(
-                        'flex flex-wrap items-center justify-center gap-1.5 font-medium text-primary',
-                        compact ? 'text-[10px] sm:text-[11px]' : 'text-[11px] sm:text-xs gap-2'
-                      )}
-                    >
-                      <CalendarIcon className={cn('shrink-0', compact ? 'h-2.5 w-2.5' : 'h-3 w-3')} aria-hidden />
-                      <span>Next 7 days only</span>
-                    </div>
-                    <p
-                      className={cn(
-                        'text-muted-foreground leading-snug',
-                        compact ? 'mt-0.5 text-[10px] sm:text-[11px]' : 'mt-1 text-[11px] sm:text-xs'
-                      )}
-                    >
-                      Older or later dates can&apos;t be selected
-                    </p>
-                  </div>
                 </div>
               </div>
 

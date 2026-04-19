@@ -1,6 +1,5 @@
 import { useRef, lazy, Suspense, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { useSmoothScroll } from '@/hooks/useSmoothScroll';
 import { SEO } from '@/components/SEO';
 import { ParticleBackground } from '@/components/ParticleBackground';
 import { Navigation } from '@/components/Navigation';
@@ -60,50 +59,35 @@ const LANDING_CHATBOT_USER_ID = '69e4a092120e9155a83b92ab';
 
 const Index = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
-  const locoRef = useRef<any>(null); // LocomotiveScroll instance
   const location = useLocation();
 
-  useSmoothScroll(scrollRef, locoRef);
-
-  /**
-   * Loads NVHO chatbot on `/` only; removes the loader script when navigating away.
-   * (If the widget injects extra DOM, the vendor script may still handle teardown.)
-   */
   useEffect(() => {
-    if (document.getElementById(LANDING_CHATBOT_SCRIPT_ID)) {
-      return;
-    }
+    if (document.getElementById(LANDING_CHATBOT_SCRIPT_ID)) return;
     const script = document.createElement('script');
     script.id = LANDING_CHATBOT_SCRIPT_ID;
     script.src = LANDING_CHATBOT_SRC;
     script.defer = true;
     script.setAttribute('data-user-id', LANDING_CHATBOT_USER_ID);
     document.body.appendChild(script);
-
     return () => {
       document.getElementById(LANDING_CHATBOT_SCRIPT_ID)?.remove();
     };
   }, []);
 
   useEffect(() => {
-    // Handle scrolling from navigation state or hash
     const targetId = location.state?.scrollTo || location.hash;
+    if (!targetId) return;
 
-    if (targetId && locoRef.current) {
-      const scrollToTarget = () => {
-        const target = document.querySelector(targetId);
-        if (target) {
-          locoRef.current.scrollTo(target, { offset: 0, duration: 800 });
-        } else {
-          // Retry if target is inside a lazy loaded component
-          setTimeout(scrollToTarget, 100);
-        }
-      };
-
-      // Add a small delay to ensure Locomotive Scroll is ready
-      setTimeout(scrollToTarget, 500);
-    }
-  }, [location, locoRef]);
+    const scrollToTarget = () => {
+      const el = document.querySelector(targetId);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      } else {
+        setTimeout(scrollToTarget, 120);
+      }
+    };
+    setTimeout(scrollToTarget, 80);
+  }, [location]);
 
   return (
     <>
@@ -114,16 +98,13 @@ const Index = () => {
         keywords="software development company India, web development, mobile app development, AI automation, custom software solutions, CRM development, business software"
         schema={organizationSchema}
       />
-      <Navigation locoRef={locoRef} />
+      <Navigation />
       <div
         ref={scrollRef}
-        data-scroll-container
         className="min-h-screen bg-background text-foreground"
       >
-        {/* Particle Background */}
         <ParticleBackground />
 
-        {/* Main Content */}
         <main className="relative z-10">
           <section id="home">
             <HeroSection />
@@ -137,11 +118,11 @@ const Index = () => {
             </Suspense>
           </section>
           <section id="services">
-            <ServicesSection locoRef={locoRef} />
+            <ServicesSection />
           </section>
           <section id="projects">
             <Suspense fallback={<SectionLoader />}>
-              <ProjectsSection locoRef={locoRef} />
+              <ProjectsSection />
             </Suspense>
           </section>
           <section id="contact">
@@ -151,7 +132,6 @@ const Index = () => {
           </section>
         </main>
 
-        {/* Footer */}
         <Footer />
       </div>
     </>
