@@ -54,8 +54,9 @@ const organizationSchema = {
 };
 
 const LANDING_CHATBOT_SCRIPT_ID = 'nvho-landing-chatbot';
-const LANDING_CHATBOT_SRC = 'https://apis.chatbot.nvhotech.com/chatbot.js';
+const LANDING_CHATBOT_SRC = 'https://apis.chatbot.nvhotech.in/chatbot.js';
 const LANDING_CHATBOT_USER_ID = '69e4a092120e9155a83b92ab';
+const LANDING_CHATBOT_BOT_ID = 'default';
 
 const Index = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -68,6 +69,7 @@ const Index = () => {
     script.src = LANDING_CHATBOT_SRC;
     script.defer = true;
     script.setAttribute('data-user-id', LANDING_CHATBOT_USER_ID);
+    script.setAttribute('data-bot-id', LANDING_CHATBOT_BOT_ID);
     document.body.appendChild(script);
     return () => {
       document.getElementById(LANDING_CHATBOT_SCRIPT_ID)?.remove();
