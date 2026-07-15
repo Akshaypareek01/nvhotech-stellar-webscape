@@ -62,14 +62,11 @@ Already verified. This week:
 3. Pages report → after the nginx 404 fix, watch "Soft 404" and "Duplicate without user-selected canonical" counts drop over 2–4 weeks.
 4. Enhancements → confirm FAQ rich results are detected (may take 1–2 weeks after re-crawl).
 
-## 4. Verify or fix social profiles (sameAs) — P1, S
+## 4. Social profiles (sameAs) — RESOLVED 2026-07-15, follow-up P2
 
-The Organization schema and llms.txt reference:
-- https://www.linkedin.com/company/nvhotech
-- https://twitter.com/nvhotech
-- https://www.facebook.com/nvhotech
+No active social accounts existed, so the dead `sameAs` links were removed from `src/lib/seoSchemas.ts` on 2026-07-15 (dead links hurt GEO more than absence does).
 
-**Action:** confirm all three exist and are active. If any URL is wrong or the profile doesn't exist, either create/claim it or tell the dev to remove it from `src/lib/seoSchemas.ts` (`sameAs` array). Inconsistent brand references hurt GEO — AI systems cross-check these. Fill each profile with the same one-line description used on the site ("NVHO Tech builds custom web applications, mobile apps, AI automation, and enterprise software for startups and businesses worldwide.").
+**Follow-up:** when you do create a LinkedIn company page (highest value for a B2B agency — do this one first), X/Twitter, or Facebook page, tell the dev to re-add the real URLs to the `sameAs` array in `src/lib/seoSchemas.ts` and to the llms.txt. Fill each profile with the same one-line description used on the site ("NVHO Tech builds custom web applications, mobile apps, AI automation, and enterprise software for startups and businesses worldwide.").
 
 ## 5. Directory listings — the real battleground for your keywords — P1–P2, M
 
