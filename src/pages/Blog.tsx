@@ -5,15 +5,37 @@ import { Navigation } from '@/components/Navigation';
 import { Footer } from '@/components/Footer';
 import { blogPosts } from '@/data/blogData';
 import { BlogCTA } from '@/components/BlogCTA';
+import { breadcrumbSchema, SITE_URL, BRAND_NAME } from '@/lib/seoSchemas';
+
+const blogPageSchemas = [
+    {
+        '@context': 'https://schema.org',
+        '@type': 'Blog',
+        '@id': `${SITE_URL}/blog#blog`,
+        name: `${BRAND_NAME} Blog`,
+        url: `${SITE_URL}/blog`,
+        description: 'Insights on web development, mobile apps, and AI automation from the NVHO Tech team.',
+        publisher: { '@id': `${SITE_URL}/#organization` },
+        blogPost: blogPosts.map((post) => ({
+            '@type': 'BlogPosting',
+            headline: post.title,
+            url: `${SITE_URL}/blog/${post.slug}`,
+            datePublished: post.date,
+            author: { '@type': 'Organization', name: BRAND_NAME },
+        })),
+    },
+    breadcrumbSchema([{ name: 'Blog', path: '/blog' }]),
+];
 
 const Blog = () => {
     return (
         <>
             <SEO
-                title="NVHO Tech Blog - Insights on AI, Apps, and Web Development"
-                description="Explore the latest insights from Nvhotech Private Ltd on Mobile Apps, Artificial Intelligence, and Web Development. Stay updated with nvhotech.com."
+                title="Blog — Web, App & AI Development Insights"
+                description="Practical insights on web development, mobile apps, and AI automation from the NVHO Tech engineering team. Guides, trends, and lessons from real client projects."
                 canonical="https://nvhotech.com/blog"
-                keywords="NVHO Tech blog, Nvhotech Private Ltd insights, web development blog, AI trends, mobile app development news"
+                keywords="web development blog, AI automation insights, mobile app development trends, software development articles"
+                schema={blogPageSchemas}
             />
 
             <Navigation />

@@ -1,0 +1,30 @@
+# NVHO Tech
+
+> NVHO Tech (Nvhotech Private Ltd) is a software development company based in India serving clients worldwide, including the US, UK, and Europe. It designs and builds custom web applications, iOS and Android mobile apps, AI automation systems, and enterprise software, and also provides digital marketing and brand design services.
+
+Key facts:
+- Services: web development (React, Next.js, Node.js), mobile app development (React Native, Flutter, Swift, Kotlin), AI automation (chatbots, AI agents, RAG systems, workflow automation with GPT and Claude), custom software development (CRM, ERP, internal tools), digital marketing (SEO, PPC, social media), and logo/brand identity design.
+- Clients: startups and small-to-mid-size businesses globally; remote collaboration with overlapping hours for US/UK time zones.
+- Engagement model: free consultation, fixed itemized quotes, agile sprint delivery, full source code and IP ownership transferred to the client.
+- Contact: info@nvhotech.com or https://nvhotech.com/book-appointment
+
+## Services
+
+- [Web Development](https://nvhotech.com/web-development): Responsive websites, custom web applications, e-commerce, and PWAs built with React and Next.js.
+- [Mobile App Development](https://nvhotech.com/mobile-app-development): Native and cross-platform iOS/Android apps, from MVP to App Store and Google Play launch.
+- [AI Automation](https://nvhotech.com/ai-automation): AI chatbots, agents, and business process automation built on GPT, Claude, and Google Cloud AI.
+- [Custom Software Development](https://nvhotech.com/software-development): Enterprise applications, CRM/ERP systems, and legacy modernization.
+- [Digital Marketing](https://nvhotech.com/digital-marketing): SEO, Google Ads, social media, and content marketing with revenue-tied reporting.
+- [Logo Design](https://nvhotech.com/logo-design): Original logos, brand identity packages, and brand guidelines with full ownership.
+- [All Services](https://nvhotech.com/services): Overview of every service.
+
+## Company
+
+- [Home](https://nvhotech.com/): Company overview, portfolio, and contact form.
+- [Blog](https://nvhotech.com/blog): Articles on web, mobile, and AI development.
+- [Book an Appointment](https://nvhotech.com/book-appointment): Schedule a free consultation.
+
+## Policies
+
+- [Privacy Policy](https://nvhotech.com/legal/privacy-policy)
+- [Terms of Service](https://nvhotech.com/legal/terms-of-service)

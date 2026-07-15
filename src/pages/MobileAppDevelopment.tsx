@@ -9,6 +9,8 @@ import {
   ServiceAgileProcessSection,
   type ServiceProcessStep,
 } from '@/components/ServiceAgileProcessSection';
+import { FAQSection } from '@/components/FAQSection';
+import { serviceSchema, breadcrumbSchema, faqSchema, type FAQItem } from '@/lib/seoSchemas';
 
 const TECH_STACK: { name: string; icon: TechBrandIconSource }[] = [
     { name: 'React Native', icon: { type: 'simple', slug: 'react' } },
@@ -25,18 +27,50 @@ const TECH_STACK: { name: string; icon: TechBrandIconSource }[] = [
     { name: 'Analytics', icon: { type: 'simple', slug: 'googleanalytics' } },
 ];
 
-const serviceSchema = {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    "serviceType": "Mobile App Development",
-    "provider": {
-        "@type": "Organization",
-        "name": "NVHO Tech",
-        "url": "https://nvhotech.com"
+const MOBILE_FAQS: FAQItem[] = [
+    {
+        question: 'How much does mobile app development cost?',
+        answer:
+            'App cost depends on features, platforms, and backend complexity. A simple app with a few screens costs the least, while apps with payments, real-time features, or custom backends cost more. Building cross-platform with React Native or Flutter covers iOS and Android from one codebase, which reduces cost significantly.',
     },
-    "areaServed": "Worldwide",
-    "description": "Professional mobile app development services for iOS and Android. We build native and cross-platform mobile applications using React Native, Flutter, and modern technologies."
-};
+    {
+        question: 'How long does it take to build a mobile app?',
+        answer:
+            'A minimum viable product typically takes 8 to 12 weeks, and a full-featured app 12 to 20 weeks including design, development, testing, and store submission. We release beta builds through TestFlight and internal testing tracks so you can try the app on real devices during development.',
+    },
+    {
+        question: 'Should I build a native app or a cross-platform app?',
+        answer:
+            'Cross-platform development with React Native or Flutter is right for most businesses: one codebase, near-native performance, and lower cost. We recommend fully native Swift or Kotlin only when an app needs heavy graphics, advanced hardware access, or platform-specific capabilities.',
+    },
+    {
+        question: 'Do you handle App Store and Google Play submission?',
+        answer:
+            'Yes. We prepare store listings, screenshots, and app store optimization assets, handle the Apple App Store and Google Play review process, and manage releases. After launch we monitor crashes and analytics and ship updates as your user base grows.',
+    },
+    {
+        question: 'Can you add a mobile app to my existing website or system?',
+        answer:
+            'Yes. We build mobile apps that connect to your existing website, database, or CRM through secure APIs. If your current system has no API, we design and build one, so your web and mobile products stay in sync from a single source of truth.',
+    },
+];
+
+const mobilePageSchemas = [
+    serviceSchema({
+        serviceType: 'Mobile App Development',
+        path: '/mobile-app-development',
+        description:
+            'Professional mobile app development services for iOS and Android. Native and cross-platform apps built with React Native, Flutter, Swift, and Kotlin for clients worldwide.',
+        offerings: [
+            'iOS App Development',
+            'Android App Development',
+            'Cross-Platform Apps (React Native & Flutter)',
+            'App Store Submission & ASO',
+        ],
+    }),
+    breadcrumbSchema([{ name: 'Mobile App Development', path: '/mobile-app-development' }]),
+    faqSchema(MOBILE_FAQS),
+];
 
 const MOBILE_APP_PROCESS: ServiceProcessStep[] = [
   { step: '01', title: 'Discovery', desc: 'Product goals, platforms, store policies & third-party APIs', color: '#3B82F6' },
@@ -82,11 +116,11 @@ const MobileAppDevelopment = () => {
     return (
         <>
             <SEO
-                title="Mobile App Development Services - iOS & Android Apps"
-                description="Professional mobile app development services in India. We build native and cross-platform mobile apps for iOS and Android using React Native, Flutter, Swift, and Kotlin."
+                title="Mobile App Development Services — iOS & Android"
+                description="Mobile app development for iOS and Android using React Native, Flutter, Swift, and Kotlin. From MVP to store launch for startups and businesses worldwide. Free consultation."
                 canonical="https://nvhotech.com/mobile-app-development"
-                keywords="mobile app development India, iOS app development, Android app development, React Native development, Flutter development, cross-platform apps, custom mobile apps"
-                schema={serviceSchema}
+                keywords="mobile app development company, iOS app development, Android app development, React Native development, Flutter development, cross-platform apps"
+                schema={mobilePageSchemas}
             />
 
             <Navigation />
@@ -188,6 +222,8 @@ const MobileAppDevelopment = () => {
                   description="Clear checkpoints from idea to App Store and Play Store — you always see the next milestone before we ship it."
                   steps={MOBILE_APP_PROCESS}
                 />
+
+                <FAQSection faqs={MOBILE_FAQS} heading="Mobile App Development FAQs" />
 
                 {/* CTA Section */}
                 <section className="py-20 px-6 bg-background/50">

@@ -9,6 +9,8 @@ import {
   ServiceAgileProcessSection,
   type ServiceProcessStep,
 } from '@/components/ServiceAgileProcessSection';
+import { FAQSection } from '@/components/FAQSection';
+import { serviceSchema, breadcrumbSchema, faqSchema, type FAQItem } from '@/lib/seoSchemas';
 
 const WEB_TECH_STACK: { name: string; icon: TechBrandIconSource }[] = [
     { name: 'React.js', icon: { type: 'simple', slug: 'react' } },
@@ -25,18 +27,50 @@ const WEB_TECH_STACK: { name: string; icon: TechBrandIconSource }[] = [
     { name: 'REST APIs', icon: { type: 'simple', slug: 'axios' } },
 ];
 
-const serviceSchema = {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    "serviceType": "Web Development",
-    "provider": {
-        "@type": "Organization",
-        "name": "NVHO Tech",
-        "url": "https://nvhotech.com"
+const WEB_FAQS: FAQItem[] = [
+    {
+        question: 'How much does web development cost?',
+        answer:
+            'Web development cost depends on the type of project. A marketing or corporate website is the most affordable, while custom web applications and e-commerce platforms cost more due to features, integrations, and testing. NVHO Tech provides a free consultation and a fixed, itemized quote before development starts.',
     },
-    "areaServed": "Worldwide",
-    "description": "Professional web development services including responsive websites, web applications, e-commerce platforms, and custom web solutions."
-};
+    {
+        question: 'How long does it take to build a website or web application?',
+        answer:
+            'A business website typically takes 2 to 4 weeks from discovery to launch. Custom web applications and e-commerce platforms usually take 6 to 16 weeks depending on features and integrations. We deliver in agile sprints, so you review working versions throughout the project.',
+    },
+    {
+        question: 'Which technologies do you use for web development?',
+        answer:
+            'We build with React, Next.js, Vue, and Angular on the front end, and Node.js with PostgreSQL or MongoDB on the back end, all written in TypeScript. Every site ships with responsive design, SEO-ready markup, and Core Web Vitals performance optimization as standard.',
+    },
+    {
+        question: 'Do you redesign or modernize existing websites?',
+        answer:
+            'Yes. We audit your current site for performance, SEO, and user experience, then either improve it incrementally or rebuild it on a modern stack. Existing content, URLs, and search rankings are preserved through proper redirects and on-page SEO during migration.',
+    },
+    {
+        question: 'Do you provide support after the website launches?',
+        answer:
+            'Yes. Every project includes a post-launch support window for fixes, and we offer ongoing maintenance plans covering updates, security patches, backups, performance monitoring, and new feature development. Most of our clients continue with a monthly maintenance engagement after launch.',
+    },
+];
+
+const webPageSchemas = [
+    serviceSchema({
+        serviceType: 'Web Development',
+        path: '/web-development',
+        description:
+            'Professional web development services including responsive websites, custom web applications, e-commerce platforms, and progressive web apps for clients worldwide.',
+        offerings: [
+            'Custom Web Applications',
+            'E-Commerce Solutions',
+            'Corporate Websites',
+            'Progressive Web Apps (PWA)',
+        ],
+    }),
+    breadcrumbSchema([{ name: 'Web Development', path: '/web-development' }]),
+    faqSchema(WEB_FAQS),
+];
 
 const WEB_DELIVERY_PROCESS: ServiceProcessStep[] = [
   { step: '01', title: 'Discovery', desc: 'Goals, audiences, sitemap & technical constraints', color: '#3B82F6' },
@@ -82,11 +116,11 @@ const WebDevelopment = () => {
     return (
         <>
             <SEO
-                title="Web Development Services in India - Custom Web Solutions"
-                description="Professional web development services in India. We build responsive websites, web applications, e-commerce platforms, and custom web solutions using React, Next.js, and modern technologies."
+                title="Web Development Services — Websites & Web Apps"
+                description="Custom web development services for businesses worldwide: responsive websites, web applications, and e-commerce built with React and Next.js. Free consultation and fixed quote."
                 canonical="https://nvhotech.com/web-development"
-                keywords="web development India, custom web development, responsive website design, web application development, e-commerce development, React development, Next.js development"
-                schema={serviceSchema}
+                keywords="web development services, custom web development company, web application development, e-commerce development, React development, Next.js development"
+                schema={webPageSchemas}
             />
 
             <Navigation />
@@ -188,6 +222,8 @@ const WebDevelopment = () => {
                   description="From discovery to launch — structured milestones with room to refine as your product evolves."
                   steps={WEB_DELIVERY_PROCESS}
                 />
+
+                <FAQSection faqs={WEB_FAQS} heading="Web Development FAQs" />
 
                 {/* CTA Section */}
                 <section className="py-20 px-6">

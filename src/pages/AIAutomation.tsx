@@ -9,6 +9,8 @@ import {
   ServiceAgileProcessSection,
   type ServiceProcessStep,
 } from '@/components/ServiceAgileProcessSection';
+import { FAQSection } from '@/components/FAQSection';
+import { serviceSchema, breadcrumbSchema, faqSchema, type FAQItem } from '@/lib/seoSchemas';
 
 const AI_TECH_STACK: { name: string; icon: TechBrandIconSource }[] = [
     { name: 'OpenAI GPT', icon: { type: 'simple', slug: 'openai' } },
@@ -25,18 +27,50 @@ const AI_TECH_STACK: { name: string; icon: TechBrandIconSource }[] = [
     { name: 'Google Cloud AI', icon: { type: 'simple', slug: 'googlecloud' } },
 ];
 
-const serviceSchema = {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    "serviceType": "AI Automation Services",
-    "provider": {
-        "@type": "Organization",
-        "name": "NVHO Tech",
-        "url": "https://nvhotech.com"
+const AI_FAQS: FAQItem[] = [
+    {
+        question: 'What is AI automation and what can it do for my business?',
+        answer:
+            'AI automation uses artificial intelligence to handle work that previously needed people: answering customer questions, processing documents, routing support tickets, qualifying leads, and generating reports. It reduces manual workload and response times while keeping humans in the loop for decisions that matter.',
     },
-    "areaServed": "Worldwide",
-    "description": "AI automation services to streamline business processes, reduce costs, and improve efficiency using machine learning, natural language processing, and intelligent automation."
-};
+    {
+        question: 'How much do AI automation services cost?',
+        answer:
+            'Cost depends on workflow complexity and the systems being connected. A single chatbot or automation workflow is the most affordable starting point; multi-step AI agents integrated with your CRM, helpdesk, or ERP cost more. We start with a free consultation and scope a fixed-price pilot before any larger rollout.',
+    },
+    {
+        question: 'Which AI models and tools do you work with?',
+        answer:
+            'We build with OpenAI GPT models, Anthropic Claude, and Google Cloud AI, combined with retrieval-augmented generation (RAG) over your own data, custom APIs, and workflow tools. We choose the model per use case based on accuracy, cost per request, and data privacy requirements.',
+    },
+    {
+        question: 'Is my business data safe when using AI automation?',
+        answer:
+            'Yes. We design every AI system with data privacy boundaries: your data stays in your infrastructure or approved cloud services, is never used to train public models, and access is controlled and logged. For regulated industries we add compliance review and human approval steps.',
+    },
+    {
+        question: 'How do I know if AI automation will pay off before investing?',
+        answer:
+            'We start with a discovery phase that maps your workflows, estimates hours saved, and identifies the highest-ROI use case. Then we build a small pilot on a real workflow so you can measure accuracy and time savings with actual data before committing to a full implementation.',
+    },
+];
+
+const aiPageSchemas = [
+    serviceSchema({
+        serviceType: 'AI Automation',
+        path: '/ai-automation',
+        description:
+            'AI automation services to streamline business processes, reduce costs, and improve efficiency using large language models, machine learning, chatbots, and intelligent workflow automation.',
+        offerings: [
+            'AI Chatbot Development',
+            'Business Process Automation',
+            'AI Agents & RAG Systems',
+            'Machine Learning Solutions',
+        ],
+    }),
+    breadcrumbSchema([{ name: 'AI Automation', path: '/ai-automation' }]),
+    faqSchema(AI_FAQS),
+];
 
 const AI_AUTOMATION_PROCESS: ServiceProcessStep[] = [
   { step: '01', title: 'Discovery', desc: 'Use cases, ROI, data availability & compliance boundaries', color: '#3B82F6' },
@@ -109,11 +143,11 @@ const AIAutomation = () => {
     return (
         <>
             <SEO
-                title="AI Automation Services - Machine Learning & Intelligent Automation"
-                description="Transform your business with AI automation services. We implement chatbots, process automation, machine learning, and custom AI solutions to increase efficiency and reduce costs."
+                title="AI Automation Services — Chatbots, Agents & Workflows"
+                description="AI automation services for businesses worldwide: chatbots, AI agents, process automation, and custom machine learning built on GPT and Claude. Start with a free ROI consultation."
                 canonical="https://nvhotech.com/ai-automation"
-                keywords="AI automation, machine learning services, chatbot development, process automation, RPA, artificial intelligence, business automation, AI solutions India"
-                schema={serviceSchema}
+                keywords="AI automation services, AI automation agency, chatbot development, AI agents, business process automation, machine learning services"
+                schema={aiPageSchemas}
             />
 
             <Navigation />
@@ -234,6 +268,8 @@ const AIAutomation = () => {
                   description="Experiment safely, prove value on real workflows, then scale with observability and governance built in."
                   steps={AI_AUTOMATION_PROCESS}
                 />
+
+                <FAQSection faqs={AI_FAQS} heading="AI Automation FAQs" />
 
                 {/* CTA Section */}
                 <section className="py-20 px-6 bg-background/50">

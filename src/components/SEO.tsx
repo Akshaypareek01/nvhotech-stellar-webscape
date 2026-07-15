@@ -7,19 +7,24 @@ interface SEOProps {
     ogImage?: string;
     ogType?: string;
     keywords?: string;
-    schema?: object;
+    /** One or more JSON-LD schema objects rendered as separate ld+json blocks */
+    schema?: object | object[];
+    /** Set true on error/utility pages that must not be indexed */
+    noindex?: boolean;
 }
 
 export const SEO = ({
     title,
     description,
-    canonical = 'https://nvhotech.com',
+    canonical = 'https://nvhotech.com/',
     ogImage = 'https://nvhotech.com/images/logoNT.png',
     ogType = 'website',
-    keywords = 'software development, web development, mobile app development, AI automation, custom software, India',
+    keywords = 'software development company, web development, mobile app development, AI automation, custom software',
     schema,
+    noindex = false,
 }: SEOProps) => {
     const fullTitle = `${title} | NVHO Tech`;
+    const schemas = schema ? (Array.isArray(schema) ? schema : [schema]) : [];
 
     return (
         <Helmet>
@@ -45,17 +50,15 @@ export const SEO = ({
             <meta name="twitter:image" content={ogImage} />
 
             {/* Additional SEO */}
-            <meta name="robots" content="index, follow" />
+            <meta name="robots" content={noindex ? 'noindex, follow' : 'index, follow'} />
             <meta name="author" content="NVHO Tech" />
-            <meta name="language" content="English" />
-            <meta name="revisit-after" content="7 days" />
 
             {/* Structured Data */}
-            {schema && (
-                <script type="application/ld+json">
-                    {JSON.stringify(schema)}
+            {schemas.map((s, i) => (
+                <script key={i} type="application/ld+json">
+                    {JSON.stringify(s)}
                 </script>
-            )}
+            ))}
         </Helmet>
     );
 };

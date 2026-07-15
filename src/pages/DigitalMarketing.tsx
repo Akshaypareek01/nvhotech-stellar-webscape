@@ -9,6 +9,8 @@ import {
   ServiceAgileProcessSection,
   type ServiceProcessStep,
 } from '@/components/ServiceAgileProcessSection';
+import { FAQSection } from '@/components/FAQSection';
+import { serviceSchema, breadcrumbSchema, faqSchema, type FAQItem } from '@/lib/seoSchemas';
 
 const MARKETING_TECH_STACK: { name: string; icon: TechBrandIconSource }[] = [
   { name: 'Google Ads', icon: { type: 'simple', slug: 'googleads' } },
@@ -25,19 +27,40 @@ const MARKETING_TECH_STACK: { name: string; icon: TechBrandIconSource }[] = [
   { name: 'X (Twitter)', icon: { type: 'simple', slug: 'x' } },
 ];
 
-const serviceSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'Service',
-  serviceType: 'Digital Marketing',
-  provider: {
-    '@type': 'Organization',
-    name: 'NVHO Tech',
-    url: 'https://nvhotech.com',
+const MARKETING_FAQS: FAQItem[] = [
+  {
+    question: 'What digital marketing services does NVHO Tech offer?',
+    answer:
+      'We provide SEO, Google Ads and paid social campaigns, social media management, content marketing, and conversion tracking with transparent analytics. Because we also build websites, we fix technical SEO and landing page issues directly instead of just reporting them.',
   },
-  areaServed: 'Worldwide',
-  description:
-    'Digital marketing services including SEO, paid ads, social media, content strategy, and analytics to grow your brand and leads.',
-};
+  {
+    question: 'How long does SEO take to show results?',
+    answer:
+      'Meaningful SEO results typically appear in 3 to 6 months: technical fixes and quick-win keywords move first, competitive keywords take longer. Paid ads generate traffic immediately, which is why we often run both together — ads for short-term leads, SEO for compounding long-term growth.',
+  },
+  {
+    question: 'How much should I budget for digital marketing?',
+    answer:
+      'Budget depends on your market, competition, and goals. We recommend starting with an audit that establishes a KPI baseline, then a channel plan sized to your targets. Every engagement includes monthly reporting that ties spend to leads and revenue, so you can scale what works.',
+  },
+  {
+    question: 'How do you measure and report marketing results?',
+    answer:
+      'We set up conversion tracking with Google Analytics 4 and ad-platform tracking before campaigns launch, then report monthly on traffic, rankings, leads, cost per lead, and revenue attribution. You get a dashboard you can check anytime — not just a monthly PDF.',
+  },
+];
+
+const marketingPageSchemas = [
+  serviceSchema({
+    serviceType: 'Digital Marketing',
+    path: '/digital-marketing',
+    description:
+      'Digital marketing services including SEO, paid ads, social media, content strategy, and analytics to grow brands and generate leads for businesses worldwide.',
+    offerings: ['SEO Services', 'Google Ads & PPC', 'Social Media Marketing', 'Content Marketing'],
+  }),
+  breadcrumbSchema([{ name: 'Digital Marketing', path: '/digital-marketing' }]),
+  faqSchema(MARKETING_FAQS),
+];
 
 const DIGITAL_MARKETING_PROCESS: ServiceProcessStep[] = [
   { step: '01', title: 'Audit & goals', desc: 'Channel audit, audience research, competitors & KPI baseline', color: '#3B82F6' },
@@ -87,11 +110,11 @@ const DigitalMarketing = () => {
   return (
     <>
       <SEO
-        title="Digital Marketing Services in India - SEO, PPC & Social"
-        description="NVHO Tech offers digital marketing in India: SEO, paid ads, social media, content, and analytics. Grow traffic, leads, and revenue with a measurable strategy."
+        title="Digital Marketing Services — SEO, PPC & Social Media"
+        description="Digital marketing services that tie spend to revenue: SEO, Google Ads, social media, and content marketing with transparent monthly reporting. Get a free channel audit."
         canonical="https://nvhotech.com/digital-marketing"
-        keywords="digital marketing India, SEO services, PPC Google Ads, social media marketing, content marketing, NVHO Tech, lead generation"
-        schema={serviceSchema}
+        keywords="digital marketing services, SEO services, PPC management, Google Ads agency, social media marketing, content marketing, lead generation"
+        schema={marketingPageSchemas}
       />
 
       <Navigation />
@@ -182,6 +205,8 @@ const DigitalMarketing = () => {
           description="Transparent reporting and iterative optimization so spend ties back to leads, revenue, and brand health."
           steps={DIGITAL_MARKETING_PROCESS}
         />
+
+        <FAQSection faqs={MARKETING_FAQS} heading="Digital Marketing FAQs" />
 
         <section className="py-20 px-6">
           <div className="container mx-auto max-w-4xl text-center">

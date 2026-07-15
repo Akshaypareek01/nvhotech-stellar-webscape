@@ -41,6 +41,9 @@ const ROUTES = [
   '/legal/refund-policy',
   '/legal/cookie-policy',
   '/legal/gdpr',
+  // Renders the NotFound page (catch-all route) → dist/404.html so nginx can
+  // serve real 404 responses via `error_page 404 /404.html`.
+  '/404',
 ];
 
 const MIME = {
@@ -154,9 +157,14 @@ async function run() {
       const html = await page.content();
       await page.close();
 
-      const outputDir = route === '/' ? DIST_DIR : path.join(DIST_DIR, route);
-      fs.mkdirSync(outputDir, { recursive: true });
-      fs.writeFileSync(path.join(outputDir, 'index.html'), html, 'utf-8');
+      if (route === '/404') {
+        // Flat file so nginx `error_page 404 /404.html` can serve it directly.
+        fs.writeFileSync(path.join(DIST_DIR, '404.html'), html, 'utf-8');
+      } else {
+        const outputDir = route === '/' ? DIST_DIR : path.join(DIST_DIR, route);
+        fs.mkdirSync(outputDir, { recursive: true });
+        fs.writeFileSync(path.join(outputDir, 'index.html'), html, 'utf-8');
+      }
 
       console.log(`  ✓ ${route}`);
       success++;

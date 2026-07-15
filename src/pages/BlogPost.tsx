@@ -8,6 +8,7 @@ import { blogPosts } from '@/data/blogData';
 import { Button } from '@/components/ui/button';
 import { toast } from "sonner";
 import { BlogCTA } from '@/components/BlogCTA';
+import { breadcrumbSchema, SITE_URL, BRAND_NAME, BRAND_LOGO } from '@/lib/seoSchemas';
 
 const BlogPost = () => {
     const { slug } = useParams();
@@ -30,6 +31,30 @@ const BlogPost = () => {
         toast.success("Link copied to clipboard!");
     };
 
+    const postSchemas = [
+        {
+            '@context': 'https://schema.org',
+            '@type': 'BlogPosting',
+            headline: post.title,
+            description: post.excerpt,
+            url: `${SITE_URL}/blog/${post.slug}`,
+            datePublished: post.date,
+            dateModified: post.date,
+            image: `${SITE_URL}${post.image}`,
+            author: { '@type': 'Organization', name: BRAND_NAME, url: SITE_URL },
+            publisher: {
+                '@type': 'Organization',
+                name: BRAND_NAME,
+                logo: { '@type': 'ImageObject', url: BRAND_LOGO },
+            },
+            mainEntityOfPage: { '@type': 'WebPage', '@id': `${SITE_URL}/blog/${post.slug}` },
+        },
+        breadcrumbSchema([
+            { name: 'Blog', path: '/blog' },
+            { name: post.title, path: `/blog/${post.slug}` },
+        ]),
+    ];
+
     return (
         <>
             <SEO
@@ -37,6 +62,8 @@ const BlogPost = () => {
                 description={post.excerpt}
                 canonical={`https://nvhotech.com/blog/${post.slug}`}
                 ogType="article"
+                ogImage={`${SITE_URL}${post.image}`}
+                schema={postSchemas}
             />
 
             <Navigation />

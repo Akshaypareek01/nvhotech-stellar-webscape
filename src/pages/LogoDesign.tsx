@@ -9,6 +9,8 @@ import {
   ServiceAgileProcessSection,
   type ServiceProcessStep,
 } from '@/components/ServiceAgileProcessSection';
+import { FAQSection } from '@/components/FAQSection';
+import { serviceSchema, breadcrumbSchema, faqSchema, type FAQItem } from '@/lib/seoSchemas';
 
 const DESIGN_TECH_STACK: { name: string; icon: TechBrandIconSource }[] = [
   { name: 'Figma', icon: { type: 'simple', slug: 'figma' } },
@@ -25,19 +27,40 @@ const DESIGN_TECH_STACK: { name: string; icon: TechBrandIconSource }[] = [
   { name: 'Adobe Creative Cloud', icon: { type: 'simple', slug: 'adobe' } },
 ];
 
-const serviceSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'Service',
-  serviceType: 'Logo Design & Brand Identity',
-  provider: {
-    '@type': 'Organization',
-    name: 'NVHO Tech',
-    url: 'https://nvhotech.com',
+const LOGO_FAQS: FAQItem[] = [
+  {
+    question: 'What is included in your logo design service?',
+    answer:
+      'You receive multiple original logo concepts, revision rounds on your chosen direction, and final files in vector formats (SVG, EPS, PDF) plus PNG for web. Full brand identity packages add color palettes, typography, usage guidelines, and social media and stationery assets.',
   },
-  areaServed: 'Worldwide',
-  description:
-    'Professional logo design and brand identity services including vector logos, brand guidelines, and visual assets for print and digital.',
-};
+  {
+    question: 'How long does logo design take?',
+    answer:
+      'A logo project typically takes 1 to 2 weeks: a creative brief and research first, initial concepts within a few days, then revision rounds until approval. Complete brand identity packages with guidelines and collateral usually take 2 to 4 weeks depending on scope.',
+  },
+  {
+    question: 'Do I own the logo and can I trademark it?',
+    answer:
+      'Yes. On final payment you receive full ownership and copyright of the final logo, with all source files. Every design is created from scratch — no templates or stock marks — so you are free to register it as a trademark in your country.',
+  },
+  {
+    question: 'How many concepts and revisions do I get?',
+    answer:
+      'We present several distinct creative directions, each with a rationale, rather than dozens of near-duplicates. You pick one direction and we refine it through structured revision rounds until you approve. Additional directions can always be added if none of the initial routes fit.',
+  },
+];
+
+const logoPageSchemas = [
+  serviceSchema({
+    serviceType: 'Logo Design & Brand Identity',
+    path: '/logo-design',
+    description:
+      'Professional logo design and brand identity services including original vector logos, brand guidelines, and visual assets for print and digital, delivered worldwide.',
+    offerings: ['Custom Logo Design', 'Brand Identity Packages', 'Brand Guidelines', 'Marketing Collateral'],
+  }),
+  breadcrumbSchema([{ name: 'Logo Design', path: '/logo-design' }]),
+  faqSchema(LOGO_FAQS),
+];
 
 const LOGO_DESIGN_PROCESS: ServiceProcessStep[] = [
   { step: '01', title: 'Brief', desc: 'Vision, values, audiences, references & where the mark will live', color: '#3B82F6' },
@@ -87,11 +110,11 @@ const LogoDesign = () => {
   return (
     <>
       <SEO
-        title="Logo Design & Brand Identity Services in India | NVHO Tech"
-        description="Professional logo design and brand identity in India. Custom logos, vector deliverables, brand guidelines, and collateral from NVHO Tech."
+        title="Logo Design & Brand Identity Services"
+        description="Custom logo design and brand identity for businesses worldwide: original concepts, vector files, brand guidelines, and full ownership of your logo. Delivered in 1-2 weeks."
         canonical="https://nvhotech.com/logo-design"
-        keywords="logo design India, brand identity, custom logo, vector logo, brand guidelines, NVHO Tech, graphic design"
-        schema={serviceSchema}
+        keywords="logo design services, brand identity design, custom logo design, vector logo, brand guidelines, graphic design services"
+        schema={logoPageSchemas}
       />
 
       <Navigation />
@@ -181,6 +204,8 @@ const LogoDesign = () => {
           description="Collaborative rounds with clear milestones — you approve direction before we polish production-ready assets."
           steps={LOGO_DESIGN_PROCESS}
         />
+
+        <FAQSection faqs={LOGO_FAQS} heading="Logo Design FAQs" />
 
         <section className="py-20 px-6">
           <div className="container mx-auto max-w-4xl text-center">

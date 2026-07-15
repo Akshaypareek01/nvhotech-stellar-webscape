@@ -4,6 +4,31 @@ import { Card } from '@/components/ui/card';
 import { ThemeToggle } from '@/components/ThemeToggle';
 import { useNavigate } from 'react-router-dom';
 import { SEO } from '@/components/SEO';
+import { breadcrumbSchema, SITE_URL } from '@/lib/seoSchemas';
+
+const SERVICE_LINKS = [
+  { name: 'Web Development', path: '/web-development' },
+  { name: 'Mobile App Development', path: '/mobile-app-development' },
+  { name: 'AI Automation', path: '/ai-automation' },
+  { name: 'Custom Software Development', path: '/software-development' },
+  { name: 'Digital Marketing', path: '/digital-marketing' },
+  { name: 'Logo Design & Brand Identity', path: '/logo-design' },
+];
+
+const servicesPageSchemas = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: 'NVHO Tech Services',
+    itemListElement: SERVICE_LINKS.map((s, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: s.name,
+      url: `${SITE_URL}${s.path}`,
+    })),
+  },
+  breadcrumbSchema([{ name: 'Services', path: '/services' }]),
+];
 
 const services = [
   {
@@ -217,10 +242,11 @@ const Services = () => {
   return (
     <>
       <SEO
-        title="Services - Web, Mobile, AI & Custom Software"
-        description="Explore NVHO Tech's software services: custom web development, mobile apps, AI automation, CRM, logo design & digital marketing for startups and enterprises."
+        title="Services — Web, Mobile, AI & Custom Software"
+        description="Explore NVHO Tech's services: custom web development, mobile apps, AI automation, enterprise software, digital marketing, and brand design for startups and enterprises worldwide."
         canonical="https://nvhotech.com/services"
-        keywords="software services India, web development, mobile app development, AI automation, CRM development, logo design, digital marketing, NVHO Tech"
+        keywords="software development services, web development, mobile app development, AI automation, custom software, digital marketing, logo design"
+        schema={servicesPageSchemas}
       />
       <div className="min-h-screen bg-background text-foreground">
       {/* Hero Section */}

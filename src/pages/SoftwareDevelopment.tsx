@@ -12,15 +12,53 @@ import { Navigation } from '@/components/Navigation';
 import { Footer } from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { ServiceAgileProcessSection } from '@/components/ServiceAgileProcessSection';
+import { FAQSection } from '@/components/FAQSection';
+import { serviceSchema, breadcrumbSchema, faqSchema, type FAQItem } from '@/lib/seoSchemas';
 
-const serviceSchema = {
-  "@context": "https://schema.org",
-  "@type": "Service",
-  "serviceType": "Custom Software Development",
-  "provider": { "@type": "Organization", "name": "NVHO Tech", "url": "https://nvhotech.com" },
-  "areaServed": "Worldwide",
-  "description": "Custom software development services including enterprise applications, CRM systems, ERP solutions, and bespoke software tailored to your business needs."
-};
+const SOFTWARE_FAQS: FAQItem[] = [
+  {
+    question: 'What is custom software development?',
+    answer:
+      'Custom software development means building an application designed around your exact business processes instead of adapting your business to off-the-shelf tools. It covers CRMs, ERPs, internal dashboards, customer portals, and industry-specific systems that you own outright, with no per-seat license fees.',
+  },
+  {
+    question: 'How much does custom software development cost?',
+    answer:
+      'Cost is driven by the number of user roles, screens, integrations, and compliance requirements. A focused internal tool costs far less than a multi-tenant enterprise platform. After a free discovery call we provide a fixed, milestone-based quote so there are no surprise costs mid-project.',
+  },
+  {
+    question: 'Custom software vs off-the-shelf: which should I choose?',
+    answer:
+      'Choose off-the-shelf software when a standard tool covers 90 percent of your workflow. Choose custom software when your process is a competitive advantage, when license fees grow with headcount, or when you need integrations and reporting that packaged tools cannot provide.',
+  },
+  {
+    question: 'Can you modernize or take over our legacy software?',
+    answer:
+      'Yes. We audit the existing codebase, stabilize what works, and migrate high-risk parts to a modern stack incrementally, so your business keeps running during the transition. We also take over maintenance of systems built by previous vendors, starting with a code and security review.',
+  },
+  {
+    question: 'Who owns the source code and intellectual property?',
+    answer:
+      'You do. Every NVHO Tech contract transfers full source code and intellectual property ownership to the client on final payment. Code lives in a repository you control from day one, together with documentation and deployment scripts, so you are never locked in to us.',
+  },
+];
+
+const softwarePageSchemas = [
+  serviceSchema({
+    serviceType: 'Custom Software Development',
+    path: '/software-development',
+    description:
+      'Custom software development services including enterprise applications, CRM systems, ERP solutions, and bespoke software tailored to business needs, for clients worldwide.',
+    offerings: [
+      'Enterprise Applications',
+      'CRM Development',
+      'ERP Solutions',
+      'Legacy System Modernization',
+    ],
+  }),
+  breadcrumbSchema([{ name: 'Software Development', path: '/software-development' }]),
+  faqSchema(SOFTWARE_FAQS),
+];
 
 const services = [
   {
@@ -112,11 +150,11 @@ const SoftwareDevelopment = () => {
   return (
     <>
       <SEO
-        title="Custom Software Development Services - Enterprise Solutions"
-        description="Professional custom software development services in India. We build enterprise applications, CRM systems, ERP solutions, and bespoke software tailored to your business needs."
+        title="Custom Software Development Services & Solutions"
+        description="Custom software development for businesses worldwide: enterprise applications, CRM and ERP systems, and bespoke tools you fully own. Fixed quotes, milestone delivery."
         canonical="https://nvhotech.com/software-development"
-        keywords="custom software development, enterprise software, CRM development, ERP solutions, software development company India, bespoke software, business software"
-        schema={serviceSchema}
+        keywords="custom software development company, enterprise software development, CRM development, ERP solutions, bespoke software, hire software developers"
+        schema={softwarePageSchemas}
       />
 
       <Navigation />
@@ -330,6 +368,8 @@ const SoftwareDevelopment = () => {
           className="bg-background"
           headingId="software-development-process-heading"
         />
+
+        <FAQSection faqs={SOFTWARE_FAQS} heading="Custom Software Development FAQs" />
 
         {/* ── CTA ─────────────────────────────────────────────── */}
         <section className="bg-secondary/30 px-6 py-20 dark:bg-secondary/15">
