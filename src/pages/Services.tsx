@@ -54,42 +54,42 @@ const portfolioProjects = {
   websites: [
     {
       title: 'Fun Formulae',
-      image: '/images/fun.jpeg',
+      image: '/images/fun.webp',
       url: 'https://funformulae.com/',
       description: 'Educational platform for mathematical formulas and learning',
       category: 'Education'
     },
     {
       title: 'Samsara Wellness',
-      image: '/images/samsaraweb.png',
+      image: '/images/samsaraweb.webp',
       url: 'https://samsarawellness.in/',
       description: 'Wellness and yoga center website',
       category: 'Health'
     },
     {
       title: 'StepsStamp',
-      image: '/images/stepstampweb.png',
+      image: '/images/stepstampweb.webp',
       url: 'https://www.stepsstamp.com/',
       description: 'Blockchain-powered fitness app that rewards users with SSBT tokens for movement and staking',
       category: 'Blockchain'
     },
     {
       title: 'Local Adventures',
-      image: '/images/localad.png',
+      image: '/images/localad.webp',
       url: 'https://localadventures.in/',
       description: 'Local tourism and adventure experiences platform',
       category: 'Travel'
     },
     {
       title: 'Daevish',
-      image: '/images/web-garphic.jpeg',
+      image: '/images/web-garphic.webp',
       url: 'https://daevish.com/',
       description: 'Creative design and branding solutions',
       category: 'Design'
     },
     {
       title: 'Solitaire Jewel',
-      image: '/images/soliter.jpeg',
+      image: '/images/soliter.webp',
       url: 'https://solitairejewel.com/',
       description: 'Premium jewelry and diamond collection',
       category: 'E-commerce'
@@ -149,7 +149,7 @@ const portfolioProjects = {
     },
     {
       title: 'Modernize Next.js',
-      image: '/images/modernize.jpg',
+      image: '/images/modernize.webp',
       url: 'https://modernize-nextjs-dark.vercel.app/dashboards/ecommerce',
       description: 'Next.js ecommerce dashboard solution',
       category: 'E-commerce'

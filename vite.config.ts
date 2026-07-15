@@ -54,33 +54,6 @@ export default defineConfig(({ mode }) => ({
         manualChunks: {
           // Core React libraries - loaded on every page
           'react-vendor': ['react', 'react-dom', 'react-router-dom'],
-
-          // UI components (Radix) - heavy library, split separately
-          'ui-components': [
-            '@radix-ui/react-dialog',
-            '@radix-ui/react-dropdown-menu',
-            '@radix-ui/react-select',
-            '@radix-ui/react-accordion',
-            '@radix-ui/react-tabs',
-            '@radix-ui/react-toast',
-            '@radix-ui/react-tooltip',
-          ],
-
-          // Form libraries - only loaded when forms are used
-          'form-libs': [
-            'react-hook-form',
-            '@hookform/resolvers',
-            'zod',
-          ],
-
-          // Animation libraries - heavy, split separately
-          'animation': ['framer-motion', 'locomotive-scroll', 'embla-carousel-react'],
-
-          // Utilities and helpers
-          'utils': ['date-fns', 'clsx', 'tailwind-merge', 'class-variance-authority'],
-
-          // Calendar components
-          'calendar': ['react-calendar', 'react-day-picker'],
         },
       },
     },
@@ -112,7 +85,6 @@ export default defineConfig(({ mode }) => ({
       'react-dom',
       'react-router-dom',
       'react-calendar',
-      'framer-motion',
     ],
   },
 }));

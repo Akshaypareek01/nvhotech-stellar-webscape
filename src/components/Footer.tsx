@@ -77,7 +77,7 @@ export const Footer = () => {
           <div className="lg:col-span-2">
             <div className="mb-5">
               <img
-                src="/images/logoNT.png"
+                src="/images/logoNT.webp"
                 alt="NVHO Tech Logo"
                 loading="lazy"
                 decoding="async"

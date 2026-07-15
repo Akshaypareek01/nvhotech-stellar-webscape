@@ -5,13 +5,13 @@ import Autoplay from 'embla-carousel-autoplay';
 
 const projects = {
   websites: [
-    { title: 'Fun Formulae', image: '/images/fun.jpeg', url: 'https://funformulae.com/', description: 'Educational platform for mathematical formulas and interactive learning' },
-    { title: 'Samsara Wellness', image: '/images/samsaraweb.png', url: 'https://samsarawellness.in/', description: 'Premium wellness and yoga center website with booking integration' },
-    { title: 'StepsStamp', image: '/images/stepstampweb.png', url: 'https://www.stepsstamp.com/', description: 'Blockchain-powered fitness platform rewarding movement with crypto tokens' },
-    { title: 'Local Adventures', image: '/images/localad.png', url: 'https://localadventures.in/', description: 'Local tourism and adventure experiences discovery platform' },
-    { title: 'Daevish', image: '/images/web-garphic.jpeg', url: 'https://daevish.com/', description: 'Creative design and branding solutions agency website' },
-    { title: 'Solitaire Jewel', image: '/images/soliter.jpeg', url: 'https://solitairejewel.com/', description: 'Premium jewelry and diamond collection e-commerce store' },
-    { title: 'Grocery Web (Mecum)', image: '/images/mecum.png', url: 'https://mecum.in/', description: 'Online grocery shopping and delivery platform' },
+    { title: 'Fun Formulae', image: '/images/fun.webp', url: 'https://funformulae.com/', description: 'Educational platform for mathematical formulas and interactive learning' },
+    { title: 'Samsara Wellness', image: '/images/samsaraweb.webp', url: 'https://samsarawellness.in/', description: 'Premium wellness and yoga center website with booking integration' },
+    { title: 'StepsStamp', image: '/images/stepstampweb.webp', url: 'https://www.stepsstamp.com/', description: 'Blockchain-powered fitness platform rewarding movement with crypto tokens' },
+    { title: 'Local Adventures', image: '/images/localad.webp', url: 'https://localadventures.in/', description: 'Local tourism and adventure experiences discovery platform' },
+    { title: 'Daevish', image: '/images/web-garphic.webp', url: 'https://daevish.com/', description: 'Creative design and branding solutions agency website' },
+    { title: 'Solitaire Jewel', image: '/images/soliter.webp', url: 'https://solitairejewel.com/', description: 'Premium jewelry and diamond collection e-commerce store' },
+    { title: 'Grocery Web (Mecum)', image: '/images/mecum.webp', url: 'https://mecum.in/', description: 'Online grocery shopping and delivery platform' },
   ],
   applications: [
     { title: 'Samsara Wellness App', image: '/images/samsatawellnessapp.webp', url: 'https://play.google.com/store/apps/details?id=com.samsarawellnessyogav3.app&pcampaignid=web_share', description: 'Live yoga classes with 15+ body trackers, diet & doctor consultancy' },
@@ -23,14 +23,14 @@ const projects = {
   cms: [
     { title: 'Minimals Dashboard', image: '/images/minimals.webp', url: 'https://minimals.cc/auth/amplify/sign-in?returnTo=%2Fdashboard', description: 'Modern admin dashboard with clean, minimal design system' },
     { title: 'Uko React Dashboard', image: '/images/uko.webp', url: 'https://uko-react.vercel.app/login', description: 'Feature-rich React dashboard with advanced analytics' },
-    { title: 'Modernize Next.js', image: '/images/modernize.jpg', url: 'https://modernize-nextjs-dark.vercel.app/dashboards/ecommerce', description: 'Next.js powered e-commerce dashboard solution' },
+    { title: 'Modernize Next.js', image: '/images/modernize.webp', url: 'https://modernize-nextjs-dark.vercel.app/dashboards/ecommerce', description: 'Next.js powered e-commerce dashboard solution' },
     { title: 'Mantis Dashboard', image: '/images/mantis.webp', url: 'https://mantisdashboard.io/login', description: 'Professional admin panel with comprehensive management tools' },
     { title: 'Berry Dashboard', image: '/images/berry.webp', url: 'https://berrydashboard.io/login', description: 'Elegant, feature-complete dashboard with modern UI components' },
   ],
   tools: [
-    { title: 'AI Background Remover', image: '/images/bgremover.png', url: 'https://removebg.nvhotech.com/', description: 'Remove backgrounds from images instantly using AI-powered precision' },
-    { title: 'Image Editor', image: '/images/imageEdiotr.png', url: 'https://removebg.nvhotech.com/imageeditor/index.html', description: 'Professional in-browser image editing tools for creatives' },
-    { title: 'Image Optimizer', image: '/images/imageoptimizer.png', url: 'https://removebg.nvhotech.com/imageoptimizer/index.html', description: 'Compress and optimize images without sacrificing quality' },
+    { title: 'AI Background Remover', image: '/images/bgremover.webp', url: 'https://removebg.nvhotech.com/', description: 'Remove backgrounds from images instantly using AI-powered precision' },
+    { title: 'Image Editor', image: '/images/imageEdiotr.webp', url: 'https://removebg.nvhotech.com/imageeditor/index.html', description: 'Professional in-browser image editing tools for creatives' },
+    { title: 'Image Optimizer', image: '/images/imageoptimizer.webp', url: 'https://removebg.nvhotech.com/imageoptimizer/index.html', description: 'Compress and optimize images without sacrificing quality' },
   ],
 };
 

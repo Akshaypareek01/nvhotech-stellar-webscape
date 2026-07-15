@@ -1,7 +1,6 @@
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Suspense, lazy } from "react";
 import { HelmetProvider } from "react-helmet-async";
@@ -26,8 +25,6 @@ const Blog = lazy(() => import("./pages/Blog"));
 const BlogPost = lazy(() => import("./pages/BlogPost"));
 const BookAppointment = lazy(() => import("./pages/BookAppointment"));
 
-const queryClient = new QueryClient();
-
 const LoadingSpinner = () => (
   <div className="min-h-screen bg-gradient-hero flex items-center justify-center">
     <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary"></div>
@@ -37,8 +34,7 @@ const LoadingSpinner = () => (
 const App = () => (
   <HelmetProvider>
     <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false} storageKey="nvho-theme">
-      <QueryClientProvider client={queryClient}>
-        <TooltipProvider>
+      <TooltipProvider>
           <Toaster />
           <Sonner />
           <BrowserRouter>
@@ -65,8 +61,7 @@ const App = () => (
               </Routes>
             </Suspense>
           </BrowserRouter>
-        </TooltipProvider>
-      </QueryClientProvider>
+      </TooltipProvider>
     </ThemeProvider>
   </HelmetProvider>
 );

@@ -14,7 +14,7 @@ export const SEO = ({
     title,
     description,
     canonical = 'https://nvhotech.com',
-    ogImage = 'https://nvhotech.com/images/og-image.jpg',
+    ogImage = 'https://nvhotech.com/images/logoNT.png',
     ogType = 'website',
     keywords = 'software development, web development, mobile app development, AI automation, custom software, India',
     schema,

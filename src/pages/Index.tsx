@@ -27,7 +27,7 @@ const organizationSchema = {
   "@type": "Organization",
   "name": "NVHO Tech",
   "url": "https://nvhotech.com",
-  "logo": "https://nvhotech.com/images/logo.png",
+  "logo": "https://nvhotech.com/images/logoNT.png",
   "description": "NVHO Tech provides web development, mobile apps, AI automation, and custom software solutions globally.",
   "address": {
     "@type": "PostalAddress",
