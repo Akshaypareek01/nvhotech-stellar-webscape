@@ -63,11 +63,11 @@ export const Navigation = ({ locoRef: _locoRef }: { locoRef?: MutableRefObject<a
       }`}
     >
       <div className="container mx-auto px-4 md:px-6">
-        <div className="flex items-center justify-between gap-2">
+        <div className="flex items-center justify-between gap-2 md:grid md:grid-cols-[1fr_auto_1fr]">
           {/* Logo */}
           <button
             onClick={() => scrollToSection('#home')}
-            className="flex items-center hover:opacity-80 transition-opacity"
+            className="flex items-center hover:opacity-80 transition-opacity md:justify-self-start"
             aria-label="Go to home"
           >
             <OptimizedImage
@@ -81,7 +81,7 @@ export const Navigation = ({ locoRef: _locoRef }: { locoRef?: MutableRefObject<a
           </button>
 
           {/* Desktop nav */}
-          <div className="hidden md:flex flex-1 justify-center items-center gap-1 lg:gap-2 max-w-2xl">
+          <div className="hidden md:flex justify-center items-center gap-1 lg:gap-2">
             {navItems.map((item) => (
               <button
                 key={item.label}
@@ -93,7 +93,7 @@ export const Navigation = ({ locoRef: _locoRef }: { locoRef?: MutableRefObject<a
             ))}
           </div>
 
-          <div className="relative z-[60] flex shrink-0 items-center gap-2">
+          <div className="relative z-[60] flex shrink-0 items-center gap-2 md:justify-self-end">
             <ThemeToggle />
             <a
               href={WHATSAPP_URL}
