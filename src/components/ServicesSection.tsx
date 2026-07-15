@@ -1,4 +1,5 @@
 import { Code, Smartphone, TrendingUp, Palette, Database, Bot, Search, BarChart3, ArrowRight, CheckCircle } from 'lucide-react';
+import type { CSSProperties } from 'react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 
@@ -10,8 +11,8 @@ const services = [
     price: 'From ₹10,000',
     features: ['Custom Design', 'Responsive Layout', 'SEO Optimized', 'Fast Performance'],
     link: '/web-development',
-    color: '#3B82F6',
-    bg: 'rgba(59, 130, 246, 0.14)',
+    color: 'hsl(var(--cat-a))',
+    bg: 'hsl(var(--cat-a) / 0.12)',
     badge: 'Most Popular',
   },
   {
@@ -21,8 +22,8 @@ const services = [
     price: 'From ₹50,000',
     features: ['iOS & Android', 'Custom Features', 'App Store Publishing', 'Ongoing Support'],
     link: '/mobile-app-development',
-    color: '#8B5CF6',
-    bg: 'rgba(139, 92, 246, 0.14)',
+    color: 'hsl(var(--cat-b))',
+    bg: 'hsl(var(--cat-b) / 0.12)',
     badge: null,
   },
   {
@@ -32,8 +33,8 @@ const services = [
     price: 'From ₹40,000',
     features: ['Custom AI Models', 'Process Automation', 'Data Analysis', 'Smart Integration'],
     link: '/ai-automation',
-    color: '#06B6D4',
-    bg: 'rgba(6, 182, 212, 0.14)',
+    color: 'hsl(var(--cat-c))',
+    bg: 'hsl(var(--cat-c) / 0.12)',
     badge: 'Trending',
   },
   {
@@ -43,8 +44,8 @@ const services = [
     price: 'From ₹50,000',
     features: ['Custom Workflows', 'Data Management', 'Analytics Dashboard', 'API Integration'],
     link: '/software-development',
-    color: '#10B981',
-    bg: 'rgba(16, 185, 129, 0.14)',
+    color: 'hsl(var(--cat-d))',
+    bg: 'hsl(var(--cat-d) / 0.12)',
     badge: null,
   },
   {
@@ -54,8 +55,8 @@ const services = [
     price: 'From ₹15,000',
     features: ['Social Media', 'Content Strategy', 'Paid Ads', 'Analytics'],
     link: '/digital-marketing',
-    color: '#F59E0B',
-    bg: 'rgba(245, 158, 11, 0.14)',
+    color: 'hsl(var(--cat-a))',
+    bg: 'hsl(var(--cat-a) / 0.12)',
     badge: null,
   },
   {
@@ -65,8 +66,8 @@ const services = [
     price: 'From ₹2,999',
     features: ['Custom Logo', 'Multiple Concepts', 'Vector Files', 'Brand Guidelines'],
     link: '/logo-design',
-    color: '#EC4899',
-    bg: 'rgba(236, 72, 153, 0.14)',
+    color: 'hsl(var(--cat-b))',
+    bg: 'hsl(var(--cat-b) / 0.12)',
     badge: 'Best Value',
   },
   {
@@ -76,8 +77,8 @@ const services = [
     price: 'From ₹15,000',
     features: ['Keyword Research', 'On-Page SEO', 'Technical SEO', 'Monthly Reports'],
     link: null,
-    color: '#6366F1',
-    bg: 'rgba(99, 102, 241, 0.14)',
+    color: 'hsl(var(--cat-c))',
+    bg: 'hsl(var(--cat-c) / 0.12)',
     badge: null,
   },
   {
@@ -87,8 +88,8 @@ const services = [
     price: 'From ₹5,000',
     features: ['Full Setup', 'Custom Reports', 'Conversion Tracking', 'User Journey Maps'],
     link: null,
-    color: '#EF4444',
-    bg: 'rgba(239, 68, 68, 0.14)',
+    color: 'hsl(var(--cat-d))',
+    bg: 'hsl(var(--cat-d) / 0.12)',
     badge: null,
   },
 ];
@@ -105,9 +106,9 @@ export const ServicesSection = () => {
     <section className="py-24 bg-background relative overflow-hidden scroll-mt-20">
       {/* Subtle background */}
       <div className="absolute top-0 right-0 w-96 h-96 rounded-full opacity-50 pointer-events-none"
-        style={{ background: 'radial-gradient(circle, hsl(217 91% 58% / 0.2) 0%, transparent 70%)', filter: 'blur(60px)' }} />
+        style={{ background: 'radial-gradient(circle, hsl(var(--primary) / 0.16) 0%, transparent 70%)', filter: 'blur(60px)' }} />
       <div className="absolute bottom-0 left-0 w-96 h-96 rounded-full opacity-50 pointer-events-none"
-        style={{ background: 'radial-gradient(circle, hsl(267 83% 58% / 0.18) 0%, transparent 70%)', filter: 'blur(60px)' }} />
+        style={{ background: 'radial-gradient(circle, hsl(var(--accent) / 0.12) 0%, transparent 70%)', filter: 'blur(60px)' }} />
 
       <div className="container mx-auto px-6 relative z-10">
         {/* Header */}
@@ -117,7 +118,7 @@ export const ServicesSection = () => {
           </div>
           <h2 className="text-4xl md:text-5xl font-extrabold text-foreground mb-5">
             Everything Your Business{' '}
-            <span className="gradient-text">Needs to Grow</span>
+            <span className="gradient-text step-underline">Needs to Grow</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             Comprehensive digital solutions that take your business from idea to market — and from
@@ -130,7 +131,7 @@ export const ServicesSection = () => {
           {services.map((service) => (
             <div
               key={service.title}
-              className="bg-card rounded-2xl border border-border shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 group flex flex-col overflow-hidden"
+              className={`bg-card rounded-2xl border border-border shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 group flex flex-col overflow-hidden${service.badge ? ' stepwell-mark' : ''}`}
             >
               {/* Top accent bar */}
               <div className="h-1 w-full" style={{ background: service.color }} />
@@ -139,8 +140,8 @@ export const ServicesSection = () => {
                 {/* Icon + badge */}
                 <div className="flex items-start justify-between mb-5">
                   <div
-                    className="w-11 h-11 rounded-xl flex items-center justify-center"
-                    style={{ background: service.bg }}
+                    className="icon-chip w-11 h-11 flex items-center justify-center"
+                    style={{ '--chip-tint': service.color } as CSSProperties}
                   >
                     <service.icon className="w-5 h-5" style={{ color: service.color }} />
                   </div>
@@ -158,7 +159,7 @@ export const ServicesSection = () => {
                 <h3 className="text-base font-bold text-foreground mb-1 group-hover:text-primary transition-colors">
                   {service.title}
                 </h3>
-                <div className="text-sm font-semibold mb-3" style={{ color: service.color }}>
+                <div className="text-sm font-semibold mb-3 text-primary">
                   {service.price}
                 </div>
 
@@ -193,8 +194,7 @@ export const ServicesSection = () => {
                   )}
                   <Button
                     size="sm"
-                    className="w-full text-xs font-semibold text-white rounded-lg transition-all duration-200"
-                    style={{ background: service.color }}
+                    className="btn-gradient w-full text-xs font-semibold rounded-lg transition-all duration-200"
                     onClick={() => scrollToSection('#contact')}
                   >
                     Get a Quote
@@ -208,7 +208,7 @@ export const ServicesSection = () => {
         {/* CTA Banner */}
         <div
           className="rounded-3xl p-10 md:p-14 text-center text-white relative overflow-hidden"
-          style={{ background: 'linear-gradient(135deg, hsl(217 91% 52%) 0%, hsl(267 83% 57%) 100%)' }}
+          style={{ background: 'var(--gradient-cta)' }}
         >
           <div
             className="absolute inset-0 opacity-10"
@@ -221,13 +221,13 @@ export const ServicesSection = () => {
             <h3 className="text-2xl md:text-3xl font-extrabold mb-4">
               Ready to Launch Your Next Big Idea?
             </h3>
-            <p className="text-blue-100 text-base md:text-lg mb-8 max-w-2xl mx-auto">
+            <p className="text-white/85 text-base md:text-lg mb-8 max-w-2xl mx-auto">
               Book a free 30-minute consultation and let's map out exactly how we can help
               you build, scale, and dominate your market.
             </p>
             <Button
               size="lg"
-              className="bg-foreground text-background hover:bg-foreground/90 font-bold px-10 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200"
+              className="btn-gradient font-bold px-10 rounded-xl transition-all duration-200"
               onClick={() => scrollToSection('#contact')}
             >
               Book Free Consultation

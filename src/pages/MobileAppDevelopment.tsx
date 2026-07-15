@@ -73,11 +73,11 @@ const mobilePageSchemas = [
 ];
 
 const MOBILE_APP_PROCESS: ServiceProcessStep[] = [
-  { step: '01', title: 'Discovery', desc: 'Product goals, platforms, store policies & third-party APIs', color: '#3B82F6' },
-  { step: '02', title: 'UX & UI', desc: 'Flows, high-fidelity screens & platform design guidelines', color: '#8B5CF6' },
-  { step: '03', title: 'Development', desc: 'Sprint-based builds: features, offline, auth & backend sync', color: '#06B6D4' },
-  { step: '04', title: 'QA & beta', desc: 'Device labs, TestFlight / internal testing & crash analytics', color: '#10B981' },
-  { step: '05', title: 'Store launch', desc: 'Submission, ASO assets, releases, monitoring & updates', color: '#F59E0B' },
+  { step: '01', title: 'Discovery', desc: 'Product goals, platforms, store policies & third-party APIs', color: 'hsl(var(--cat-a))' },
+  { step: '02', title: 'UX & UI', desc: 'Flows, high-fidelity screens & platform design guidelines', color: 'hsl(var(--cat-b))' },
+  { step: '03', title: 'Development', desc: 'Sprint-based builds: features, offline, auth & backend sync', color: 'hsl(var(--cat-c))' },
+  { step: '04', title: 'QA & beta', desc: 'Device labs, TestFlight / internal testing & crash analytics', color: 'hsl(var(--cat-d))' },
+  { step: '05', title: 'Store launch', desc: 'Submission, ASO assets, releases, monitoring & updates', color: 'hsl(var(--cat-b))' },
 ];
 
 const MobileAppDevelopment = () => {
@@ -237,7 +237,7 @@ const MobileAppDevelopment = () => {
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">
                             <Button
                                 size="lg"
-                                className="bg-gradient-primary hover:shadow-neon transition-all duration-300 hover:scale-105"
+                                className="btn-gradient transition-all duration-300 hover:scale-105"
                                 onClick={() => navigate('/', { state: { scrollTo: '#contact' } })}
                             >
                                 Start Your Project

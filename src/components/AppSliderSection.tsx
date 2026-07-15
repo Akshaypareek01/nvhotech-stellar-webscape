@@ -51,11 +51,11 @@ export const AppSliderSection = () => {
       <div className="absolute inset-0 grid-pattern opacity-40 pointer-events-none" />
       <div
         className="absolute top-0 left-1/3 w-96 h-96 rounded-full pointer-events-none"
-        style={{ background: 'radial-gradient(circle, hsl(217 91% 52% / 0.06) 0%, transparent 70%)', filter: 'blur(60px)' }}
+        style={{ background: 'radial-gradient(circle, hsl(var(--primary) / 0.08) 0%, transparent 70%)', filter: 'blur(60px)' }}
       />
       <div
         className="absolute bottom-0 right-1/3 w-96 h-96 rounded-full pointer-events-none"
-        style={{ background: 'radial-gradient(circle, hsl(267 83% 57% / 0.06) 0%, transparent 70%)', filter: 'blur(60px)' }}
+        style={{ background: 'radial-gradient(circle, hsl(var(--accent) / 0.06) 0%, transparent 70%)', filter: 'blur(60px)' }}
       />
 
       <div className="container mx-auto px-4 relative z-10">
@@ -65,7 +65,7 @@ export const AppSliderSection = () => {
           </div>
           <h2 className="text-4xl md:text-5xl font-extrabold text-foreground mb-4">
             Beautiful App Designs{' '}
-            <span className="gradient-text">We've Crafted</span>
+            <span className="gradient-text step-underline">We've Crafted</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Pixel-perfect mobile interfaces designed for exceptional user experiences.
@@ -138,7 +138,7 @@ export const AppSliderSection = () => {
                       {isCenter && (
                         <div
                           className="absolute inset-0 -z-10 rounded-[2.5rem] opacity-30 blur-2xl"
-                          style={{ background: 'linear-gradient(135deg, #3B82F6, #8B5CF6)' }}
+                          style={{ background: 'var(--gradient-primary)' }}
                           aria-hidden
                         />
                       )}
@@ -171,7 +171,7 @@ export const AppSliderSection = () => {
                 onClick={() => setCur(index)}
                 className={`rounded-full transition-all duration-300 ${
                   index === cur
-                    ? 'w-7 h-2 bg-blue-500'
+                    ? 'w-7 h-2 bg-primary'
                     : 'w-2 h-2 bg-muted-foreground/35 hover:bg-muted-foreground/55'
                 }`}
                 aria-label={`Go to slide ${index + 1}`}

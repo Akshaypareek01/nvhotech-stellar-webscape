@@ -1,11 +1,12 @@
 import { AppointmentBookingForm } from '@/components/contact/AppointmentBookingForm';
+import type { CSSProperties } from 'react';
 import { Phone, Mail, MessageCircle, Clock } from 'lucide-react';
 
 const contactInfo = [
-  { icon: Phone, label: 'Call / WhatsApp', value: '+91 82909 18154', href: 'https://wa.me/918290918154', color: '#10B981' },
-  { icon: Mail, label: 'Email Us', value: 'info@nvhotech.com', href: 'mailto:info@nvhotech.com', color: '#3B82F6' },
-  { icon: MessageCircle, label: 'WhatsApp Chat', value: 'Chat Instantly', href: 'https://wa.me/918290918154', color: '#8B5CF6' },
-  { icon: Clock, label: 'Response Time', value: 'Within 24 Hours', href: null, color: '#F59E0B' },
+  { icon: Phone, label: 'Call / WhatsApp', value: '+91 82909 18154', href: 'https://wa.me/918290918154', color: '#21A05F' },
+  { icon: Mail, label: 'Email Us', value: 'info@nvhotech.com', href: 'mailto:info@nvhotech.com', color: 'hsl(var(--cat-a))' },
+  { icon: MessageCircle, label: 'WhatsApp Chat', value: 'Chat Instantly', href: 'https://wa.me/918290918154', color: '#21A05F' },
+  { icon: Clock, label: 'Response Time', value: 'Within 24 Hours', href: null, color: 'hsl(var(--cat-b))' },
 ];
 
 export const ContactSection = () => {
@@ -15,7 +16,7 @@ export const ContactSection = () => {
       <div className="absolute inset-0 grid-pattern opacity-40 pointer-events-none" />
       <div
         className="absolute top-0 right-0 w-96 h-96 pointer-events-none"
-        style={{ background: 'radial-gradient(circle, hsl(217 91% 58% / 0.18) 0%, transparent 70%)', filter: 'blur(60px)' }}
+        style={{ background: 'radial-gradient(circle, hsl(var(--primary) / 0.14) 0%, transparent 70%)', filter: 'blur(60px)' }}
       />
 
       <div className="container mx-auto px-4 sm:px-6 relative z-10">
@@ -26,7 +27,7 @@ export const ContactSection = () => {
           </div>
           <h2 className="text-4xl md:text-5xl font-extrabold text-foreground mb-5">
             Let's Start a{' '}
-            <span className="gradient-text">Conversation</span>
+            <span className="gradient-text step-underline">Conversation</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
             Ready to bring your vision to life? Book a free consultation and let's
@@ -47,8 +48,8 @@ export const ContactSection = () => {
                     className="bg-card rounded-xl border border-border shadow-sm p-4 text-center hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 block"
                   >
                     <div
-                      className="w-9 h-9 rounded-lg flex items-center justify-center mx-auto mb-2"
-                      style={{ background: info.color + '18' }}
+                      className="icon-chip w-9 h-9 flex items-center justify-center mx-auto mb-2"
+                      style={{ '--chip-tint': info.color } as CSSProperties}
                     >
                       <info.icon className="w-4 h-4" style={{ color: info.color }} />
                     </div>
@@ -58,8 +59,8 @@ export const ContactSection = () => {
                 ) : (
                   <div className="bg-card rounded-xl border border-border shadow-sm p-4 text-center">
                     <div
-                      className="w-9 h-9 rounded-lg flex items-center justify-center mx-auto mb-2"
-                      style={{ background: info.color + '18' }}
+                      className="icon-chip w-9 h-9 flex items-center justify-center mx-auto mb-2"
+                      style={{ '--chip-tint': info.color } as CSSProperties}
                     >
                       <info.icon className="w-4 h-4" style={{ color: info.color }} />
                     </div>

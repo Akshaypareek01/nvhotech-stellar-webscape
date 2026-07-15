@@ -63,11 +63,11 @@ const marketingPageSchemas = [
 ];
 
 const DIGITAL_MARKETING_PROCESS: ServiceProcessStep[] = [
-  { step: '01', title: 'Audit & goals', desc: 'Channel audit, audience research, competitors & KPI baseline', color: '#3B82F6' },
-  { step: '02', title: 'Strategy', desc: 'Channel mix, budgets, messaging pillars & conversion paths', color: '#8B5CF6' },
-  { step: '03', title: 'Execution', desc: 'Campaign builds, creatives, landing pages & tracking setup', color: '#06B6D4' },
-  { step: '04', title: 'Optimize', desc: 'A/B tests, bid/budget tuning, SEO iterations & creative refresh', color: '#10B981' },
-  { step: '05', title: 'Report & scale', desc: 'Dashboards, learnings, forecasting & roadmap for growth', color: '#F59E0B' },
+  { step: '01', title: 'Audit & goals', desc: 'Channel audit, audience research, competitors & KPI baseline', color: 'hsl(var(--cat-a))' },
+  { step: '02', title: 'Strategy', desc: 'Channel mix, budgets, messaging pillars & conversion paths', color: 'hsl(var(--cat-b))' },
+  { step: '03', title: 'Execution', desc: 'Campaign builds, creatives, landing pages & tracking setup', color: 'hsl(var(--cat-c))' },
+  { step: '04', title: 'Optimize', desc: 'A/B tests, bid/budget tuning, SEO iterations & creative refresh', color: 'hsl(var(--cat-d))' },
+  { step: '05', title: 'Report & scale', desc: 'Dashboards, learnings, forecasting & roadmap for growth', color: 'hsl(var(--cat-b))' },
 ];
 
 const DigitalMarketing = () => {
@@ -217,7 +217,7 @@ const DigitalMarketing = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
                 size="lg"
-                className="bg-gradient-primary hover:shadow-neon transition-all duration-300 hover:scale-105"
+                className="btn-gradient transition-all duration-300 hover:scale-105"
                 onClick={() => navigate('/', { state: { scrollTo: '#contact' } })}
               >
                 Get Started

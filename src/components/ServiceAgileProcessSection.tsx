@@ -1,4 +1,5 @@
 import { cn } from '@/lib/utils';
+import type { CSSProperties } from 'react';
 
 /** Single phase in the agile-style delivery timeline. */
 export type ServiceProcessStep = {
@@ -10,11 +11,11 @@ export type ServiceProcessStep = {
 
 /** Default five-phase process aligned with the software development page. */
 export const DEFAULT_AGILE_PROCESS_STEPS: ServiceProcessStep[] = [
-  { step: '01', title: 'Discovery', desc: 'Requirements gathering & analysis', color: '#3B82F6' },
-  { step: '02', title: 'Planning', desc: 'Architecture design & roadmap', color: '#8B5CF6' },
-  { step: '03', title: 'Development', desc: 'Iterative sprint-based coding', color: '#06B6D4' },
-  { step: '04', title: 'Testing', desc: 'QA, security & performance tests', color: '#10B981' },
-  { step: '05', title: 'Deployment', desc: 'Launch, monitoring & support', color: '#F59E0B' },
+  { step: '01', title: 'Discovery', desc: 'Requirements gathering & analysis', color: 'hsl(var(--cat-a))' },
+  { step: '02', title: 'Planning', desc: 'Architecture design & roadmap', color: 'hsl(var(--cat-b))' },
+  { step: '03', title: 'Development', desc: 'Iterative sprint-based coding', color: 'hsl(var(--cat-c))' },
+  { step: '04', title: 'Testing', desc: 'QA, security & performance tests', color: 'hsl(var(--cat-d))' },
+  { step: '05', title: 'Deployment', desc: 'Launch, monitoring & support', color: 'hsl(var(--cat-b))' },
 ];
 
 const processGridCols: Record<number, string> = {
@@ -70,7 +71,7 @@ export function ServiceAgileProcessSection({
             className="text-3xl md:text-4xl font-extrabold text-foreground mb-4"
           >
             {titleLead}{' '}
-            <span className="gradient-text">{titleAccent}</span>
+            <span className="gradient-text step-underline">{titleAccent}</span>
           </h2>
           <p className="text-muted-foreground max-w-xl mx-auto text-base">
             {description}
@@ -92,8 +93,11 @@ export function ServiceAgileProcessSection({
             {steps.map((phase) => (
               <div key={phase.step} className="text-center group">
                 <div
-                  className="w-16 h-16 rounded-2xl mx-auto mb-4 flex flex-col items-center justify-center shadow-sm border border-border bg-card group-hover:scale-110 transition-transform duration-200"
-                  style={{ boxShadow: `0 4px 16px ${phase.color}22` }}
+                  className="icon-chip w-16 h-16 mx-auto mb-4 flex flex-col items-center justify-center shadow-sm border border-border group-hover:scale-110 transition-transform duration-200"
+                  style={{
+                    '--chip-tint': phase.color,
+                    boxShadow: `0 4px 16px color-mix(in srgb, ${phase.color} 13%, transparent)`,
+                  } as CSSProperties}
                 >
                   <span className="text-lg font-extrabold" style={{ color: phase.color }}>
                     {phase.step}

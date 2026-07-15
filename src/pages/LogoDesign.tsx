@@ -63,11 +63,11 @@ const logoPageSchemas = [
 ];
 
 const LOGO_DESIGN_PROCESS: ServiceProcessStep[] = [
-  { step: '01', title: 'Brief', desc: 'Vision, values, audiences, references & where the mark will live', color: '#3B82F6' },
-  { step: '02', title: 'Research', desc: 'Category landscape, differentiation & creative territories', color: '#8B5CF6' },
-  { step: '03', title: 'Concepts', desc: 'Distinct directions with rationale — digital mockups for review', color: '#06B6D4' },
-  { step: '04', title: 'Refinement', desc: 'Lock geometry, color system, typography pairings & variants', color: '#10B981' },
-  { step: '05', title: 'Delivery', desc: 'Vector/source files, usage rules, social & favicon-ready exports', color: '#F59E0B' },
+  { step: '01', title: 'Brief', desc: 'Vision, values, audiences, references & where the mark will live', color: 'hsl(var(--cat-a))' },
+  { step: '02', title: 'Research', desc: 'Category landscape, differentiation & creative territories', color: 'hsl(var(--cat-b))' },
+  { step: '03', title: 'Concepts', desc: 'Distinct directions with rationale — digital mockups for review', color: 'hsl(var(--cat-c))' },
+  { step: '04', title: 'Refinement', desc: 'Lock geometry, color system, typography pairings & variants', color: 'hsl(var(--cat-d))' },
+  { step: '05', title: 'Delivery', desc: 'Vector/source files, usage rules, social & favicon-ready exports', color: 'hsl(var(--cat-b))' },
 ];
 
 const LogoDesign = () => {
@@ -216,7 +216,7 @@ const LogoDesign = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
                 size="lg"
-                className="bg-gradient-primary hover:shadow-neon transition-all duration-300 hover:scale-105"
+                className="btn-gradient transition-all duration-300 hover:scale-105"
                 onClick={() => navigate('/', { state: { scrollTo: '#contact' } })}
               >
                 Get Started

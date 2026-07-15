@@ -1,4 +1,5 @@
 import { ArrowRight, Globe, Smartphone, Cloud, Brain, ExternalLink, ArrowLeft, Code, Palette, Database } from 'lucide-react';
+import type { CSSProperties } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { ThemeToggle } from '@/components/ThemeToggle';
@@ -281,7 +282,7 @@ const Services = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
             {services.map((service) => (
               <div key={service.title} className="bg-card rounded-2xl border border-border shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 p-7 group">
-                <service.icon className="w-10 h-10 text-blue-500 mb-5" />
+                <service.icon className="w-10 h-10 text-primary mb-5" />
                 <h3 className="text-lg font-bold text-foreground mb-3 group-hover:text-primary transition-colors">
                   {service.title}
                 </h3>
@@ -291,7 +292,7 @@ const Services = () => {
                 <ul className="space-y-2">
                   {service.features.map((feature) => (
                     <li key={feature} className="flex items-center gap-2 text-xs text-muted-foreground">
-                      <ArrowRight className="w-3 h-3 text-blue-500 flex-shrink-0" />
+                      <ArrowRight className="w-3 h-3 text-primary flex-shrink-0" />
                       {feature}
                     </li>
                   ))}
@@ -320,8 +321,8 @@ const Services = () => {
           {/* Websites */}
           <div className="mb-14">
             <div className="flex items-center gap-3 mb-8">
-              <div className="w-9 h-9 rounded-xl bg-primary/15 flex items-center justify-center">
-                <Globe className="w-5 h-5 text-blue-500" />
+              <div className="icon-chip w-9 h-9 flex items-center justify-center">
+                <Globe className="w-5 h-5 text-primary" />
               </div>
               <h3 className="text-xl font-bold text-foreground">Websites</h3>
               <div className="h-px flex-1 bg-border ml-2" />
@@ -336,8 +337,8 @@ const Services = () => {
           {/* Mobile Applications */}
           <div className="mb-14">
             <div className="flex items-center gap-3 mb-8">
-              <div className="w-9 h-9 rounded-xl bg-accent/15 flex items-center justify-center">
-                <Smartphone className="w-5 h-5 text-purple-500" />
+              <div className="icon-chip w-9 h-9 flex items-center justify-center" style={{ '--chip-tint': 'hsl(var(--accent))' } as CSSProperties}>
+                <Smartphone className="w-5 h-5 text-accent-strong" />
               </div>
               <h3 className="text-xl font-bold text-foreground">Mobile Applications</h3>
               <div className="h-px flex-1 bg-border ml-2" />
@@ -352,8 +353,8 @@ const Services = () => {
           {/* Dashboards */}
           <div className="mb-14">
             <div className="flex items-center gap-3 mb-8">
-              <div className="w-9 h-9 rounded-xl bg-neon-cyan/15 flex items-center justify-center">
-                <Brain className="w-5 h-5 text-cyan-500" />
+              <div className="icon-chip w-9 h-9 flex items-center justify-center" style={{ '--chip-tint': 'hsl(var(--neon-cyan))' } as CSSProperties}>
+                <Brain className="w-5 h-5 text-neon-cyan" />
               </div>
               <h3 className="text-xl font-bold text-foreground">CMS & Dashboards</h3>
               <div className="h-px flex-1 bg-border ml-2" />
@@ -368,14 +369,14 @@ const Services = () => {
           {/* CTA */}
           <div
             className="rounded-3xl p-12 text-center text-white relative overflow-hidden"
-            style={{ background: 'linear-gradient(135deg, hsl(217 91% 52%) 0%, hsl(267 83% 57%) 100%)' }}
+            style={{ background: 'var(--gradient-cta)' }}
           >
             <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(circle, white 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
             <div className="relative">
               <h3 className="text-2xl md:text-3xl font-extrabold mb-4">
                 Ready to Start Your Next Project?
               </h3>
-              <p className="text-blue-100 text-base md:text-lg mb-8 max-w-2xl mx-auto">
+              <p className="text-white/85 text-base md:text-lg mb-8 max-w-2xl mx-auto">
                 Let's collaborate and bring your vision to life with our proven expertise.
               </p>
               <Button

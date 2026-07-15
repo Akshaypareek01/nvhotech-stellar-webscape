@@ -1,4 +1,5 @@
 import { ExternalLink, Globe, Smartphone, LayoutDashboard, Wrench, ArrowRight } from 'lucide-react';
+import type { CSSProperties } from 'react';
 import { Button } from '@/components/ui/button';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import Autoplay from 'embla-carousel-autoplay';
@@ -35,10 +36,10 @@ const projects = {
 };
 
 const categories = [
-  { key: 'websites', label: 'Websites', icon: Globe, color: '#3B82F6' },
-  { key: 'applications', label: 'Mobile Apps', icon: Smartphone, color: '#8B5CF6' },
-  { key: 'cms', label: 'CMS & Dashboards', icon: LayoutDashboard, color: '#06B6D4' },
-  { key: 'tools', label: 'Tools', icon: Wrench, color: '#10B981' },
+  { key: 'websites', label: 'Websites', icon: Globe, color: 'hsl(var(--cat-a))' },
+  { key: 'applications', label: 'Mobile Apps', icon: Smartphone, color: 'hsl(var(--cat-b))' },
+  { key: 'cms', label: 'CMS & Dashboards', icon: LayoutDashboard, color: 'hsl(var(--cat-c))' },
+  { key: 'tools', label: 'Tools', icon: Wrench, color: 'hsl(var(--cat-d))' },
 ] as const;
 
 const ProjectCard = ({ project, accentColor }: { project: any; accentColor: string }) => (
@@ -98,7 +99,7 @@ const ProjectCarousel = ({
     <div className="mb-16">
       {/* Section sub-header */}
       <div className="flex items-center gap-3 mb-8">
-        <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: color + '18' }}>
+        <div className="icon-chip w-10 h-10 flex items-center justify-center" style={{ '--chip-tint': color } as CSSProperties}>
           <Icon className="w-5 h-5" style={{ color }} />
         </div>
         <h3 className="text-xl font-bold text-foreground">{title}</h3>
@@ -149,7 +150,7 @@ export const ProjectsSection = () => {
           </div>
           <h2 className="text-4xl md:text-5xl font-extrabold text-foreground mb-5">
             Work We're{' '}
-            <span className="gradient-text">Proud Of</span>
+            <span className="gradient-text step-underline">Proud Of</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             Real products. Real clients. Real impact. Explore the projects we've built across
@@ -171,7 +172,7 @@ export const ProjectsSection = () => {
         {/* CTA */}
         <div
           className="rounded-3xl p-10 md:p-14 text-center text-white relative overflow-hidden"
-          style={{ background: 'linear-gradient(135deg, hsl(217 91% 52%) 0%, hsl(267 83% 57%) 100%)' }}
+          style={{ background: 'var(--gradient-cta)' }}
         >
           <div
             className="absolute inset-0 opacity-10"
@@ -184,12 +185,12 @@ export const ProjectsSection = () => {
             <h3 className="text-2xl md:text-3xl font-extrabold mb-4">
               Ready to Build Your Next Project?
             </h3>
-            <p className="text-blue-100 text-base md:text-lg mb-8 max-w-2xl mx-auto">
+            <p className="text-white/85 text-base md:text-lg mb-8 max-w-2xl mx-auto">
               Let's turn your idea into a polished, high-performing product that users love.
             </p>
             <Button
               size="lg"
-              className="bg-foreground text-background hover:bg-foreground/90 font-bold px-10 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200"
+              className="btn-gradient font-bold px-10 rounded-xl transition-all duration-200"
               onClick={() => scrollToSection('#contact')}
             >
               Start Your Project

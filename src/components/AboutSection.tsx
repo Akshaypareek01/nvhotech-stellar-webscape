@@ -1,33 +1,34 @@
 import { ShieldCheck, Rocket, Clock, HeartHandshake, Target, Star } from 'lucide-react';
+import type { CSSProperties } from 'react';
 
 const pillars = [
   {
     icon: ShieldCheck,
     title: 'Quality Assurance',
     description: 'Every project goes through rigorous testing and quality checks before delivery — no shortcuts.',
-    color: '#3B82F6',
-    bg: 'rgba(59, 130, 246, 0.14)',
+    color: 'hsl(var(--cat-a))',
+    bg: 'hsl(var(--cat-a) / 0.12)',
   },
   {
     icon: Rocket,
     title: 'Affordable Pricing',
     description: 'Competitive, transparent pricing designed for startups and growing businesses worldwide.',
-    color: '#8B5CF6',
-    bg: 'rgba(139, 92, 246, 0.14)',
+    color: 'hsl(var(--cat-b))',
+    bg: 'hsl(var(--cat-b) / 0.12)',
   },
   {
     icon: Clock,
     title: 'On-Time Delivery',
     description: 'We respect your deadlines. Our structured process ensures timely delivery, every time.',
-    color: '#06B6D4',
-    bg: 'rgba(6, 182, 212, 0.14)',
+    color: 'hsl(var(--cat-c))',
+    bg: 'hsl(var(--cat-c) / 0.12)',
   },
   {
     icon: HeartHandshake,
     title: 'Dedicated Support',
     description: 'From kickoff to launch and beyond — our team is always available to support your growth.',
-    color: '#10B981',
-    bg: 'rgba(16, 185, 129, 0.14)',
+    color: 'hsl(var(--cat-d))',
+    bg: 'hsl(var(--cat-d) / 0.12)',
   },
 ];
 
@@ -36,15 +37,15 @@ const extras = [
     icon: Target,
     title: 'Custom-Built Solutions',
     description: 'No templates. No one-size-fits-all. Every product we build is architected around your specific goals and users.',
-    color: '#F59E0B',
-    bg: 'rgba(245, 158, 11, 0.14)',
+    color: 'hsl(var(--cat-b))',
+    bg: 'hsl(var(--cat-b) / 0.12)',
   },
   {
     icon: Star,
     title: 'Client-First Mindset',
     description: 'We treat your project like our own. Transparent communication, honest timelines, and a relentless focus on results.',
-    color: '#EF4444',
-    bg: 'rgba(239, 68, 68, 0.14)',
+    color: 'hsl(var(--cat-a))',
+    bg: 'hsl(var(--cat-a) / 0.12)',
   },
 ];
 
@@ -69,7 +70,7 @@ export const AboutSection = () => {
           </div>
           <h2 className="text-4xl md:text-5xl font-extrabold text-foreground mb-5">
             Built on Trust.{' '}
-            <span className="gradient-text">Driven by Results.</span>
+            <span className="gradient-text step-underline">Driven by Results.</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             We're not just a development agency — we're a technology partner committed to building
@@ -85,8 +86,8 @@ export const AboutSection = () => {
               className="bg-card rounded-2xl p-7 border border-border shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group"
             >
               <div
-                className="w-12 h-12 rounded-xl flex items-center justify-center mb-5"
-                style={{ background: item.bg }}
+                className="icon-chip w-12 h-12 flex items-center justify-center mb-5"
+                style={{ '--chip-tint': item.color } as CSSProperties}
               >
                 <item.icon className="w-6 h-6" style={{ color: item.color }} />
               </div>
@@ -106,8 +107,8 @@ export const AboutSection = () => {
               className="bg-card rounded-2xl p-8 border border-border shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex gap-5 group"
             >
               <div
-                className="w-13 h-12 rounded-xl flex items-center justify-center flex-shrink-0"
-                style={{ background: item.bg }}
+                className="icon-chip w-13 h-12 flex items-center justify-center flex-shrink-0"
+                style={{ '--chip-tint': item.color } as CSSProperties}
               >
                 <item.icon className="w-6 h-6" style={{ color: item.color }} />
               </div>
@@ -124,7 +125,7 @@ export const AboutSection = () => {
         {/* Stats banner */}
         <div
           className="rounded-3xl p-10 text-white relative overflow-hidden"
-          style={{ background: 'linear-gradient(135deg, hsl(217 91% 52%) 0%, hsl(267 83% 57%) 100%)' }}
+          style={{ background: 'var(--gradient-cta)' }}
         >
           {/* Pattern overlay */}
           <div
@@ -137,8 +138,8 @@ export const AboutSection = () => {
           <div className="relative grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {stats.map((stat) => (
               <div key={stat.label}>
-                <div className="text-3xl md:text-4xl font-extrabold mb-1">{stat.value}</div>
-                <div className="text-sm text-blue-100 font-medium">{stat.label}</div>
+                <div className="font-display text-3xl md:text-4xl font-extrabold mb-1">{stat.value}</div>
+                <div className="text-sm text-white/85 font-medium">{stat.label}</div>
               </div>
             ))}
           </div>

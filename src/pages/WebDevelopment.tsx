@@ -73,11 +73,11 @@ const webPageSchemas = [
 ];
 
 const WEB_DELIVERY_PROCESS: ServiceProcessStep[] = [
-  { step: '01', title: 'Discovery', desc: 'Goals, audiences, sitemap & technical constraints', color: '#3B82F6' },
-  { step: '02', title: 'UX & UI', desc: 'Wireframes, design system, responsive layouts & content structure', color: '#8B5CF6' },
-  { step: '03', title: 'Build', desc: 'Front-end, APIs, CMS/e-commerce & integrations in iterative sprints', color: '#06B6D4' },
-  { step: '04', title: 'QA & SEO', desc: 'Cross-browser checks, performance, accessibility & on-page SEO', color: '#10B981' },
-  { step: '05', title: 'Launch', desc: 'Hosting, SSL, analytics, handover & ongoing improvements', color: '#F59E0B' },
+  { step: '01', title: 'Discovery', desc: 'Goals, audiences, sitemap & technical constraints', color: 'hsl(var(--cat-a))' },
+  { step: '02', title: 'UX & UI', desc: 'Wireframes, design system, responsive layouts & content structure', color: 'hsl(var(--cat-b))' },
+  { step: '03', title: 'Build', desc: 'Front-end, APIs, CMS/e-commerce & integrations in iterative sprints', color: 'hsl(var(--cat-c))' },
+  { step: '04', title: 'QA & SEO', desc: 'Cross-browser checks, performance, accessibility & on-page SEO', color: 'hsl(var(--cat-d))' },
+  { step: '05', title: 'Launch', desc: 'Hosting, SSL, analytics, handover & ongoing improvements', color: 'hsl(var(--cat-b))' },
 ];
 
 const WebDevelopment = () => {
@@ -237,7 +237,7 @@ const WebDevelopment = () => {
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">
                             <Button
                                 size="lg"
-                                className="bg-gradient-primary hover:shadow-neon transition-all duration-300 hover:scale-105"
+                                className="btn-gradient transition-all duration-300 hover:scale-105"
                                 onClick={() => navigate('/', { state: { scrollTo: '#contact' } })}
                             >
                                 Get Started

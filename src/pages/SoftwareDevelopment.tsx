@@ -1,4 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom';
+import type { CSSProperties } from 'react';
 import {
   ArrowLeft, ArrowRight, Smartphone,
   Building2, Users, LayoutGrid, Cloud, Webhook, RefreshCw,
@@ -65,43 +66,43 @@ const services = [
     icon: Building2,
     title: 'Enterprise Software',
     description: 'Robust enterprise applications that streamline operations, improve collaboration, and drive business efficiency across your entire organization.',
-    color: '#3B82F6',
-    bg: 'rgba(59,130,246,0.12)',
+    color: 'hsl(var(--cat-a))',
+    bg: 'hsl(var(--cat-a) / 0.12)',
   },
   {
     icon: Users,
     title: 'CRM Development',
     description: 'Custom CRM systems designed to manage customer relationships, track sales pipelines, and consistently enhance customer satisfaction.',
-    color: '#8B5CF6',
-    bg: 'rgba(139,92,246,0.12)',
+    color: 'hsl(var(--cat-b))',
+    bg: 'hsl(var(--cat-b) / 0.12)',
   },
   {
     icon: LayoutGrid,
     title: 'ERP Solutions',
     description: 'Comprehensive ERP systems that integrate all aspects of your business operations — finance, HR, inventory, and more — into one unified platform.',
-    color: '#06B6D4',
-    bg: 'rgba(6,182,212,0.12)',
+    color: 'hsl(var(--cat-c))',
+    bg: 'hsl(var(--cat-c) / 0.12)',
   },
   {
     icon: Cloud,
     title: 'SaaS Applications',
     description: 'Cloud-based software-as-a-service solutions with subscription models, multi-tenancy support, auto-updates, and seamless scaling.',
-    color: '#10B981',
-    bg: 'rgba(16,185,129,0.12)',
+    color: 'hsl(var(--cat-d))',
+    bg: 'hsl(var(--cat-d) / 0.12)',
   },
   {
     icon: Webhook,
     title: 'API Development',
     description: 'RESTful and GraphQL APIs that enable seamless integration between different systems, mobile apps, and third-party services.',
-    color: '#F59E0B',
-    bg: 'rgba(245,158,11,0.12)',
+    color: 'hsl(var(--cat-b))',
+    bg: 'hsl(var(--cat-b) / 0.12)',
   },
   {
     icon: RefreshCw,
     title: 'Legacy Modernization',
     description: 'Transform outdated systems into modern, efficient applications using the latest technologies, best practices, and zero business disruption.',
-    color: '#EC4899',
-    bg: 'rgba(236,72,153,0.12)',
+    color: 'hsl(var(--cat-b))',
+    bg: 'hsl(var(--cat-c) / 0.12)',
   },
 ];
 
@@ -136,12 +137,12 @@ const benefits = [
 ];
 
 const industries = [
-  { icon: Stethoscope, name: 'Healthcare', solutions: 'Patient management, telemedicine platforms, health records', color: '#EF4444' },
-  { icon: DollarSign, name: 'Finance', solutions: 'Banking software, payment gateways, financial analytics tools', color: '#10B981' },
-  { icon: ShoppingCart, name: 'Retail', solutions: 'Inventory management, POS systems, e-commerce platforms', color: '#F59E0B' },
-  { icon: BookOpen, name: 'Education', solutions: 'Learning management systems, student portals, online courses', color: '#8B5CF6' },
-  { icon: Truck, name: 'Logistics', solutions: 'Fleet management, route optimization, warehouse systems', color: '#06B6D4' },
-  { icon: Home, name: 'Real Estate', solutions: 'Property management, listing platforms, CRM for agents', color: '#3B82F6' },
+  { icon: Stethoscope, name: 'Healthcare', solutions: 'Patient management, telemedicine platforms, health records', color: 'hsl(var(--cat-a))' },
+  { icon: DollarSign, name: 'Finance', solutions: 'Banking software, payment gateways, financial analytics tools', color: 'hsl(var(--cat-d))' },
+  { icon: ShoppingCart, name: 'Retail', solutions: 'Inventory management, POS systems, e-commerce platforms', color: 'hsl(var(--cat-b))' },
+  { icon: BookOpen, name: 'Education', solutions: 'Learning management systems, student portals, online courses', color: 'hsl(var(--cat-b))' },
+  { icon: Truck, name: 'Logistics', solutions: 'Fleet management, route optimization, warehouse systems', color: 'hsl(var(--cat-c))' },
+  { icon: Home, name: 'Real Estate', solutions: 'Property management, listing platforms, CRM for agents', color: 'hsl(var(--cat-a))' },
 ];
 
 const SoftwareDevelopment = () => {
@@ -321,8 +322,8 @@ const SoftwareDevelopment = () => {
                   className="group flex gap-4 rounded-2xl border border-border bg-card p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
                 >
                   <div
-                    className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl"
-                    style={{ background: industry.color + '18' }}
+                    className="icon-chip flex h-11 w-11 shrink-0 items-center justify-center"
+                    style={{ '--chip-tint': industry.color } as CSSProperties}
                   >
                     <industry.icon className="h-5 w-5" style={{ color: industry.color }} />
                   </div>
@@ -376,7 +377,7 @@ const SoftwareDevelopment = () => {
           <div className="container mx-auto max-w-4xl">
             <div
               className="rounded-3xl p-12 text-center text-white relative overflow-hidden"
-              style={{ background: 'linear-gradient(135deg, hsl(217 91% 52%) 0%, hsl(267 83% 57%) 100%)' }}
+              style={{ background: 'var(--gradient-cta)' }}
             >
               <div
                 className="absolute inset-0 opacity-10"
@@ -386,13 +387,13 @@ const SoftwareDevelopment = () => {
                 <h2 className="text-2xl md:text-4xl font-extrabold mb-4">
                   Ready to Build Your Custom Software?
                 </h2>
-                <p className="text-blue-100 text-base md:text-lg mb-8 max-w-2xl mx-auto">
+                <p className="text-white/85 text-base md:text-lg mb-8 max-w-2xl mx-auto">
                   Let's discuss your requirements and create a solution that perfectly fits your business.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Button
                     size="lg"
-                    className="rounded-xl bg-white px-10 font-bold text-blue-600 shadow-lg hover:bg-blue-50 dark:text-blue-600 dark:hover:bg-white/90"
+                    className="rounded-xl bg-white px-10 font-bold text-[hsl(var(--cta-deep))] shadow-lg hover:bg-white/90 dark:text-[hsl(var(--cta-deep))] dark:hover:bg-white/90"
                     onClick={() => navigate('/', { state: { scrollTo: '#contact' } })}
                   >
                     Start Your Project

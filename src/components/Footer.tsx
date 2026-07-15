@@ -38,11 +38,11 @@ export const Footer = () => {
   };
 
   return (
-    <footer className="bg-slate-900 text-slate-300">
+    <footer className="bg-[hsl(var(--footer-bg))] text-[hsl(var(--footer-fg))]">
       {/* Top CTA band */}
       <div
         className="relative overflow-hidden py-14 px-6"
-        style={{ background: 'linear-gradient(135deg, hsl(217 91% 48%) 0%, hsl(267 83% 50%) 100%)' }}
+        style={{ background: 'var(--gradient-cta)' }}
       >
         <div
           className="absolute inset-0 opacity-10"
@@ -56,7 +56,7 @@ export const Footer = () => {
             <h3 className="text-2xl md:text-3xl font-extrabold text-white mb-2">
               Let's Build Something Amazing Together
             </h3>
-            <p className="text-blue-100 text-base">
+            <p className="text-white/85 text-base">
               Book a free consultation — no commitment, just ideas.
             </p>
           </div>
@@ -84,7 +84,7 @@ export const Footer = () => {
                 className="h-11 w-auto brightness-0 invert"
               />
             </div>
-            <p className="text-slate-400 text-sm leading-relaxed mb-6 max-w-sm">
+            <p className="text-[hsl(var(--footer-muted))] text-sm leading-relaxed mb-6 max-w-sm">
               NVHO Tech is an India-based IT company delivering world-class web development,
               mobile apps, AI automation, and custom software solutions to businesses globally.
             </p>
@@ -95,20 +95,20 @@ export const Footer = () => {
                 href="https://wa.me/918290918154"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-3 text-sm text-slate-400 hover:text-white transition-colors"
+                className="flex items-center gap-3 text-sm text-[hsl(var(--footer-muted))] hover:text-white transition-colors"
               >
-                <Phone className="w-4 h-4 text-blue-400 flex-shrink-0" />
+                <Phone className="w-4 h-4 text-[hsl(var(--footer-icon))] flex-shrink-0" />
                 +91 82909 18154
               </a>
               <a
                 href="mailto:info@nvhotech.com"
-                className="flex items-center gap-3 text-sm text-slate-400 hover:text-white transition-colors"
+                className="flex items-center gap-3 text-sm text-[hsl(var(--footer-muted))] hover:text-white transition-colors"
               >
-                <Mail className="w-4 h-4 text-blue-400 flex-shrink-0" />
+                <Mail className="w-4 h-4 text-[hsl(var(--footer-icon))] flex-shrink-0" />
                 info@nvhotech.com
               </a>
-              <div className="flex items-center gap-3 text-sm text-slate-400">
-                <MapPin className="w-4 h-4 text-blue-400 flex-shrink-0" />
+              <div className="flex items-center gap-3 text-sm text-[hsl(var(--footer-muted))]">
+                <MapPin className="w-4 h-4 text-[hsl(var(--footer-icon))] flex-shrink-0" />
                 India (Serving Worldwide)
               </div>
             </div>
@@ -122,7 +122,7 @@ export const Footer = () => {
                 <li key={link.label}>
                   <button
                     onClick={() => handleNav(link.href)}
-                    className="text-sm text-slate-400 hover:text-white transition-colors text-left"
+                    className="text-sm text-[hsl(var(--footer-muted))] hover:text-white transition-colors text-left"
                   >
                     {link.label}
                   </button>
@@ -139,7 +139,7 @@ export const Footer = () => {
                 <li key={link.label}>
                   <button
                     onClick={() => handleNav(link.href)}
-                    className="text-sm text-slate-400 hover:text-white transition-colors text-left"
+                    className="text-sm text-[hsl(var(--footer-muted))] hover:text-white transition-colors text-left"
                   >
                     {link.label}
                   </button>
@@ -156,7 +156,7 @@ export const Footer = () => {
                 <li key={link.label}>
                   <button
                     onClick={() => navigate(link.href)}
-                    className="text-sm text-slate-400 hover:text-white transition-colors text-left"
+                    className="text-sm text-[hsl(var(--footer-muted))] hover:text-white transition-colors text-left"
                   >
                     {link.label}
                   </button>
@@ -167,12 +167,12 @@ export const Footer = () => {
         </div>
 
         {/* Divider */}
-        <div className="h-px bg-slate-800 mb-8" />
+        <div className="h-px bg-[hsl(var(--footer-line))] mb-8" />
 
         {/* Bottom row */}
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-[hsl(var(--footer-faint))]">
           <p>© 2025 NVHO Tech. All rights reserved. Crafted with care in India.</p>
-          <p className="text-slate-600">
+          <p className="text-[hsl(var(--footer-fainter))]">
             Web Development · Mobile Apps · AI Automation · CRM Systems
           </p>
         </div>

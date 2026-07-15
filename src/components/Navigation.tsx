@@ -1,8 +1,8 @@
 import { useState, useEffect, useCallback } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { OptimizedImage } from '@/components/OptimizedImage';
 import { ThemeToggle } from '@/components/ThemeToggle';
+import { PalettePicker } from '@/components/PalettePicker';
 import { MutableRefObject } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
@@ -67,17 +67,31 @@ export const Navigation = ({ locoRef: _locoRef }: { locoRef?: MutableRefObject<a
           {/* Logo */}
           <button
             onClick={() => scrollToSection('#home')}
-            className="flex items-center hover:opacity-80 transition-opacity md:justify-self-start"
+            className="flex items-center gap-2.5 hover:opacity-80 transition-opacity md:justify-self-start"
             aria-label="Go to home"
           >
-            <OptimizedImage
-              src="/images/logoNT.webp"
-              alt="NVHO Tech Logo"
-              width={107}
-              height={48}
-              priority={true}
-              className="h-9 sm:h-10 md:h-11 w-auto object-contain"
-            />
+            <span
+              aria-hidden
+              className="relative inline-flex h-[4.5rem] w-[4.5rem] shrink-0 items-center justify-center overflow-hidden rounded-[20px] bg-black"
+            >
+              <img
+                src="/images/logoNT.png"
+                alt=""
+                width={1024}
+                height={1024}
+                loading="eager"
+                decoding="async"
+                className="absolute left-1/2 top-1/2 h-[22rem] w-[22rem] -translate-x-1/2 -translate-y-1/2 object-contain"
+              />
+            </span>
+            {/* Wordmark inherits --foreground/--primary so it recolors with the
+                active palette in both light and dark mode */}
+            <span
+              aria-hidden
+              className="whitespace-nowrap font-display text-lg font-bold tracking-tight text-foreground sm:text-xl md:text-2xl"
+            >
+              NVHO <span className="text-primary">Tech</span>
+            </span>
           </button>
 
           {/* Desktop nav */}
@@ -95,6 +109,7 @@ export const Navigation = ({ locoRef: _locoRef }: { locoRef?: MutableRefObject<a
 
           <div className="relative z-[60] flex shrink-0 items-center gap-2 md:justify-self-end">
             <ThemeToggle />
+            <PalettePicker />
             <a
               href={WHATSAPP_URL}
               target="_blank"

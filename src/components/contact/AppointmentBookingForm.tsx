@@ -375,7 +375,7 @@ export function AppointmentBookingForm({ hideFormTitle = false, compact = false 
               type="submit"
               disabled={isSubmitting || !formData.name || !formData.email || !formData.phone || !formData.date || !formData.timeSlot}
               className={cn(
-                'min-h-[48px] w-full touch-manipulation bg-gradient-primary transition-all duration-300 hover:shadow-neon active:scale-[0.99] sm:hover:scale-[1.02]',
+                'min-h-[48px] w-full touch-manipulation btn-gradient transition-all duration-300 active:scale-[0.99] sm:hover:scale-[1.02]',
                 compact ? 'h-11 text-sm' : 'h-14 text-base sm:text-lg'
               )}
             >

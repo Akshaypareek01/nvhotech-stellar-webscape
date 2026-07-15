@@ -42,7 +42,8 @@ export default {
 				},
 				accent: {
 					DEFAULT: 'hsl(var(--accent))',
-					foreground: 'hsl(var(--accent-foreground))'
+					foreground: 'hsl(var(--accent-foreground))',
+					strong: 'hsl(var(--accent-strong))'
 				},
 				popover: {
 					DEFAULT: 'hsl(var(--popover))',
@@ -62,12 +63,12 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				// NVHO TECH Custom Colors
-				'neon-blue': 'hsl(var(--neon-blue))',
-				'neon-cyan': 'hsl(var(--neon-cyan))',
-				'neon-purple': 'hsl(var(--neon-purple))',
-				'space-blue': 'hsl(var(--space-blue))',
-				'deep-space': 'hsl(var(--deep-space))'
+				// Legacy NVHO aliases — re-pointed at the Palm & Marigold system in index.css
+				'neon-blue': 'hsl(var(--neon-blue))',      /* → Palm / Jade */
+				'neon-cyan': 'hsl(var(--neon-cyan))',      /* → Palm-mid */
+				'neon-purple': 'hsl(var(--neon-purple))',  /* → Ochre / Marigold */
+				'space-blue': 'hsl(var(--space-blue))',    /* → Palm tint */
+				'deep-space': 'hsl(var(--deep-space))'     /* → Ink */
 			},
 			backgroundImage: {
 				'gradient-primary': 'var(--gradient-primary)',
@@ -80,10 +81,10 @@ export default {
 				'glass': 'var(--shadow-glass)'
 			},
 			fontFamily: {
-				'sans': ['Space Grotesk', 'Inter', 'system-ui', 'sans-serif'],
-				'tech': ['Space Grotesk', 'Inter', 'system-ui', 'sans-serif'],
-				'mono': ['JetBrains Mono', 'Fira Code', 'monospace'],
-				'display': ['Space Grotesk', 'Inter', 'system-ui', 'sans-serif']
+				'sans': ['Hanken Grotesk', 'system-ui', 'sans-serif'],
+				'tech': ['Hanken Grotesk', 'system-ui', 'sans-serif'],
+				'mono': ['ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace'],
+				'display': ['Bricolage Grotesque', 'Hanken Grotesk', 'system-ui', 'sans-serif']
 			},
 			borderRadius: {
 				lg: 'var(--radius)',

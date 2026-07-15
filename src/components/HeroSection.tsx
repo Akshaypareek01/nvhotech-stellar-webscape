@@ -22,10 +22,10 @@ const stats = [
 ];
 
 const techBadges = [
-  { icon: Code2, label: 'React & Next.js', color: '#3B82F6' },
-  { icon: Smartphone, label: 'iOS & Android', color: '#8B5CF6' },
-  { icon: Brain, label: 'AI / ML', color: '#06B6D4' },
-  { icon: Globe, label: 'Cloud Ready', color: '#10B981' },
+  { icon: Code2, label: 'React & Next.js', color: 'hsl(var(--cat-a))' },
+  { icon: Smartphone, label: 'iOS & Android', color: 'hsl(var(--cat-b))' },
+  { icon: Brain, label: 'AI / ML', color: 'hsl(var(--cat-c))' },
+  { icon: Globe, label: 'Cloud Ready', color: 'hsl(var(--cat-d))' },
 ];
 
 const ROTATE_MS = 3500;
@@ -66,32 +66,24 @@ export const HeroSection = () => {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background pt-20">
-      {/* Animated mesh gradient background */}
+      {/* Stepwell geometry background */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {/* Grid pattern */}
+        {/* Stepwell pattern (signature motif) */}
         <div className="absolute inset-0 grid-pattern opacity-60" />
 
-        {/* Aurora blobs */}
+        {/* Soft depth washes — Palm and Marigold, static */}
         <div
-          className="absolute -top-40 -left-40 w-[700px] h-[700px] rounded-full animate-aurora"
+          className="absolute -top-40 -left-40 w-[700px] h-[700px] rounded-full"
           style={{
-            background: 'radial-gradient(circle, hsl(217 91% 58% / 0.28) 0%, transparent 70%)',
+            background: 'radial-gradient(circle, hsl(var(--primary) / 0.12) 0%, transparent 70%)',
             filter: 'blur(60px)',
           }}
         />
         <div
-          className="absolute -bottom-40 -right-40 w-[600px] h-[600px] rounded-full animate-aurora-slow"
+          className="absolute -bottom-40 -right-40 w-[600px] h-[600px] rounded-full"
           style={{
-            background: 'radial-gradient(circle, hsl(267 83% 58% / 0.24) 0%, transparent 70%)',
+            background: 'radial-gradient(circle, hsl(var(--accent) / 0.10) 0%, transparent 70%)',
             filter: 'blur(60px)',
-          }}
-        />
-        <div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full animate-aurora"
-          style={{
-            background: 'radial-gradient(circle, hsl(199 89% 55% / 0.18) 0%, transparent 70%)',
-            filter: 'blur(80px)',
-            animationDelay: '6s',
           }}
         />
 
@@ -140,7 +132,7 @@ export const HeroSection = () => {
 
             {/* Animated service line */}
             <div className="flex items-center justify-center gap-3 mb-6 animate-fade-in delay-200">
-              <div className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
+              <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
               <p className="text-lg md:text-xl font-semibold text-muted-foreground">
                 Specialising in{' '}
                 <span
@@ -151,7 +143,7 @@ export const HeroSection = () => {
                   {services[currentService]}
                 </span>
               </p>
-              <div className="w-2 h-2 rounded-full bg-purple-500 animate-pulse" />
+              <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
             </div>
 
             {/* Subtitle */}
@@ -194,13 +186,13 @@ export const HeroSection = () => {
             </div>
 
             {/* Stats strip */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-border rounded-2xl overflow-hidden border border-border shadow-sm animate-fade-in delay-600">
+            <div className="stepwell-mark grid grid-cols-2 md:grid-cols-4 gap-px bg-border rounded-2xl overflow-hidden border border-border shadow-sm animate-fade-in delay-600">
               {stats.map((stat) => (
                 <div
                   key={stat.label}
                   className="bg-card px-6 py-5 text-center hover:bg-primary/10 transition-colors duration-200"
                 >
-                  <div className="text-2xl md:text-3xl font-extrabold gradient-text mb-1">
+                  <div className="font-display text-2xl md:text-3xl font-extrabold gradient-text mb-1">
                     {stat.value}
                   </div>
                   <div className="text-xs md:text-sm text-muted-foreground font-medium">{stat.label}</div>
