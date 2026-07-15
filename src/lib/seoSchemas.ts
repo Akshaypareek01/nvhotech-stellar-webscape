@@ -32,11 +32,7 @@ export const ORGANIZATION_SCHEMA = {
         url: `${SITE_URL}/#contact`,
         availableLanguage: ['English', 'Hindi'],
     },
-    sameAs: [
-        'https://www.linkedin.com/company/nvhotech',
-        'https://twitter.com/nvhotech',
-        'https://www.facebook.com/nvhotech',
-    ],
+    foundingDate: '2024',
     areaServed: 'Worldwide',
     knowsAbout: [
         'Web Development',

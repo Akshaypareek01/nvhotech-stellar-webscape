@@ -28,7 +28,7 @@ const HOME_FAQS: FAQItem[] = [
   {
     question: 'What does NVHO Tech do?',
     answer:
-      'NVHO Tech is a software development company based in India that serves clients worldwide. We design and build custom web applications, iOS and Android mobile apps, AI automation systems, and enterprise software, and also provide digital marketing and brand design services.',
+      'NVHO Tech is a software development company based in India that serves clients worldwide. Founded in 2024, we have delivered 120+ projects for 100+ clients. We design and build custom web applications, iOS and Android mobile apps, AI automation systems, and enterprise software, and also provide digital marketing and brand design services.',
   },
   {
     question: 'Does NVHO Tech work with international clients?',

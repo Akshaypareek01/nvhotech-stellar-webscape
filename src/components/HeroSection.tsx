@@ -15,7 +15,7 @@ const HEADLINES = [
 const services = ['Web Development', 'Mobile Apps', 'AI Automation', 'Custom Software', 'CRM Systems'];
 
 const stats = [
-  { value: '50+', label: 'Projects Delivered' },
+  { value: '120+', label: 'Projects Delivered' },
   { value: '100+', label: 'Happy Clients' },
   { value: '99%', label: 'Client Satisfaction' },
   { value: '24/7', label: 'Support' },

@@ -3,6 +3,7 @@
 > NVHO Tech (Nvhotech Private Ltd) is a software development company based in India serving clients worldwide, including the US, UK, and Europe. It designs and builds custom web applications, iOS and Android mobile apps, AI automation systems, and enterprise software, and also provides digital marketing and brand design services.
 
 Key facts:
+- Track record: founded in 2024; 120+ projects delivered for 100+ clients worldwide.
 - Services: web development (React, Next.js, Node.js), mobile app development (React Native, Flutter, Swift, Kotlin), AI automation (chatbots, AI agents, RAG systems, workflow automation with GPT and Claude), custom software development (CRM, ERP, internal tools), digital marketing (SEO, PPC, social media), and logo/brand identity design.
 - Clients: startups and small-to-mid-size businesses globally; remote collaboration with overlapping hours for US/UK time zones.
 - Engagement model: free consultation, fixed itemized quotes, agile sprint delivery, full source code and IP ownership transferred to the client.

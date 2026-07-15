@@ -49,7 +49,7 @@ const extras = [
 ];
 
 const stats = [
-  { value: '50+', label: 'Projects Delivered' },
+  { value: '120+', label: 'Projects Delivered' },
   { value: '100+', label: 'Happy Clients' },
   { value: '99%', label: 'Satisfaction Rate' },
   { value: '24/7', label: 'Support Available' },
