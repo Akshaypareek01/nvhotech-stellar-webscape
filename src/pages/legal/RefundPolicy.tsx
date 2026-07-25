@@ -102,7 +102,6 @@ const RefundPolicy = () => {
                 <p className="mb-3">For any questions or concerns regarding our Refund & Cancellation Policy, please reach out to us at:</p>
                 <div className="space-y-2">
                   <p><strong>Email:</strong> info@nvhotech.com</p>
-                  <p><strong>Phone:</strong> +91 8290918154</p>
                 </div>
               </div>
             </section>

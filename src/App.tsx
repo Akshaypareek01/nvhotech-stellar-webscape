@@ -33,7 +33,7 @@ const LoadingSpinner = () => (
 
 const App = () => (
   <HelmetProvider>
-    <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false} storageKey="nvho-theme">
+    <ThemeProvider attribute="class" defaultTheme="dark" forcedTheme="dark" enableSystem={false} storageKey="nvho-theme">
       <TooltipProvider>
           <Toaster />
           <Sonner />

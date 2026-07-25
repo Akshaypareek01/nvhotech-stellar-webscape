@@ -31,6 +31,9 @@
   }
 
   :root {
+    /* Fixed nav offset — wordmark + vertical padding */
+    --header-height: 4.5rem;
+
     /* ── Palm & Marigold — LIGHT ──────────────────────────────
        Paper #F7F8F4 | Surface #FFFFFF | Ink #17201B | Mist #55645C
        Palm #1E5C46  | Marigold #EFA727 (fills only; text variant #8F6400) */
@@ -1233,7 +1236,7 @@
 }
 
 section[id] {
-  scroll-margin-top: 80px;
+  scroll-margin-top: var(--header-height);
 }
 
 /* ── React Calendar (updated for light theme) ─────────────────────────── */
@@ -1340,13 +1343,33 @@ section[id] {
   border: 2px solid hsl(var(--accent) / 0.4);
 }
 
-.react-calendar-custom .react-calendar__tile--active {
-  background: hsl(var(--primary));
-  color: #ffffff;
+.react-calendar-custom .react-calendar__tile--active,
+.react-calendar-custom .react-calendar__tile--hasActive,
+.react-calendar-custom .react-calendar__tile--range,
+.react-calendar-custom .react-calendar__tile--rangeStart,
+.react-calendar-custom .react-calendar__tile--rangeEnd,
+.react-calendar-custom .react-calendar__tile--rangeBothEnds {
+  background: hsl(var(--primary)) !important;
+  color: hsl(var(--primary-foreground)) !important;
   font-weight: 800;
-  border: 2px solid hsl(var(--primary));
+  border: 2px solid hsl(var(--primary)) !important;
   box-shadow: var(--shadow-neon);
   transform: scale(1.04);
+}
+
+.react-calendar-custom .react-calendar__tile--now.react-calendar__tile--active {
+  background: hsl(var(--primary)) !important;
+  color: hsl(var(--primary-foreground)) !important;
+  border-color: hsl(var(--primary)) !important;
+}
+
+.react-calendar-custom .react-calendar__tile--active:enabled:hover,
+.react-calendar-custom .react-calendar__tile--active:enabled:focus,
+.react-calendar-custom .react-calendar__tile--hasActive:enabled:hover,
+.react-calendar-custom .react-calendar__tile--hasActive:enabled:focus {
+  background: hsl(var(--primary)) !important;
+  color: hsl(var(--primary-foreground)) !important;
+  border-color: hsl(var(--primary)) !important;
 }
 
 .react-calendar-custom .react-calendar__tile--disabled {

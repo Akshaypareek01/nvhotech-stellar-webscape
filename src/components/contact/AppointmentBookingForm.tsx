@@ -9,7 +9,6 @@ import { useToast } from '@/hooks/use-toast';
 import { format } from 'date-fns';
 import { cn } from '@/lib/utils';
 import Calendar from 'react-calendar';
-import 'react-calendar/dist/Calendar.css';
 import { countryCodes, timeSlots } from './appointmentConstants';
 
 export type AppointmentBookingFormProps = {

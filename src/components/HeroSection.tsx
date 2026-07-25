@@ -31,12 +31,23 @@ const techBadges = [
 const ROTATE_MS = 3500;
 const EXIT_MS = 250;
 
+/** Looping hero background video (CloudFront CDN). */
+const HERO_BG_VIDEO_URL =
+  'https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260319_055001_8e16d972-3b2b-441c-86ad-2901a54682f9.mp4';
+
 export const HeroSection = () => {
   const [currentService, setCurrentService] = useState(0);
   const [headlineIdx, setHeadlineIdx] = useState(0);
   const [phase, setPhase] = useState<'enter' | 'exit'>('enter');
+  const [videoReady, setVideoReady] = useState(false);
   const timerRef = useRef<ReturnType<typeof setTimeout>>();
+  const videoRef = useRef<HTMLVideoElement>(null);
   const navigate = useNavigate();
+
+  /** Marks the hero background video as ready once playback has started. */
+  const handleVideoReady = useCallback(() => {
+    setVideoReady(current => (current ? current : true));
+  }, []);
 
   const advanceHeadline = useCallback(() => {
     setPhase('exit');
@@ -61,35 +72,47 @@ export const HeroSection = () => {
     return () => clearInterval(interval);
   }, []);
 
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const markReadyIfPlaying = () => {
+      if (!video.paused && video.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA) {
+        setVideoReady(true);
+      }
+    };
+
+    markReadyIfPlaying();
+    video.addEventListener('playing', markReadyIfPlaying);
+
+    return () => {
+      video.removeEventListener('playing', markReadyIfPlaying);
+    };
+  }, []);
+
   const h = HEADLINES[headlineIdx];
   const animClass = phase === 'enter' ? 'hero-word-enter' : 'hero-word-exit';
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background pt-20">
-      {/* Stepwell geometry background */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {/* Stepwell pattern (signature motif) */}
-        <div className="absolute inset-0 grid-pattern opacity-60" />
-
-        {/* Soft depth washes — Palm and Marigold, static */}
-        <div
-          className="absolute -top-40 -left-40 w-[700px] h-[700px] rounded-full"
-          style={{
-            background: 'radial-gradient(circle, hsl(var(--primary) / 0.12) 0%, transparent 70%)',
-            filter: 'blur(60px)',
-          }}
+    <section className="relative flex min-h-[100dvh] items-start justify-center overflow-hidden bg-background pt-[calc(var(--header-height)+2rem)] md:pt-[calc(var(--header-height)+2.5rem)] pb-12 md:pb-16">
+      {/* Background video — no grid/line overlays; scrim only after playback starts */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none bg-background" aria-hidden="true">
+        <video
+          ref={videoRef}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          onPlaying={handleVideoReady}
+          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${
+            videoReady ? 'opacity-100' : 'opacity-0'
+          }`}
+          src={HERO_BG_VIDEO_URL}
         />
-        <div
-          className="absolute -bottom-40 -right-40 w-[600px] h-[600px] rounded-full"
-          style={{
-            background: 'radial-gradient(circle, hsl(var(--accent) / 0.10) 0%, transparent 70%)',
-            filter: 'blur(60px)',
-          }}
-        />
-
-        {/* Floating geometric lines */}
-        <div className="absolute top-0 right-0 w-px h-full bg-gradient-to-b from-transparent via-primary/35 to-transparent opacity-70" />
-        <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/35 to-transparent opacity-70" />
+        {videoReady && (
+          <div className="absolute inset-0 bg-gradient-to-b from-background/50 via-background/25 to-background/65 animate-fade-in" />
+        )}
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
@@ -130,10 +153,10 @@ export const HeroSection = () => {
               </span>
             </h1>
 
-            {/* Animated service line */}
-            <div className="flex items-center justify-center gap-3 mb-6 animate-fade-in delay-200">
-              <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-              <p className="text-lg md:text-xl font-semibold text-muted-foreground">
+            {/* Animated service line — glass card for contrast over video bg */}
+            <div className="inline-flex items-center justify-center gap-3 mb-6 animate-fade-in delay-200 glass rounded-full px-5 py-2.5 md:px-6 md:py-3 border border-border/60 shadow-sm">
+              <div className="w-2 h-2 shrink-0 rounded-full bg-primary animate-pulse" aria-hidden="true" />
+              <p className="text-lg md:text-xl font-semibold text-foreground">
                 Specialising in{' '}
                 <span
                   key={currentService}
@@ -143,14 +166,14 @@ export const HeroSection = () => {
                   {services[currentService]}
                 </span>
               </p>
-              <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
+              <div className="w-2 h-2 shrink-0 rounded-full bg-accent animate-pulse" aria-hidden="true" />
             </div>
 
             {/* Subtitle */}
-            <p className="text-base md:text-lg text-muted-foreground mb-10 max-w-2xl mx-auto leading-relaxed animate-fade-in delay-300">
+            {/* <p className="text-base md:text-lg text-muted-foreground mb-10 max-w-2xl mx-auto leading-relaxed animate-fade-in delay-300">
               We collaborate with startups and enterprises to build high-quality web apps, mobile solutions,
               CRM systems, and AI tools — on time, on budget, and beyond expectations.
-            </p>
+            </p> */}
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-14 animate-fade-in delay-400">
@@ -204,7 +227,7 @@ export const HeroSection = () => {
       </div>
 
       {/* Bottom fade */}
-      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-background to-transparent pointer-events-none" />
+      <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-background/80 to-transparent pointer-events-none" />
     </section>
   );
 };

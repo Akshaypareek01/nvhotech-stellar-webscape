@@ -1,4 +1,4 @@
-import { Mail, Phone, MapPin, ArrowRight } from 'lucide-react';
+import { Mail, MessageCircle, MapPin, ArrowRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 const serviceLinks = [
@@ -97,8 +97,8 @@ export const Footer = () => {
                 rel="noopener noreferrer"
                 className="flex items-center gap-3 text-sm text-[hsl(var(--footer-muted))] hover:text-white transition-colors"
               >
-                <Phone className="w-4 h-4 text-[hsl(var(--footer-icon))] flex-shrink-0" />
-                +91 82909 18154
+                <MessageCircle className="w-4 h-4 text-[hsl(var(--footer-icon))] flex-shrink-0" />
+                Chat on WhatsApp
               </a>
               <a
                 href="mailto:info@nvhotech.com"

@@ -2,7 +2,7 @@ import { ArrowRight, Globe, Smartphone, Cloud, Brain, ExternalLink, ArrowLeft, C
 import type { CSSProperties } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { ThemeToggle } from '@/components/ThemeToggle';
+// import { ThemeToggle } from '@/components/ThemeToggle';
 import { useNavigate } from 'react-router-dom';
 import { SEO } from '@/components/SEO';
 import { breadcrumbSchema, SITE_URL } from '@/lib/seoSchemas';
@@ -261,9 +261,9 @@ const Services = () => {
           <ArrowLeft className="w-4 h-4 mr-2" />
           Back
         </Button>
-        <div className="absolute right-4 top-8 z-[60] flex items-center sm:right-6">
+        {/* <div className="absolute right-4 top-8 z-[60] flex items-center sm:right-6">
           <ThemeToggle />
-        </div>
+        </div> */}
 
         <div className="container mx-auto px-4 sm:px-6 relative z-10">
           <div className="text-center mb-16">

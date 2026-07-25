@@ -9,6 +9,7 @@ import { ServicesSection } from '@/components/ServicesSection';
 import { FAQSection } from '@/components/FAQSection';
 import { Footer } from '@/components/Footer';
 import { ORGANIZATION_SCHEMA, WEBSITE_SCHEMA, faqSchema, type FAQItem } from '@/lib/seoSchemas';
+import { useHeroScrollSnap } from '@/hooks/useHeroScrollSnap';
 
 // Lazy load below-the-fold sections
 const AppSliderSection = lazy(() => import('@/components/AppSliderSection').then(module => ({ default: module.AppSliderSection })));
@@ -67,6 +68,8 @@ const LANDING_CHATBOT_BOT_ID = 'default';
 const Index = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const location = useLocation();
+
+  useHeroScrollSnap();
 
   useEffect(() => {
     if (document.getElementById(LANDING_CHATBOT_SCRIPT_ID)) return;

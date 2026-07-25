@@ -1,9 +1,8 @@
 import { AppointmentBookingForm } from '@/components/contact/AppointmentBookingForm';
 import type { CSSProperties } from 'react';
-import { Phone, Mail, MessageCircle, Clock } from 'lucide-react';
+import { Mail, MessageCircle, Clock } from 'lucide-react';
 
 const contactInfo = [
-  { icon: Phone, label: 'Call / WhatsApp', value: '+91 82909 18154', href: 'https://wa.me/918290918154', color: '#21A05F' },
   { icon: Mail, label: 'Email Us', value: 'info@nvhotech.com', href: 'mailto:info@nvhotech.com', color: 'hsl(var(--cat-a))' },
   { icon: MessageCircle, label: 'WhatsApp Chat', value: 'Chat Instantly', href: 'https://wa.me/918290918154', color: '#21A05F' },
   { icon: Clock, label: 'Response Time', value: 'Within 24 Hours', href: null, color: 'hsl(var(--cat-b))' },
@@ -37,7 +36,7 @@ export const ContactSection = () => {
 
         <div className="max-w-5xl mx-auto">
           {/* Contact info chips */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-10">
             {contactInfo.map((info) => (
               <div key={info.label}>
                 {info.href ? (

@@ -1,8 +1,20 @@
 <!DOCTYPE html>
-<html lang="en" suppressHydrationWarning>
+<html lang="en" class="dark" suppressHydrationWarning>
 
 <head>
   <meta charset="UTF-8" />
+  <script>
+    (function () {
+      try {
+        document.documentElement.classList.add('dark');
+        localStorage.setItem('nvho-theme', 'dark');
+        document.documentElement.removeAttribute('data-palette');
+        localStorage.removeItem('nvho-palette');
+      } catch (e) {
+        document.documentElement.classList.add('dark');
+      }
+    })();
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Software Development Company — Web, Apps & AI | NVHO Tech</title>
   <meta name="description"
