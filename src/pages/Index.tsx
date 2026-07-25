@@ -10,6 +10,7 @@ import { FAQSection } from '@/components/FAQSection';
 import { Footer } from '@/components/Footer';
 import { ORGANIZATION_SCHEMA, WEBSITE_SCHEMA, faqSchema, type FAQItem } from '@/lib/seoSchemas';
 import { useHeroScrollSnap } from '@/hooks/useHeroScrollSnap';
+import { scrollToSectionById } from '@/utils/scrollToSection';
 
 // Lazy load below-the-fold sections
 const AppSliderSection = lazy(() => import('@/components/AppSliderSection').then(module => ({ default: module.AppSliderSection })));
@@ -90,12 +91,8 @@ const Index = () => {
     if (!targetId) return;
 
     const scrollToTarget = () => {
-      const el = document.querySelector(targetId);
-      if (el) {
-        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      } else {
-        setTimeout(scrollToTarget, 120);
-      }
+      if (scrollToSectionById(targetId)) return;
+      setTimeout(scrollToTarget, 120);
     };
     setTimeout(scrollToTarget, 80);
   }, [location]);

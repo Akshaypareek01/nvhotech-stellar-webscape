@@ -84,7 +84,8 @@ export default {
 				'sans': ['Hanken Grotesk', 'system-ui', 'sans-serif'],
 				'tech': ['Hanken Grotesk', 'system-ui', 'sans-serif'],
 				'mono': ['ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace'],
-				'display': ['Bricolage Grotesque', 'Hanken Grotesk', 'system-ui', 'sans-serif']
+				'display': ['Bricolage Grotesque', 'Hanken Grotesk', 'system-ui', 'sans-serif'],
+				'brand': ['Michroma', 'Hanken Grotesk', 'system-ui', 'sans-serif']
 			},
 			borderRadius: {
 				lg: 'var(--radius)',

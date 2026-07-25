@@ -1,18 +1,10 @@
 import { useEffect, useRef } from 'react';
+import { getHeaderHeight, isProgrammaticScroll } from '@/utils/scrollToSection';
 
 const SNAP_COOLDOWN_MS = 900;
 const MIN_SCROLL_DELTA = 6;
 const TOUCH_SWIPE_DELTA = 12;
 const ABOUT_SNAP_TOLERANCE = 24;
-
-/** Reads the fixed header height used for section scroll offsets. */
-function getHeaderHeight(): number {
-  return (
-    Number.parseFloat(
-      getComputedStyle(document.documentElement).getPropertyValue('--header-height'),
-    ) || 72
-  );
-}
 
 /**
  * Returns true when the page is between the hero and about sections.
@@ -93,7 +85,7 @@ export function useHeroScrollSnap(heroSectionId = 'home', aboutSectionId = 'abou
       isAtAboutSnap(aboutSectionId) || isBetweenHeroAndAbout(aboutSectionId);
 
     const onWheel = (event: WheelEvent) => {
-      if (snappingRef.current) return;
+      if (snappingRef.current || isProgrammaticScroll()) return;
 
       if (event.deltaY > 0 && shouldSnapToAbout()) {
         event.preventDefault();
@@ -113,7 +105,7 @@ export function useHeroScrollSnap(heroSectionId = 'home', aboutSectionId = 'abou
       const scrollingUp = currentScrollY < lastScrollYRef.current;
       lastScrollYRef.current = currentScrollY;
 
-      if (snappingRef.current || !isBetweenHeroAndAbout(aboutSectionId)) return;
+      if (snappingRef.current || isProgrammaticScroll() || !isBetweenHeroAndAbout(aboutSectionId)) return;
 
       if (scrollingDown) {
         snapToAbout();
@@ -130,7 +122,7 @@ export function useHeroScrollSnap(heroSectionId = 'home', aboutSectionId = 'abou
     };
 
     const onTouchMove = (event: TouchEvent) => {
-      if (snappingRef.current) return;
+      if (snappingRef.current || isProgrammaticScroll()) return;
 
       const touchY = event.touches[0]?.clientY ?? touchStartYRef.current;
       const delta = touchStartYRef.current - touchY;
