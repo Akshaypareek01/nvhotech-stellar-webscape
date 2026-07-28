@@ -15,10 +15,10 @@ const HEADLINES = [
 const services = ['Web Development', 'Mobile Apps', 'AI Automation', 'Custom Software', 'CRM Systems'];
 
 const stats = [
-  { value: '120+', label: 'Projects Delivered' },
-  { value: '100+', label: 'Happy Clients' },
-  { value: '99%', label: 'Client Satisfaction' },
-  { value: '24/7', label: 'Support' },
+  { value: '120+', label: 'Projects Delivered', shortLabel: 'Projects' },
+  { value: '100+', label: 'Happy Clients', shortLabel: 'Clients' },
+  { value: '99%', label: 'Client Satisfaction', shortLabel: 'Satisfaction' },
+  { value: '24/7', label: 'Support', shortLabel: 'Support' },
 ];
 
 const techBadges = [
@@ -94,7 +94,7 @@ export const HeroSection = () => {
   const animClass = phase === 'enter' ? 'hero-word-enter' : 'hero-word-exit';
 
   return (
-    <section className="relative flex min-h-[100dvh] items-start justify-center overflow-hidden bg-background pt-[calc(var(--header-height)+2rem)] md:pt-[calc(var(--header-height)+2.5rem)] pb-12 md:pb-16">
+    <section className="relative flex min-h-[100dvh] flex-col overflow-hidden bg-background pt-[calc(var(--header-height)+1.25rem)] sm:pt-[calc(var(--header-height)+2rem)] md:pt-[calc(var(--header-height)+2.5rem)] pb-4 sm:pb-8 md:pb-16">
       {/* Background video — no grid/line overlays; scrim only after playback starts */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none bg-background" aria-hidden="true">
         <video
@@ -115,21 +115,21 @@ export const HeroSection = () => {
         )}
       </div>
 
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center">
-            {/* Badge */}
+      <div className="container mx-auto flex flex-1 flex-col px-4 sm:px-6 relative z-10">
+        <div className="mx-auto flex w-full max-w-6xl flex-1 flex-col">
+          {/* Hero copy — centered in upper space */}
+          <div className="flex flex-1 flex-col items-center justify-center text-center">
             <div
-              className="inline-flex items-center gap-2 badge-blue mb-8 animate-fade-in"
+              className="inline-flex max-w-full items-center gap-1.5 badge-blue mb-4 sm:mb-6 md:mb-8 animate-fade-in text-xs sm:text-[0.8125rem] px-3 sm:px-[0.875rem] py-1"
             >
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>India's Premier IT Solutions Company</span>
+              <Sparkles className="w-3.5 h-3.5 shrink-0 sm:w-3.5 sm:h-3.5" aria-hidden="true" />
+              <span className="leading-tight sm:hidden">Premier IT Solutions</span>
+              <span className="leading-tight hidden sm:inline">India's Premier IT Solutions Company</span>
             </div>
 
-            {/* Main headline — three rows that cycle with a glitch swap */}
             <h1
-              className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold text-foreground mb-6 animate-fade-in-up"
-              style={{ letterSpacing: '-0.03em', lineHeight: '1.05' }}
+              className="mb-4 sm:mb-6 animate-fade-in-up px-1 text-[1.875rem] font-extrabold leading-[1.1] text-foreground sm:text-5xl sm:leading-[1.05] md:text-7xl lg:text-8xl"
+              style={{ letterSpacing: '-0.03em' }}
               aria-label={`${h.top} ${h.accent} ${h.bottom}`}
             >
               <span key={`top-${headlineIdx}`} className={`inline-block ${animClass}`}>
@@ -153,11 +153,10 @@ export const HeroSection = () => {
               </span>
             </h1>
 
-            {/* Animated service line — glass card for contrast over video bg */}
-            <div className="inline-flex items-center justify-center gap-3 mb-6 animate-fade-in delay-200 glass rounded-full px-5 py-2.5 md:px-6 md:py-3 border border-border/60 shadow-sm">
-              <div className="w-2 h-2 shrink-0 rounded-full bg-primary animate-pulse" aria-hidden="true" />
-              <p className="text-lg md:text-xl font-semibold text-foreground">
-                Specialising in{' '}
+            <div className="mb-5 sm:mb-6 animate-fade-in delay-200 inline-flex max-w-full items-center justify-center rounded-full border border-border/60 glass px-3 py-1.5 shadow-sm sm:gap-3 sm:px-5 sm:py-2.5 md:px-6 md:py-3">
+              <div className="hidden sm:block h-2 w-2 shrink-0 rounded-full bg-primary animate-pulse" aria-hidden="true" />
+              <p className="text-sm font-semibold leading-snug text-foreground sm:text-lg md:text-xl">
+                <span className="hidden sm:inline">Specialising in </span>
                 <span
                   key={currentService}
                   className="gradient-text"
@@ -166,59 +165,57 @@ export const HeroSection = () => {
                   {services[currentService]}
                 </span>
               </p>
-              <div className="w-2 h-2 shrink-0 rounded-full bg-accent animate-pulse" aria-hidden="true" />
+              <div className="hidden sm:block h-2 w-2 shrink-0 rounded-full bg-accent animate-pulse" aria-hidden="true" />
             </div>
 
-            {/* Subtitle */}
-            {/* <p className="text-base md:text-lg text-muted-foreground mb-10 max-w-2xl mx-auto leading-relaxed animate-fade-in delay-300">
-              We collaborate with startups and enterprises to build high-quality web apps, mobile solutions,
-              CRM systems, and AI tools — on time, on budget, and beyond expectations.
-            </p> */}
-
-            {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-14 animate-fade-in delay-400">
+            <div className="animate-fade-in delay-400 mx-auto flex w-full max-w-[18rem] flex-col items-stretch justify-center gap-2 sm:max-w-none sm:flex-row sm:items-center sm:gap-4">
               <Button
-                size="lg"
-                className="btn-gradient h-13 px-8 text-base font-semibold rounded-xl shadow-lg"
+                size="sm"
+                className="btn-gradient h-10 w-full rounded-lg px-5 py-2 text-sm font-semibold shadow-md sm:h-11 sm:w-auto sm:rounded-xl sm:px-6 md:text-base sm:shadow-lg"
                 onClick={() => navigate('/services')}
               >
-                Explore Our Services
-                <ArrowRight className="ml-2 w-5 h-5" />
+                Explore Services
+                <ArrowRight className="ml-2 h-4 w-4 sm:ml-2 sm:h-4 sm:w-4" aria-hidden="true" />
               </Button>
               <Button
-                size="lg"
+                size="sm"
                 variant="outline"
-                className="h-13 px-8 text-base font-semibold rounded-xl border-2 border-border text-foreground hover:border-primary hover:text-primary hover:bg-primary/10 transition-all duration-200"
+                className="hidden h-11 rounded-xl border-2 border-border px-6 py-2 text-sm font-semibold text-foreground transition-all duration-200 hover:border-primary hover:bg-primary/10 hover:text-primary sm:inline-flex md:text-base"
                 onClick={() => navigate('/book-appointment')}
               >
                 Book Free Consultation
               </Button>
             </div>
 
-            {/* Tech badges */}
-            <div className="flex flex-wrap justify-center gap-3 mb-14 animate-fade-in delay-500">
+          </div>
+
+          {/* Bottom stack — tech badges + stats */}
+          <div className="stepwell-mark stepwell-mark-mobile mt-auto w-full pt-4 animate-fade-in delay-500 sm:pt-6 md:mt-10">
+            <div className="mb-3 flex flex-wrap justify-center gap-2 sm:mb-4 sm:gap-3">
               {techBadges.map((badge) => (
                 <div
                   key={badge.label}
-                  className="flex items-center gap-2 px-4 py-2 rounded-full bg-card border border-border shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200"
+                  className="flex items-center gap-1.5 rounded-full border border-border bg-card px-3 py-1.5 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md sm:px-4 sm:py-2"
                 >
-                  <badge.icon className="w-4 h-4" style={{ color: badge.color }} />
-                  <span className="text-sm font-medium text-muted-foreground">{badge.label}</span>
+                  <badge.icon className="h-4 w-4 shrink-0" style={{ color: badge.color }} aria-hidden="true" />
+                  <span className="text-xs font-medium text-muted-foreground sm:text-sm">{badge.label}</span>
                 </div>
               ))}
             </div>
 
-            {/* Stats strip */}
-            <div className="stepwell-mark grid grid-cols-2 md:grid-cols-4 gap-px bg-border rounded-2xl overflow-hidden border border-border shadow-sm animate-fade-in delay-600">
+            <div className="grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-border bg-border shadow-sm sm:rounded-2xl md:grid-cols-4">
               {stats.map((stat) => (
                 <div
                   key={stat.label}
-                  className="bg-card px-6 py-5 text-center hover:bg-primary/10 transition-colors duration-200"
+                  className="bg-card px-3 py-3.5 text-center transition-colors duration-200 hover:bg-primary/10 sm:px-6 sm:py-5"
                 >
-                  <div className="font-display text-2xl md:text-3xl font-extrabold gradient-text mb-1">
+                  <div className="font-display mb-1 text-2xl font-extrabold gradient-text sm:text-2xl md:text-3xl">
                     {stat.value}
                   </div>
-                  <div className="text-xs md:text-sm text-muted-foreground font-medium">{stat.label}</div>
+                  <div className="text-xs font-medium leading-tight text-muted-foreground sm:text-xs md:text-sm">
+                    <span className="sm:hidden">{stat.shortLabel}</span>
+                    <span className="hidden sm:inline">{stat.label}</span>
+                  </div>
                 </div>
               ))}
             </div>
@@ -227,7 +224,7 @@ export const HeroSection = () => {
       </div>
 
       {/* Bottom fade */}
-      <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-background/80 to-transparent pointer-events-none" />
+      <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-background/80 to-transparent" />
     </section>
   );
 };

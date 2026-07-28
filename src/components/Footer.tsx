@@ -1,5 +1,6 @@
-import { Mail, MessageCircle, MapPin, ArrowRight } from 'lucide-react';
+import { Mail, MessageCircle, MapPin, ArrowRight, Instagram } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { INSTAGRAM_URL, WHATSAPP_URL } from '@/constants/socialLinks';
 
 const serviceLinks = [
   { label: 'Website Development', href: '/web-development' },
@@ -92,13 +93,22 @@ export const Footer = () => {
             {/* Contact info */}
             <div className="space-y-3 mb-6">
               <a
-                href="https://wa.me/918290918154"
+                href={WHATSAPP_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-3 text-sm text-[hsl(var(--footer-muted))] hover:text-white transition-colors"
               >
                 <MessageCircle className="w-4 h-4 text-[hsl(var(--footer-icon))] flex-shrink-0" />
                 Chat on WhatsApp
+              </a>
+              <a
+                href={INSTAGRAM_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 text-sm text-[hsl(var(--footer-muted))] hover:text-white transition-colors"
+              >
+                <Instagram className="w-4 h-4 text-[hsl(var(--footer-icon))] flex-shrink-0" />
+                @nvhotech on Instagram
               </a>
               <a
                 href="mailto:info@nvhotech.com"

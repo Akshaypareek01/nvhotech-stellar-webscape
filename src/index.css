@@ -1015,6 +1015,16 @@
     opacity: 0.85;
   }
 
+  .stepwell-mark-mobile::after {
+    display: none;
+  }
+
+  @media (min-width: 768px) {
+    .stepwell-mark-mobile::after {
+      display: block;
+    }
+  }
+
   /* Custom scrollbar */
   ::-webkit-scrollbar {
     width: 6px;

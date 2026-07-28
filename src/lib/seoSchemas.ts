@@ -5,6 +5,8 @@
  * Google and AI answer engines (ChatGPT, Perplexity, AI Overviews).
  */
 
+import { INSTAGRAM_URL } from '@/constants/socialLinks';
+
 export const SITE_URL = 'https://nvhotech.com';
 export const BRAND_NAME = 'NVHO Tech';
 export const BRAND_LOGO = `${SITE_URL}/images/logoNT.png`;
@@ -34,6 +36,7 @@ export const ORGANIZATION_SCHEMA = {
     },
     foundingDate: '2024',
     areaServed: 'Worldwide',
+    sameAs: [INSTAGRAM_URL],
     knowsAbout: [
         'Web Development',
         'Mobile App Development',
